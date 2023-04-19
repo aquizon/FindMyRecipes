@@ -46,7 +46,14 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.layout.Priority;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+// import javafx.beans.property.SimpleStringProperty;
 
 public class CatalogFridge extends Application {
     private Stage stage;
@@ -106,12 +113,30 @@ public class CatalogFridge extends Application {
     foodCategoriesPane.add(otherButton, 1, 2);
     
     mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
+
+    ingredientsTable.setItems(ingredientsData);
+    setIngredientTableColumns();
+    readCSV();
     setButtonHandlers();
 
     Scene scene = new Scene(mainPane);
     stage.setScene(scene);
     stage.setTitle("Find My Recipes");
     stage.show();
+    // readCSV();
+  }
+
+  private void setIngredientTableColumns() {
+    TableColumn idCol = new TableColumn("Id");
+    idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+ 
+    TableColumn nameCol = new TableColumn("Name");
+    nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+    TableColumn categoryCol = new TableColumn("Category");
+    categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+
+    ingredientsTable.getColumns().addAll(idCol, nameCol, categoryCol);
   }
 
   private void setButtonHandlers() {
@@ -131,6 +156,7 @@ public class CatalogFridge extends Application {
 
   private void fruitsButtonHandler() {
     switchToFilteredTableScene();
+    System.out.println(ingredientsData.get(0));
   }
   private void vegetablesButtonHandler() {
     switchToFilteredTableScene();
@@ -159,6 +185,32 @@ public class CatalogFridge extends Application {
     mainPane.add(backButton, 0, 1);
     mainPane.add(ingredientsTable, 0, 2, 2, 2);
   }
+
+  private void readCSV() {
+ 
+    String CsvFile = "Ingredients_Dataset.csv";
+    String FieldDelimiter = ",";
+
+    BufferedReader br;
+
+    try {
+        br = new BufferedReader(new FileReader(CsvFile));
+        String line;
+        br.readLine(); // Read first line cause they're column headers
+        while ((line = br.readLine()) != null) {
+            String[] fields = line.split(FieldDelimiter, -1);
+
+            Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2]);
+            ingredientsData.add(record);
+        }
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(CatalogFridge.class.getName())
+                .log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(CatalogFridge.class.getName())
+                .log(Level.SEVERE, null, ex);
+    }
+}
 
   public static void main(String[] args) {
     launch(args);
