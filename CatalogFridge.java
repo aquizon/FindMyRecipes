@@ -68,6 +68,7 @@ public class CatalogFridge extends Application {
   private TableView<Recipe> recipeTable = new TableView<>();
   private TableView<Ingredient> fridgeTable = new TableView<>();
   private TableView<Ingredient> ingredientsTable = new TableView<>();
+  
   private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
@@ -115,6 +116,10 @@ public class CatalogFridge extends Application {
     
     mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
 
+    // set up Fridge Table
+    fridgeTable.setItems(fridgeData);
+    setFridgeTableColumns();
+
     // set up Ingredients Table
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
@@ -139,6 +144,85 @@ public class CatalogFridge extends Application {
     categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
 
     ingredientsTable.getColumns().addAll(idCol, nameCol, categoryCol);
+    addButtonToIngredientTable();
+  }
+
+  private void addButtonToIngredientTable() {
+      TableColumn<Ingredient, Void> colBtn = new TableColumn("");
+      colBtn.setStyle( "-fx-alignment: CENTER;");
+      Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>>() {
+          @Override
+          public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) {
+              final TableCell<Ingredient, Void> cell = new TableCell<Ingredient, Void>() {
+                  private final Button btn = new Button("Add to Fridge");
+                  {
+                      btn.setOnAction((ActionEvent e) -> {
+                          Ingredient t = getTableView().getItems().get(getIndex());
+                          addtoFridgeHandler(t);
+                      });
+                  }
+                  @Override
+                  public void updateItem(Void item, boolean empty) {
+                      super.updateItem(item, empty);
+                      if (empty) {
+                          setGraphic(null);
+                      } else {
+                          setGraphic(btn);
+                      }
+                  }
+              };
+              return cell;
+          }
+      };
+      colBtn.setCellFactory(cellFactory);
+      ingredientsTable.getColumns().add(colBtn);
+      // colBtn.prefWidthProperty().bind(ordersInProgressTable.widthProperty().subtract(usedWidth));
+  }
+
+  private void setFridgeTableColumns() {
+    TableColumn idCol = new TableColumn("Id");
+    idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+ 
+    TableColumn nameCol = new TableColumn("Name");
+    nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+    TableColumn categoryCol = new TableColumn("Category");
+    categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
+
+    fridgeTable.getColumns().addAll(idCol, nameCol, categoryCol);
+    addButtonToFridgeTable();
+  }
+
+  private void addButtonToFridgeTable() {
+      TableColumn<Ingredient, Void> colBtn = new TableColumn("");
+      colBtn.setStyle( "-fx-alignment: CENTER;");
+      Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>>() {
+          @Override
+          public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) {
+              final TableCell<Ingredient, Void> cell = new TableCell<Ingredient, Void>() {
+                  private final Button btn = new Button("Remove");
+                  {
+                      btn.setOnAction((ActionEvent e) -> {
+                          Ingredient t = getTableView().getItems().get(getIndex());
+                          removeFromFridgeHandler(t);
+                      });
+                  }
+                  @Override
+                  public void updateItem(Void item, boolean empty) {
+                      super.updateItem(item, empty);
+                      if (empty) {
+                          setGraphic(null);
+                      } else {
+                          setGraphic(btn);
+                      }
+                  }
+              };
+              return cell;
+          }
+      };
+      colBtn.setCellFactory(cellFactory);
+      fridgeTable.getColumns().add(colBtn);
+      // colBtn.prefWidthProperty().bind(ordersInProgressTable.widthProperty().subtract(usedWidth));
   }
 
   private void setButtonHandlers() {
@@ -185,6 +269,16 @@ public class CatalogFridge extends Application {
     mainPane.getChildren().remove(ingredientsTable);
     mainPane.getChildren().remove(backButton);
     mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
+  }
+
+  private void addtoFridgeHandler(Ingredient t) {
+    if (!fridgeData.contains(t)) {
+      fridgeData.add(t);
+    }
+  }
+
+  private void removeFromFridgeHandler(Ingredient t) {
+    fridgeData.remove(t);
   }
 
   private void switchToFilteredTableScene() {
