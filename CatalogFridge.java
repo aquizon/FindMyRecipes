@@ -87,7 +87,8 @@ public class CatalogFridge extends Application {
   Button otherButton = new Button("Other");
 
   // buttons for the bottom menu for Catalog Fridge Window
-  Button favoritesRecipesButton = new Button("Favorites Button");
+  // Button favoritesRecipesButton = new Button("Favorites Button");
+  Button favoritesRecipesButton = new Button("Custom Button!");
   Button generateRecipesButton = new Button("Generate Recipes");
   Button saveAndExitButton = new Button("Save and Exit");
 
@@ -99,6 +100,10 @@ public class CatalogFridge extends Application {
 
     HBox menuBarBox = new HBox(20); // contains the three buttons at the bottom
     menuBarBox.setAlignment(Pos.CENTER);
+    favoritesRecipesButton.setStyle(
+        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";"
+    );
+    favoritesRecipesButton.setPrefSize(100, 100);
     menuBarBox.getChildren().addAll(favoritesRecipesButton, generateRecipesButton, saveAndExitButton);
 
     mainPane.setHgap(10);
@@ -109,14 +114,8 @@ public class CatalogFridge extends Application {
 
     mainPane.add(fridgeTable, 2, 0, 1, 4);
     mainPane.add(menuBarBox, 0, 4, 3, 1);
-
-    foodCategoriesPane.add(fruitsButton, 0, 0);
-    foodCategoriesPane.add(vegetablesButton, 1, 0);
-    foodCategoriesPane.add(grainsButton, 0, 1);
-    foodCategoriesPane.add(proteinsButton, 1, 1);
-    foodCategoriesPane.add(dairyButton, 0, 2);
-    foodCategoriesPane.add(otherButton, 1, 2);
     
+    setUpFoodCategories();
     mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
 
     // set up Fridge Table
@@ -134,6 +133,21 @@ public class CatalogFridge extends Application {
     stage.setScene(scene);
     stage.setTitle("Find My Recipes");
     stage.show();
+  }
+
+  private void setUpFoodCategories() {
+    fruitsButton.setPrefSize(200, 100);
+    vegetablesButton.setPrefSize(200, 100);
+    grainsButton.setPrefSize(200, 100);
+    proteinsButton.setPrefSize(200, 100);
+    dairyButton.setPrefSize(200, 100);
+    otherButton.setPrefSize(200, 100);
+    foodCategoriesPane.add(fruitsButton, 0, 0);
+    foodCategoriesPane.add(vegetablesButton, 1, 0);
+    foodCategoriesPane.add(grainsButton, 0, 1);
+    foodCategoriesPane.add(proteinsButton, 1, 1);
+    foodCategoriesPane.add(dairyButton, 0, 2);
+    foodCategoriesPane.add(otherButton, 1, 2);
   }
 
   private void setIngredientTableColumns() {
@@ -333,7 +347,8 @@ public class CatalogFridge extends Application {
         filteredList.add(t);
       }
     }
-    return FXCollections.observableList(filteredList);
+    ObservableList<Ingredient> newList = FXCollections.observableList(filteredList);
+    return newList;
   }
 
   private boolean searchFindsIngredient(Ingredient t, String searchText) {
