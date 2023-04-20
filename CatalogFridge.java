@@ -68,6 +68,7 @@ public class CatalogFridge extends Application {
   private TableView<Recipe> recipeTable = new TableView<>();
   private TableView<Ingredient> fridgeTable = new TableView<>();
   private TableView<Ingredient> ingredientsTable = new TableView<>();
+  private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
   private ObservableList<Recipe> recipeData = FXCollections.observableArrayList();
@@ -114,16 +115,17 @@ public class CatalogFridge extends Application {
     
     mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
 
+    // set up Ingredients Table
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
-    readCSV();
+    loadIngredientsFromFile();
+
     setButtonHandlers();
 
     Scene scene = new Scene(mainPane);
     stage.setScene(scene);
     stage.setTitle("Find My Recipes");
     stage.show();
-    // readCSV();
   }
 
   private void setIngredientTableColumns() {
@@ -156,22 +158,27 @@ public class CatalogFridge extends Application {
 
   private void fruitsButtonHandler() {
     switchToFilteredTableScene();
-    System.out.println(ingredientsData.get(0));
+    ingredientsTable.setItems(ingredientCategories.get("Fruits"));
   }
   private void vegetablesButtonHandler() {
     switchToFilteredTableScene();
+    ingredientsTable.setItems(ingredientCategories.get("Vegetables"));
   }
   private void grainsButtonHandler() {
     switchToFilteredTableScene();
+    ingredientsTable.setItems(ingredientCategories.get("Grains"));
   }
   private void proteinsButtonHandler() {
     switchToFilteredTableScene();
+    ingredientsTable.setItems(ingredientCategories.get("Proteins"));
   }
   private void dairyButtonHandler() {
     switchToFilteredTableScene();
+    ingredientsTable.setItems(ingredientCategories.get("Dairy"));
   }
   private void otherButtonHandler() {
     switchToFilteredTableScene();
+    ingredientsTable.setItems(ingredientCategories.get("Other"));
   }
 
   private void backButtonHandler() {
@@ -186,7 +193,7 @@ public class CatalogFridge extends Application {
     mainPane.add(ingredientsTable, 0, 2, 2, 2);
   }
 
-  private void readCSV() {
+  private void loadIngredientsFromFile() {
  
     String CsvFile = "Ingredients_Dataset.csv";
     String FieldDelimiter = ",";
@@ -202,6 +209,17 @@ public class CatalogFridge extends Application {
 
             Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2]);
             ingredientsData.add(record);
+            // Add to hashmap
+            String category = fields[2];
+            ObservableList<Ingredient> categoryData;
+            if (ingredientCategories.containsKey(category)) {
+              categoryData = ingredientCategories.get(category);
+            }
+            else {
+              categoryData = FXCollections.observableArrayList();
+            }
+            categoryData.add(record);
+            ingredientCategories.put(category, categoryData);
         }
     } catch (FileNotFoundException ex) {
         Logger.getLogger(CatalogFridge.class.getName())
