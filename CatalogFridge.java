@@ -147,8 +147,9 @@ public class CatalogFridge extends Application {
     currIngredientList = ingredientsData;
 
     setButtonHandlers();
+    mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
 
-    Scene scene = new Scene(mainPane, initWidth, initHeight, Color.web("#E5E6BB"));
+    Scene scene = new Scene(mainPane, initWidth, initHeight);
     stage.setScene(scene);
     stage.setResizable(false);
     stage.show();
@@ -198,17 +199,17 @@ public class CatalogFridge extends Application {
 
   private void setUpFoodCategories() {
     fruitsButton.setPrefSize(200, 100);
-    fruitsButton.setStyle("-fx-background-color: #C92859;" + "-fx-text-fill: #FFFFFF");
+    fruitsButton.setStyle("-fx-background-color: #ED220D;" + "-fx-text-fill: #FFFFFF");
     vegetablesButton.setPrefSize(200, 100);
-    vegetablesButton.setStyle("-fx-background-color: #79B352;" +  "-fx-text-fill: #FFFFFF");
+    vegetablesButton.setStyle("-fx-background-color: #60D938;" + "-fx-text-fill: #FFFFFF");
     grainsButton.setPrefSize(200, 100);
-    grainsButton.setStyle("-fx-background-color: #C9A128;" +  "-fx-text-fill: #FFFFFF");
+    grainsButton.setStyle("-fx-background-color: #FEAE00;" + "-fx-text-fill: #FFFFFF");
     proteinsButton.setPrefSize(200, 100);
-    proteinsButton.setStyle("-fx-background-color: #C183D2;" +  "-fx-text-fill: #FFFFFF");
+    proteinsButton.setStyle("-fx-background-color: #7B2CDF;" + "-fx-text-fill: #FFFFFF");
     dairyButton.setPrefSize(200, 100);
-    dairyButton.setStyle("-fx-background-color: #28B2C9;" +  "-fx-text-fill: #FFFFFF");
+    dairyButton.setStyle("-fx-background-color: #00A1FF;" + "-fx-text-fill: #FFFFFF");
     otherButton.setPrefSize(200, 100);
-    otherButton.setStyle("-fx-background-color: #5B5F60;" +  "-fx-text-fill: #FFFFFF");
+    otherButton.setStyle("-fx-background-color: #929292;" + "-fx-text-fill: #FFFFFF");
     foodCategoriesPane.add(fruitsButton, 0, 0);
     foodCategoriesPane.add(vegetablesButton, 1, 0);
     foodCategoriesPane.add(grainsButton, 0, 1);
@@ -377,6 +378,7 @@ public class CatalogFridge extends Application {
       switchToFilteredTableScene();
     }
     ingredientsTable.setItems(filterList(searchText));
+    searchBox.clear();
   }
 
   private void switchToFilteredTableScene() {
