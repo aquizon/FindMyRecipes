@@ -166,7 +166,7 @@ public class CatalogFridge extends Application {
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
 
-    Image img = new Image("appleLogo.png");
+    Image img = new Image("GenerateRecipes.png");
     ImageView view = new ImageView(img);
     view.setFitHeight(60);
     view.setPreserveRatio(true);
