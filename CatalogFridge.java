@@ -53,7 +53,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-// import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Insets;
 
 public class CatalogFridge extends Application {
     private Stage stage;
@@ -61,7 +63,7 @@ public class CatalogFridge extends Application {
     private Parent root;
   
   // set the dimensions of the stage
-  private final int initWidth = 700;
+  private final int initWidth = 675;
   private final int initHeight = 500;
 
   // create three TableView objects: Recipes, Fridge, Ingredient List
@@ -78,6 +80,7 @@ public class CatalogFridge extends Application {
   private ObservableList<Ingredient> currIngredientList;
 
   // buttons/textFields for the Catalog Fridge Window
+  Label title = new Label("FindMyRecipes");
   TextField searchBox = new TextField();
   Button fruitsButton = new Button("Fruits");
   Button vegetablesButton = new Button("Vegetables");
@@ -86,43 +89,43 @@ public class CatalogFridge extends Application {
   Button dairyButton = new Button("Dairy");
   Button otherButton = new Button("Other");
 
-  // buttons for the bottom menu for Catalog Fridge Window
-  // Button favoritesRecipesButton = new Button("Favorites Button");
-  Button favoritesRecipesButton = new Button("Custom Button!");
-  Button generateRecipesButton = new Button("Generate Recipes");
-  Button saveAndExitButton = new Button("Save and Exit");
+  // buttons + Labels for the bottom menu for Catalog Fridge Window
+  Button favoritesRecipesButton = new Button();
+  Label favoritesRecipesButtonLabel = new Label("Favorites");
+  Button generateRecipesButton = new Button();
+  Label generateRecipesButtonLabel = new Label("Generate Recipes");
+  Button saveAndExitButton = new Button("Exit Image Here");
+  Label saveAndExitButtonLabel = new Label("Save and Exit");
 
   Button backButton = new Button("Back");
   GridPane mainPane = new GridPane(); // main container
   GridPane foodCategoriesPane = new GridPane();
 
+  HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+
   public void start(Stage stage) {
-
-    HBox menuBarBox = new HBox(20); // contains the three buttons at the bottom
-    menuBarBox.setAlignment(Pos.CENTER);
-    favoritesRecipesButton.setStyle(
-        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";"
-    );
-    favoritesRecipesButton.setPrefSize(100, 100);
-    menuBarBox.getChildren().addAll(favoritesRecipesButton, generateRecipesButton, saveAndExitButton);
-
+    setUpMenuBarBox();
     mainPane.setHgap(10);
-    mainPane.setVgap(20);
+    mainPane.setVgap(15);
     // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
-    mainPane.add(searchBox, 0, 0, 2, 1);
+    mainPane.add(title, 0, 0, 3, 1);
+    mainPane.setHalignment(title, HPos.CENTER);
+    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+    mainPane.add(searchBox, 0, 1, 2, 1);
     searchBox.textProperty().addListener((observable, oldValue, newValue) -> ingredientsTable.setItems(filterList(currIngredientList, newValue.toLowerCase())));
 
-    mainPane.add(fridgeTable, 2, 0, 1, 4);
-    mainPane.add(menuBarBox, 0, 4, 3, 1);
+    fridgeTable.setPrefSize(250, 300);
+    mainPane.add(fridgeTable, 2, 1, 1, 4);
     
     setUpFoodCategories();
-    mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
+    mainPane.add(foodCategoriesPane, 0, 2, 2, 3);
 
     // set up Fridge Table
     fridgeTable.setItems(fridgeData);
     setFridgeTableColumns();
 
     // set up Ingredients Table
+    ingredientsTable.setPrefSize(400, 250);
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
     loadIngredientsFromFile();
@@ -131,8 +134,39 @@ public class CatalogFridge extends Application {
 
     Scene scene = new Scene(mainPane, initWidth, initHeight);
     stage.setScene(scene);
-    stage.setTitle("Find My Recipes");
+    stage.setResizable(false);
     stage.show();
+  }
+
+  private void setUpMenuBarBox() {
+    menuBarBox.setAlignment(Pos.CENTER);
+    favoritesRecipesButton.setStyle(
+        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";"
+    );
+    favoritesRecipesButton.setPrefSize(60, 60);
+    VBox favoritesBox = new VBox();
+    favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
+
+    Image img = new Image("appleLogo.png");
+    ImageView view = new ImageView(img);
+    view.setFitHeight(60);
+    view.setPreserveRatio(true);
+    generateRecipesButton.setPrefSize(60, 60);
+      //Setting a graphic to the button
+      generateRecipesButton.setGraphic(view);
+      generateRecipesButton.setStyle(
+            "-fx-background-radius: 5em; " +
+            "-fx-min-width: 65px; " +
+            "-fx-min-height: 65px; " +
+            "-fx-max-width: 65px; " +
+            "-fx-max-height: 65px;"
+      );
+    VBox generateRecipesBox = new VBox();
+    generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
+    VBox saveAndExitBox = new VBox();
+    saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
+    menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
+    mainPane.add(menuBarBox, 0, 5, 3, 1);
   }
 
   private void setUpFoodCategories() {
@@ -284,7 +318,7 @@ public class CatalogFridge extends Application {
   private void backButtonHandler() {
     mainPane.getChildren().remove(ingredientsTable);
     mainPane.getChildren().remove(backButton);
-    mainPane.add(foodCategoriesPane, 0, 1, 2, 3);
+    mainPane.add(foodCategoriesPane, 0, 2, 2, 3);
   }
 
   private void addtoFridgeHandler(Ingredient t) {
@@ -299,8 +333,8 @@ public class CatalogFridge extends Application {
 
   private void switchToFilteredTableScene() {
     mainPane.getChildren().remove(foodCategoriesPane);
-    mainPane.add(backButton, 0, 1);
-    mainPane.add(ingredientsTable, 0, 2, 2, 2);
+    mainPane.add(backButton, 0, 2);
+    mainPane.add(ingredientsTable, 0, 3, 2, 2);
   }
 
   private void loadIngredientsFromFile() {
