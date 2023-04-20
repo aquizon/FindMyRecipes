@@ -99,6 +99,8 @@ public class CatalogFridge extends Application {
   Label generateRecipesButtonLabel = new Label("Generate Recipes");
   Button saveAndExitButton = new Button("Exit Image Here");
   Label saveAndExitButtonLabel = new Label("Save and Exit");
+  Label ingredientCatalogLabel = new Label("Ingredient Catalog");
+  Label fridgeLabel = new Label("My Fridge");
 
   Button backButton = new Button("Back");
   GridPane mainPane = new GridPane(); // main container
@@ -118,14 +120,20 @@ public class CatalogFridge extends Application {
     mainPane.add(title, 0, 0, 3, 1);
     mainPane.setHalignment(title, HPos.CENTER);
     title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
-    mainPane.add(searchBox, 0, 1, 2, 1);
-    // searchBox.textProperty().addListener((observable, oldValue, newValue) -> ingredientsTable.setItems(filterList(currIngredientList, newValue.toLowerCase())));
+    mainPane.add(ingredientCatalogLabel, 0, 1, 2, 1);
+    mainPane.setHalignment(ingredientCatalogLabel, HPos.CENTER);
+    ingredientCatalogLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
+    mainPane.add(fridgeLabel, 2, 1);
+    mainPane.setHalignment(fridgeLabel, HPos.CENTER);
+    fridgeLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
+
+    mainPane.add(searchBox, 0, 2, 2, 1);
 
     fridgeTable.setPrefSize(250, 300);
-    mainPane.add(fridgeTable, 2, 1, 1, 4);
+    mainPane.add(fridgeTable, 2, 2, 1, 4);
     
     setUpFoodCategories();
-    mainPane.add(foodCategoriesPane, 0, 2, 2, 3);
+    mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
 
     // set up Fridge Table
     fridgeTable.setItems(fridgeData);
@@ -140,7 +148,7 @@ public class CatalogFridge extends Application {
 
     setButtonHandlers();
 
-    Scene scene = new Scene(mainPane, initWidth, initHeight);
+    Scene scene = new Scene(mainPane, initWidth, initHeight, Color.web("#E5E6BB"));
     stage.setScene(scene);
     stage.setResizable(false);
     stage.show();
@@ -160,7 +168,7 @@ public class CatalogFridge extends Application {
   private void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
     favoritesRecipesButton.setStyle(
-        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";"
+        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\"; "
     );
     favoritesRecipesButton.setPrefSize(60, 60);
     VBox favoritesBox = new VBox();
@@ -185,16 +193,22 @@ public class CatalogFridge extends Application {
     VBox saveAndExitBox = new VBox();
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
-    mainPane.add(menuBarBox, 0, 5, 3, 1);
+    mainPane.add(menuBarBox, 0, 6, 3, 1);
   }
 
   private void setUpFoodCategories() {
     fruitsButton.setPrefSize(200, 100);
+    fruitsButton.setStyle("-fx-background-color: #C92859;" + "-fx-text-fill: #FFFFFF");
     vegetablesButton.setPrefSize(200, 100);
+    vegetablesButton.setStyle("-fx-background-color: #79B352;" +  "-fx-text-fill: #FFFFFF");
     grainsButton.setPrefSize(200, 100);
+    grainsButton.setStyle("-fx-background-color: #C9A128;" +  "-fx-text-fill: #FFFFFF");
     proteinsButton.setPrefSize(200, 100);
+    proteinsButton.setStyle("-fx-background-color: #C183D2;" +  "-fx-text-fill: #FFFFFF");
     dairyButton.setPrefSize(200, 100);
+    dairyButton.setStyle("-fx-background-color: #28B2C9;" +  "-fx-text-fill: #FFFFFF");
     otherButton.setPrefSize(200, 100);
+    otherButton.setStyle("-fx-background-color: #5B5F60;" +  "-fx-text-fill: #FFFFFF");
     foodCategoriesPane.add(fruitsButton, 0, 0);
     foodCategoriesPane.add(vegetablesButton, 1, 0);
     foodCategoriesPane.add(grainsButton, 0, 1);
@@ -345,7 +359,7 @@ public class CatalogFridge extends Application {
     mainPane.getChildren().remove(backButton);
     currIngredientList = ingredientsData;
     currWindow = "Categories";
-    mainPane.add(foodCategoriesPane, 0, 2, 2, 3);
+    mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
   }
 
   private void addtoFridgeHandler(Ingredient t) {
@@ -367,8 +381,8 @@ public class CatalogFridge extends Application {
 
   private void switchToFilteredTableScene() {
     mainPane.getChildren().remove(foodCategoriesPane);
-    mainPane.add(backButton, 0, 2);
-    mainPane.add(ingredientsTable, 0, 3, 2, 2);
+    mainPane.add(backButton, 0, 3);
+    mainPane.add(ingredientsTable, 0, 4, 2, 2);
   }
 
   private void loadIngredientsFromFile() {
