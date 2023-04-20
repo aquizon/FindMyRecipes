@@ -61,8 +61,8 @@ public class CatalogFridge extends Application {
     private Parent root;
   
   // set the dimensions of the stage
-  // private final int initWidth = 900;
-  // private final int initHeight = 700;
+  private final int initWidth = 700;
+  private final int initHeight = 500;
 
   // create three TableView objects: Recipes, Fridge, Ingredient List
   private TableView<Recipe> recipeTable = new TableView<>();
@@ -75,9 +75,10 @@ public class CatalogFridge extends Application {
   private ObservableList<Recipe> recipeData = FXCollections.observableArrayList();
   private ObservableList<Ingredient> fridgeData = FXCollections.observableArrayList();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
+  private ObservableList<Ingredient> currIngredientList;
 
   // buttons/textFields for the Catalog Fridge Window
-  TextField searchMasterField = new TextField();
+  TextField searchBox = new TextField();
   Button fruitsButton = new Button("Fruits");
   Button vegetablesButton = new Button("Vegetables");
   Button grainsButton = new Button("Grains");
@@ -103,7 +104,9 @@ public class CatalogFridge extends Application {
     mainPane.setHgap(10);
     mainPane.setVgap(20);
     // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
-    mainPane.add(searchMasterField, 0, 0, 2, 1);
+    mainPane.add(searchBox, 0, 0, 2, 1);
+    searchBox.textProperty().addListener((observable, oldValue, newValue) -> ingredientsTable.setItems(filterList(currIngredientList, newValue.toLowerCase())));
+
     mainPane.add(fridgeTable, 2, 0, 1, 4);
     mainPane.add(menuBarBox, 0, 4, 3, 1);
 
@@ -127,7 +130,7 @@ public class CatalogFridge extends Application {
 
     setButtonHandlers();
 
-    Scene scene = new Scene(mainPane);
+    Scene scene = new Scene(mainPane, initWidth, initHeight);
     stage.setScene(scene);
     stage.setTitle("Find My Recipes");
     stage.show();
@@ -140,10 +143,7 @@ public class CatalogFridge extends Application {
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-    TableColumn categoryCol = new TableColumn("Category");
-    categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
-
-    ingredientsTable.getColumns().addAll(idCol, nameCol, categoryCol);
+    ingredientsTable.getColumns().addAll(idCol, nameCol);
     addButtonToIngredientTable();
   }
 
@@ -176,7 +176,6 @@ public class CatalogFridge extends Application {
       };
       colBtn.setCellFactory(cellFactory);
       ingredientsTable.getColumns().add(colBtn);
-      // colBtn.prefWidthProperty().bind(ordersInProgressTable.widthProperty().subtract(usedWidth));
   }
 
   private void setFridgeTableColumns() {
@@ -186,10 +185,7 @@ public class CatalogFridge extends Application {
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-    TableColumn categoryCol = new TableColumn("Category");
-    categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
-
-    fridgeTable.getColumns().addAll(idCol, nameCol, categoryCol);
+    fridgeTable.getColumns().addAll(idCol, nameCol);
     addButtonToFridgeTable();
   }
 
@@ -222,7 +218,6 @@ public class CatalogFridge extends Application {
       };
       colBtn.setCellFactory(cellFactory);
       fridgeTable.getColumns().add(colBtn);
-      // colBtn.prefWidthProperty().bind(ordersInProgressTable.widthProperty().subtract(usedWidth));
   }
 
   private void setButtonHandlers() {
@@ -236,33 +231,40 @@ public class CatalogFridge extends Application {
     backButton.setOnAction(e -> backButtonHandler());
   }
 
+  // Handler Methods
   private void saveAndExitButtonHandler() {
     Platform.exit();
   }
 
   private void fruitsButtonHandler() {
     switchToFilteredTableScene();
-    ingredientsTable.setItems(ingredientCategories.get("Fruits"));
+    currIngredientList = ingredientCategories.get("Fruits");
+    ingredientsTable.setItems(currIngredientList);
   }
   private void vegetablesButtonHandler() {
     switchToFilteredTableScene();
-    ingredientsTable.setItems(ingredientCategories.get("Vegetables"));
+    currIngredientList = ingredientCategories.get("Vegetables");
+    ingredientsTable.setItems(currIngredientList);
   }
   private void grainsButtonHandler() {
     switchToFilteredTableScene();
-    ingredientsTable.setItems(ingredientCategories.get("Grains"));
+    currIngredientList = ingredientCategories.get("Grains");
+    ingredientsTable.setItems(currIngredientList);
   }
   private void proteinsButtonHandler() {
     switchToFilteredTableScene();
-    ingredientsTable.setItems(ingredientCategories.get("Proteins"));
+    currIngredientList = ingredientCategories.get("Proteins");
+    ingredientsTable.setItems(currIngredientList);
   }
   private void dairyButtonHandler() {
     switchToFilteredTableScene();
-    ingredientsTable.setItems(ingredientCategories.get("Dairy"));
+    currIngredientList = ingredientCategories.get("Dairy");
+    ingredientsTable.setItems(currIngredientList);
   }
   private void otherButtonHandler() {
     switchToFilteredTableScene();
-    ingredientsTable.setItems(ingredientCategories.get("Other"));
+    currIngredientList = ingredientCategories.get("Other");
+    ingredientsTable.setItems(currIngredientList);
   }
 
   private void backButtonHandler() {
@@ -322,7 +324,22 @@ public class CatalogFridge extends Application {
         Logger.getLogger(CatalogFridge.class.getName())
                 .log(Level.SEVERE, null, ex);
     }
-}
+  }
+  
+  private ObservableList<Ingredient> filterList(List<Ingredient> list, String searchText) {
+    List<Ingredient> filteredList = new ArrayList<>();
+    for (Ingredient t : currIngredientList) { 
+      if (searchFindsIngredient(t, searchText)) {
+        filteredList.add(t);
+      }
+    }
+    return FXCollections.observableList(filteredList);
+  }
+
+  private boolean searchFindsIngredient(Ingredient t, String searchText) {
+    return (t.getName().toLowerCase().contains(searchText)) ||
+           Integer.valueOf(t.getId()).toString().equals(searchText);
+  }
 
   public static void main(String[] args) {
     launch(args);
