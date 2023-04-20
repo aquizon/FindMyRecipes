@@ -56,6 +56,9 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Insets;
+import javafx.event.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 
 public class CatalogFridge extends Application {
     private Stage stage;
@@ -103,8 +106,12 @@ public class CatalogFridge extends Application {
 
   HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
 
+  String currWindow;
+
   public void start(Stage stage) {
+    currWindow = "Categories";
     setUpMenuBarBox();
+    setSearchBarHandler();
     mainPane.setHgap(10);
     mainPane.setVgap(15);
     // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
@@ -112,7 +119,7 @@ public class CatalogFridge extends Application {
     mainPane.setHalignment(title, HPos.CENTER);
     title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
     mainPane.add(searchBox, 0, 1, 2, 1);
-    searchBox.textProperty().addListener((observable, oldValue, newValue) -> ingredientsTable.setItems(filterList(currIngredientList, newValue.toLowerCase())));
+    // searchBox.textProperty().addListener((observable, oldValue, newValue) -> ingredientsTable.setItems(filterList(currIngredientList, newValue.toLowerCase())));
 
     fridgeTable.setPrefSize(250, 300);
     mainPane.add(fridgeTable, 2, 1, 1, 4);
@@ -129,6 +136,7 @@ public class CatalogFridge extends Application {
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
     loadIngredientsFromFile();
+    currIngredientList = ingredientsData;
 
     setButtonHandlers();
 
@@ -136,6 +144,17 @@ public class CatalogFridge extends Application {
     stage.setScene(scene);
     stage.setResizable(false);
     stage.show();
+  }
+
+  private void setSearchBarHandler() {
+    searchBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
+      @Override
+      public void handle(KeyEvent ke) {
+          if (ke.getCode().equals(KeyCode.ENTER)) {
+              searchBarHandler(searchBox.getText());
+          }
+      }
+    });
   }
 
   private void setUpMenuBarBox() {
@@ -286,31 +305,37 @@ public class CatalogFridge extends Application {
 
   private void fruitsButtonHandler() {
     switchToFilteredTableScene();
+    currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Fruits");
     ingredientsTable.setItems(currIngredientList);
   }
   private void vegetablesButtonHandler() {
     switchToFilteredTableScene();
+    currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Vegetables");
     ingredientsTable.setItems(currIngredientList);
   }
   private void grainsButtonHandler() {
     switchToFilteredTableScene();
+    currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Grains");
     ingredientsTable.setItems(currIngredientList);
   }
   private void proteinsButtonHandler() {
     switchToFilteredTableScene();
+    currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Proteins");
     ingredientsTable.setItems(currIngredientList);
   }
   private void dairyButtonHandler() {
     switchToFilteredTableScene();
+    currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Dairy");
     ingredientsTable.setItems(currIngredientList);
   }
   private void otherButtonHandler() {
     switchToFilteredTableScene();
+    currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Other");
     ingredientsTable.setItems(currIngredientList);
   }
@@ -318,6 +343,8 @@ public class CatalogFridge extends Application {
   private void backButtonHandler() {
     mainPane.getChildren().remove(ingredientsTable);
     mainPane.getChildren().remove(backButton);
+    currIngredientList = ingredientsData;
+    currWindow = "Categories";
     mainPane.add(foodCategoriesPane, 0, 2, 2, 3);
   }
 
@@ -329,6 +356,13 @@ public class CatalogFridge extends Application {
 
   private void removeFromFridgeHandler(Ingredient t) {
     fridgeData.remove(t);
+  }
+
+  private void searchBarHandler(String searchText) {
+    if (currWindow == "Categories") {
+      switchToFilteredTableScene();
+    }
+    ingredientsTable.setItems(filterList(searchText));
   }
 
   private void switchToFilteredTableScene() {
@@ -374,7 +408,7 @@ public class CatalogFridge extends Application {
     }
   }
   
-  private ObservableList<Ingredient> filterList(List<Ingredient> list, String searchText) {
+  private ObservableList<Ingredient> filterList(String searchText) {
     List<Ingredient> filteredList = new ArrayList<>();
     for (Ingredient t : currIngredientList) { 
       if (searchFindsIngredient(t, searchText)) {
@@ -386,8 +420,8 @@ public class CatalogFridge extends Application {
   }
 
   private boolean searchFindsIngredient(Ingredient t, String searchText) {
-    return (t.getName().toLowerCase().contains(searchText)) ||
-           Integer.valueOf(t.getId()).toString().equals(searchText);
+    return (t.getName().toLowerCase().contains(searchText.toLowerCase())) ||
+           Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
   }
 
   public static void main(String[] args) {
