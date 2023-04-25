@@ -63,52 +63,49 @@ import javafx.scene.input.KeyCode;
 public class CatalogFridge extends Application {
     private Stage stage;
     private Scene scene;
-    private Parent root;
   
   // set the dimensions of the stage
-  private final int initWidth = 675;
-  private final int initHeight = 500;
+  private final static int initWidth = 675;
+  private final static int initHeight = 500;
 
   // create three TableView objects: Recipes, Fridge, Ingredient List
-  private TableView<Recipe> recipeTable = new TableView<>();
-  private TableView<Ingredient> fridgeTable = new TableView<>();
-  private TableView<Ingredient> ingredientsTable = new TableView<>();
+  private static TableView<Ingredient> fridgeTable = new TableView<>();
+  private static TableView<Ingredient> ingredientsTable = new TableView<>();
   
-  private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
+  private static HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
-  private ObservableList<Recipe> recipeData = FXCollections.observableArrayList();
-  private ObservableList<Ingredient> fridgeData = FXCollections.observableArrayList();
-  private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
-  private ObservableList<Ingredient> currIngredientList;
+  private static ObservableList<Ingredient> fridgeData = FXCollections.observableArrayList();
+  private static ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
+  private static ObservableList<Ingredient> currIngredientList;
 
   // buttons/textFields for the Catalog Fridge Window
-  Label title = new Label("FindMyRecipes");
-  TextField searchBox = new TextField();
-  Button fruitsButton = new Button("Fruits");
-  Button vegetablesButton = new Button("Vegetables");
-  Button grainsButton = new Button("Grains");
-  Button proteinsButton = new Button("Proteins");
-  Button dairyButton = new Button("Dairy");
-  Button otherButton = new Button("Other");
+  static Label title = new Label("FindMyRecipes");
+  static TextField searchBox = new TextField();
+  static Button fruitsButton = new Button("Fruits");
+  static Button vegetablesButton = new Button("Vegetables");
+  static Button grainsButton = new Button("Grains");
+  static Button proteinsButton = new Button("Proteins");
+  static Button dairyButton = new Button("Dairy");
+  static Button otherButton = new Button("Other");
 
   // buttons + Labels for the bottom menu for Catalog Fridge Window
-  Button favoritesRecipesButton = new Button();
-  Label favoritesRecipesButtonLabel = new Label("Favorites");
-  Button generateRecipesButton = new Button();
-  Label generateRecipesButtonLabel = new Label("Generate Recipes");
-  Button saveAndExitButton = new Button("Exit Image Here");
-  Label saveAndExitButtonLabel = new Label("Save and Exit");
-  Label ingredientCatalogLabel = new Label("Ingredient Catalog");
-  Label fridgeLabel = new Label("My Fridge");
+  static Button favoritesRecipesButton = new Button();
+  static Label favoritesRecipesButtonLabel = new Label("Favorites");
+  static Button generateRecipesButton = new Button();
+  static Label generateRecipesButtonLabel = new Label("Generate Recipes");
+  static Button saveAndExitButton = new Button("Exit Image Here");
+  static Label saveAndExitButtonLabel = new Label("Save and Exit");
+  static Label ingredientCatalogLabel = new Label("Ingredient Catalog");
+  static Label fridgeLabel = new Label("My Fridge");
 
-  Button backButton = new Button("Back");
-  GridPane mainPane = new GridPane(); // main container
-  GridPane foodCategoriesPane = new GridPane();
+  static Button backButton = new Button("Back");
+  static GridPane mainPane = new GridPane(); // main container
+  static GridPane foodCategoriesPane = new GridPane();
 
-  HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+  static HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
 
-  String currWindow;
+  static String currWindow;
 
   public void start(Stage stage) {
     currWindow = "Categories";
@@ -155,7 +152,7 @@ public class CatalogFridge extends Application {
     stage.show();
   }
 
-  private void setSearchBarHandler() {
+  private static void setSearchBarHandler() {
     searchBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent ke) {
@@ -166,7 +163,7 @@ public class CatalogFridge extends Application {
     });
   }
 
-  private void setUpMenuBarBox() {
+  private static void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
     favoritesRecipesButton.setStyle(
         "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\"; "
@@ -197,7 +194,7 @@ public class CatalogFridge extends Application {
     mainPane.add(menuBarBox, 0, 6, 3, 1);
   }
 
-  private void setUpFoodCategories() {
+  private static void setUpFoodCategories() {
     fruitsButton.setPrefSize(200, 100);
     fruitsButton.setStyle("-fx-background-color: #ED220D;" + "-fx-text-fill: #FFFFFF");
     vegetablesButton.setPrefSize(200, 100);
@@ -218,7 +215,7 @@ public class CatalogFridge extends Application {
     foodCategoriesPane.add(otherButton, 1, 2);
   }
 
-  private void setIngredientTableColumns() {
+  private static void setIngredientTableColumns() {
     TableColumn idCol = new TableColumn("Id");
     idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
  
@@ -229,7 +226,7 @@ public class CatalogFridge extends Application {
     addButtonToIngredientTable();
   }
 
-  private void addButtonToIngredientTable() {
+  private static void addButtonToIngredientTable() {
       TableColumn<Ingredient, Void> colBtn = new TableColumn("");
       colBtn.setStyle( "-fx-alignment: CENTER;");
       Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>>() {
@@ -260,7 +257,7 @@ public class CatalogFridge extends Application {
       ingredientsTable.getColumns().add(colBtn);
   }
 
-  private void setFridgeTableColumns() {
+  private static void setFridgeTableColumns() {
     TableColumn idCol = new TableColumn("Id");
     idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
  
@@ -271,7 +268,7 @@ public class CatalogFridge extends Application {
     addButtonToFridgeTable();
   }
 
-  private void addButtonToFridgeTable() {
+  private static void addButtonToFridgeTable() {
       TableColumn<Ingredient, Void> colBtn = new TableColumn("");
       colBtn.setStyle( "-fx-alignment: CENTER;");
       Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>>() {
@@ -302,7 +299,7 @@ public class CatalogFridge extends Application {
       fridgeTable.getColumns().add(colBtn);
   }
 
-  private void setButtonHandlers() {
+  private static void setButtonHandlers() {
     saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
     fruitsButton.setOnAction(e -> fruitsButtonHandler());
     vegetablesButton.setOnAction(e -> vegetablesButtonHandler());
@@ -311,51 +308,52 @@ public class CatalogFridge extends Application {
     dairyButton.setOnAction(e -> dairyButtonHandler());
     otherButton.setOnAction(e -> otherButtonHandler());
     backButton.setOnAction(e -> backButtonHandler());
+    generateRecipesButton.setOnAction(e -> generateRecipesHandler());
   }
 
   // Handler Methods
-  private void saveAndExitButtonHandler() {
+  private static void saveAndExitButtonHandler() {
     Platform.exit();
   }
 
-  private void fruitsButtonHandler() {
+  private static void fruitsButtonHandler() {
     switchToFilteredTableScene();
     currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Fruits");
     ingredientsTable.setItems(currIngredientList);
   }
-  private void vegetablesButtonHandler() {
+  private static void vegetablesButtonHandler() {
     switchToFilteredTableScene();
     currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Vegetables");
     ingredientsTable.setItems(currIngredientList);
   }
-  private void grainsButtonHandler() {
+  private static void grainsButtonHandler() {
     switchToFilteredTableScene();
     currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Grains");
     ingredientsTable.setItems(currIngredientList);
   }
-  private void proteinsButtonHandler() {
+  private static void proteinsButtonHandler() {
     switchToFilteredTableScene();
     currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Proteins");
     ingredientsTable.setItems(currIngredientList);
   }
-  private void dairyButtonHandler() {
+  private static void dairyButtonHandler() {
     switchToFilteredTableScene();
     currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Dairy");
     ingredientsTable.setItems(currIngredientList);
   }
-  private void otherButtonHandler() {
+  private static void otherButtonHandler() {
     switchToFilteredTableScene();
     currWindow = "Filtered";
     currIngredientList = ingredientCategories.get("Other");
     ingredientsTable.setItems(currIngredientList);
   }
 
-  private void backButtonHandler() {
+  private static void backButtonHandler() {
     mainPane.getChildren().remove(ingredientsTable);
     mainPane.getChildren().remove(backButton);
     currIngredientList = ingredientsData;
@@ -363,17 +361,17 @@ public class CatalogFridge extends Application {
     mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
   }
 
-  private void addtoFridgeHandler(Ingredient t) {
+  private static void addtoFridgeHandler(Ingredient t) {
     if (!fridgeData.contains(t)) {
       fridgeData.add(t);
     }
   }
 
-  private void removeFromFridgeHandler(Ingredient t) {
+  private static void removeFromFridgeHandler(Ingredient t) {
     fridgeData.remove(t);
   }
 
-  private void searchBarHandler(String searchText) {
+  private static void searchBarHandler(String searchText) {
     if (currWindow == "Categories") {
       switchToFilteredTableScene();
     }
@@ -381,13 +379,17 @@ public class CatalogFridge extends Application {
     searchBox.clear();
   }
 
-  private void switchToFilteredTableScene() {
+  private static void generateRecipesHandler() {
+    Main.switchToGenerateRecipes();
+  }
+
+  private static void switchToFilteredTableScene() {
     mainPane.getChildren().remove(foodCategoriesPane);
     mainPane.add(backButton, 0, 3);
     mainPane.add(ingredientsTable, 0, 4, 2, 2);
   }
 
-  private void loadIngredientsFromFile() {
+  private static void loadIngredientsFromFile() {
  
     String CsvFile = "Ingredients_Dataset.csv";
     String FieldDelimiter = ",";
@@ -424,7 +426,7 @@ public class CatalogFridge extends Application {
     }
   }
   
-  private ObservableList<Ingredient> filterList(String searchText) {
+  private static ObservableList<Ingredient> filterList(String searchText) {
     List<Ingredient> filteredList = new ArrayList<>();
     for (Ingredient t : currIngredientList) { 
       if (searchFindsIngredient(t, searchText)) {
@@ -435,11 +437,53 @@ public class CatalogFridge extends Application {
     return newList;
   }
 
-  private boolean searchFindsIngredient(Ingredient t, String searchText) {
+  private static boolean searchFindsIngredient(Ingredient t, String searchText) {
     return (t.getName().toLowerCase().contains(searchText.toLowerCase())) ||
            Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
   }
 
+  public static Scene generateCatalogFridgeScene() {
+    currWindow = "Categories";
+    setUpMenuBarBox();
+    setSearchBarHandler();
+    mainPane.setHgap(10);
+    mainPane.setVgap(15);
+    // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
+    mainPane.add(title, 0, 0, 3, 1);
+    mainPane.setHalignment(title, HPos.CENTER);
+    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+    mainPane.add(ingredientCatalogLabel, 0, 1, 2, 1);
+    mainPane.setHalignment(ingredientCatalogLabel, HPos.CENTER);
+    ingredientCatalogLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
+    mainPane.add(fridgeLabel, 2, 1);
+    mainPane.setHalignment(fridgeLabel, HPos.CENTER);
+    fridgeLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
+
+    mainPane.add(searchBox, 0, 2, 2, 1);
+
+    fridgeTable.setPrefSize(250, 300);
+    mainPane.add(fridgeTable, 2, 2, 1, 4);
+    
+    setUpFoodCategories();
+    mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
+
+    // set up Fridge Table
+    fridgeTable.setItems(fridgeData);
+    setFridgeTableColumns();
+
+    // set up Ingredients Table
+    ingredientsTable.setPrefSize(400, 250);
+    ingredientsTable.setItems(ingredientsData);
+    setIngredientTableColumns();
+    loadIngredientsFromFile();
+    currIngredientList = ingredientsData;
+
+    setButtonHandlers();
+    mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
+
+    return new Scene(mainPane, initWidth, initHeight);
+
+  }
   public static void main(String[] args) {
     launch(args);
   }

@@ -1,0 +1,225 @@
+import java.text.NumberFormat;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import java.util.*;
+import java.io.*;
+import javafx.scene.control.TextInputControl;
+import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableCell;
+import javafx.util.Callback;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TablePosition;
+import javafx.event.ActionEvent;
+import java.lang.String;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.layout.Priority;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Insets;
+import javafx.event.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
+
+public class GeneratedRecipes extends Application {
+    private Stage stage;
+    private Scene scene;
+  
+  // set the dimensions of the stage
+  private final static int initWidth = 675;
+  private final static int initHeight = 500;
+
+  // create three TableView objects: Recipes, Fridge, Ingredient List
+  static private TableView<Recipe> recipesTable = new TableView<>();
+  
+  // private HashMap<String, ObservableList<Ingredient>> recipesMap = new HashMap<>();
+
+  // ObservableList objects to be associated with the TableView objects
+  private static ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
+
+  // buttons/textFields for the Generated Recipes Window
+  static Label title = new Label("FindMyRecipes");
+
+  // buttons + Labels for the bottom menu for Catalog Fridge Window
+  static Button favoritesRecipesButton = new Button();
+  static Label favoritesRecipesButtonLabel = new Label("Favorites");
+  static Button generateRecipesButton = new Button();
+  static Label generateRecipesButtonLabel = new Label("Generate Recipes");
+  static Button saveAndExitButton = new Button("Exit Image Here");
+  static Label saveAndExitButtonLabel = new Label("Save and Exit");
+
+  static BorderPane mainPane = new BorderPane(); // main container
+
+  static HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+
+  public void start(Stage stage) {
+    Recipe r = new Recipe(1, "Steamed Broccoli");
+    recipesData.add(r);
+    setUpMenuBarBox();
+    mainPane.setTop(title);
+    mainPane.setAlignment(title, Pos.CENTER);
+    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+
+    // set up Recipes Table
+    recipesTable.setPrefSize(400, 250);
+    recipesTable.setItems(recipesData);
+    setRecipesTableColumns();
+    mainPane.setCenter(recipesTable);
+
+    setButtonHandlers();
+    mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
+
+    Scene scene = new Scene(mainPane, initWidth, initHeight);
+    stage.setScene(scene);
+    stage.setResizable(false);
+    stage.show();
+  }
+
+  private static Button makeHeartButton(int width, int height) {
+    Button heart = new Button();
+    heart.setStyle(
+        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\"; "
+    );
+    heart.setPrefSize(width, height);
+    return heart;
+  }
+
+  private static void setUpMenuBarBox() {
+    menuBarBox.setAlignment(Pos.CENTER);
+    favoritesRecipesButton = makeHeartButton(60, 60);
+    // favoritesRecipesButton.setPrefSize(width, height);
+    VBox favoritesBox = new VBox();
+    favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
+
+    Image img = new Image("GenerateRecipes.png");
+    ImageView view = new ImageView(img);
+    view.setFitHeight(60);
+    view.setPreserveRatio(true);
+    generateRecipesButton.setPrefSize(60, 60);
+      //Setting a graphic to the button
+      generateRecipesButton.setGraphic(view);
+      generateRecipesButton.setStyle(
+            "-fx-background-radius: 5em; " +
+            "-fx-min-width: 65px; " +
+            "-fx-min-height: 65px; " +
+            "-fx-max-width: 65px; " +
+            "-fx-max-height: 65px;"
+      );
+    VBox generateRecipesBox = new VBox();
+    generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
+    VBox saveAndExitBox = new VBox();
+    saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
+    menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
+    mainPane.setBottom(menuBarBox);
+  }
+
+  private static void setRecipesTableColumns() {
+    TableColumn nameCol = new TableColumn("Name");
+    nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+    recipesTable.getColumns().addAll(nameCol);
+    addButtonToRecipesTable();
+  }
+
+  private static void addButtonToRecipesTable() {
+      TableColumn<Recipe, Void> colBtn = new TableColumn("");
+      colBtn.setStyle( "-fx-alignment: CENTER;");
+      Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>> cellFactory = new Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>>() {
+          @Override
+          public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
+              final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
+                  private final Button btn = makeHeartButton(20, 20);
+                  {
+                      btn.setOnAction((ActionEvent e) -> {
+                          System.out.println("Hello!");
+                      });
+                  }
+                  @Override
+                  public void updateItem(Void item, boolean empty) {
+                      super.updateItem(item, empty);
+                      if (empty) {
+                          setGraphic(null);
+                      } else {
+                          setGraphic(btn);
+                      }
+                  }
+              };
+              return cell;
+          }
+      };
+      colBtn.setCellFactory(cellFactory);
+      recipesTable.getColumns().add(colBtn);
+  }
+
+  private static void setButtonHandlers() {
+    saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
+  }
+
+  // Handler Methods
+  private static void saveAndExitButtonHandler() {
+    Platform.exit();
+  }
+
+  public static Scene generateGeneratedRecipesScene() {
+    Recipe r = new Recipe(1, "Steamed Broccoli");
+    recipesData.add(r);
+    setUpMenuBarBox();
+    mainPane.setTop(title);
+    mainPane.setAlignment(title, Pos.CENTER);
+    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+
+    // set up Recipes Table
+    recipesTable.setPrefSize(400, 250);
+    recipesTable.setItems(recipesData);
+    setRecipesTableColumns();
+    mainPane.setCenter(recipesTable);
+
+    setButtonHandlers();
+    mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
+
+    return new Scene(mainPane, initWidth, initHeight);
+  }
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
