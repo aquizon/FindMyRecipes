@@ -60,8 +60,8 @@ import javafx.event.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
-public class CatalogFridge {
-// public class CatalogFridge extends Application {
+// public class CatalogFridge {
+public class CatalogFridge extends Application {
     private static Stage stage;
     private static Scene scene;
   
@@ -108,50 +108,11 @@ public class CatalogFridge {
 
   static String currWindow;
 
-  // public void start(Stage stage) {
-  //   currWindow = "Categories";
-  //   setUpMenuBarBox();
-  //   setSearchBarHandler();
-  //   mainPane.setHgap(10);
-  //   mainPane.setVgap(15);
-  //   // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
-  //   mainPane.add(title, 0, 0, 3, 1);
-  //   mainPane.setHalignment(title, HPos.CENTER);
-  //   title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
-  //   mainPane.add(ingredientCatalogLabel, 0, 1, 2, 1);
-  //   mainPane.setHalignment(ingredientCatalogLabel, HPos.CENTER);
-  //   ingredientCatalogLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
-  //   mainPane.add(fridgeLabel, 2, 1);
-  //   mainPane.setHalignment(fridgeLabel, HPos.CENTER);
-  //   fridgeLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
-
-  //   mainPane.add(searchBox, 0, 2, 2, 1);
-
-  //   fridgeTable.setPrefSize(250, 300);
-  //   mainPane.add(fridgeTable, 2, 2, 1, 4);
-    
-  //   setUpFoodCategories();
-  //   mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
-
-  //   // set up Fridge Table
-  //   fridgeTable.setItems(fridgeData);
-  //   setFridgeTableColumns();
-
-  //   // set up Ingredients Table
-  //   ingredientsTable.setPrefSize(400, 250);
-  //   ingredientsTable.setItems(ingredientsData);
-  //   setIngredientTableColumns();
-  //   loadIngredientsFromFile();
-  //   currIngredientList = ingredientsData;
-
-  //   setButtonHandlers();
-  //   mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
-
-  //   Scene scene = new Scene(mainPane, initWidth, initHeight);
-  //   stage.setScene(scene);
-  //   stage.setResizable(false);
-  //   stage.show();
-  // }
+  public void start(Stage stage) {
+    Scene scene = generateCatalogFridgeScene();
+    stage.setScene(scene);
+    stage.show();
+  }
 
   private static void setSearchBarHandler() {
     searchBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -166,9 +127,7 @@ public class CatalogFridge {
 
   private static void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
-    favoritesRecipesButton.setStyle(
-        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\"; "
-    );
+    favoritesRecipesButton.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
     favoritesRecipesButton.setPrefSize(60, 60);
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
@@ -480,7 +439,7 @@ public class CatalogFridge {
     return new Scene(mainPane, initWidth, initHeight);
 
   }
-  // public static void main(String[] args) {
-  //   launch(args);
-  // }
+  public static void main(String[] args) {
+    launch(args);
+  }
 }
