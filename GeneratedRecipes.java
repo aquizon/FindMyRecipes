@@ -106,16 +106,23 @@ public class GeneratedRecipes extends Application {
     stage.show();
   }
 
-  private static Button makeHeartButton(int width, int height) {
+  private static Button makeHeartFilledButton(int width, int height) {
     Button heart = new Button();
     heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
     heart.setPrefSize(width, height);
     return heart;
   }
 
+  private static Button makeHeartEmptyButton(int width, int height) {
+    Button heart = new Button();
+    heart.setStyle("-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
+    heart.setPrefSize(width, height);
+    return heart;
+  }
+
   private static void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
-    favoritesRecipesButton = makeHeartButton(60, 60);
+    favoritesRecipesButton = makeHeartFilledButton(60, 60);
     // favoritesRecipesButton.setPrefSize(width, height);
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
@@ -150,10 +157,10 @@ public class GeneratedRecipes extends Application {
           @Override
           public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
               final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
-                  private final Button btn = makeHeartButton(20, 20);
+                  private Button btn = makeHeartEmptyButton(20, 20);
                   {
                       btn.setOnAction((ActionEvent e) -> {
-                          System.out.println("Hello!");
+                          btn = makeHeartFilledButton(20, 20);
                       });
                   }
                   @Override
