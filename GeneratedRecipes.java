@@ -60,6 +60,7 @@ import javafx.event.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text; 
+import javafx.scene.input.MouseButton;
 
 // public class GeneratedRecipes {
 public class GeneratedRecipes extends Application {
@@ -95,6 +96,9 @@ public class GeneratedRecipes extends Application {
 
   static HBox center = new HBox();
   static VBox recipeInfo = new VBox();
+  static ImageView recipePic;
+  static Text recipeIngredients = new Text();
+  static Text recipeInstructions = new Text();
 
   public void start(Stage stage) throws FileNotFoundException {
     Scene scene = generateGeneratedRecipesScene();
@@ -180,8 +184,15 @@ public class GeneratedRecipes extends Application {
     Platform.exit();
   }
 
+  private static void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
+    Image image = new Image(new FileInputStream(r.getImgFname()));
+    recipePic.setImage(image);
+    recipeIngredients.setText(r.getIngredients());
+    recipeInstructions.setText(r.getInstructions());
+  }
+
   private static void seedRecipes() {
-    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp");
+    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
     recipesData.add(r);
   }
 
@@ -197,17 +208,24 @@ public class GeneratedRecipes extends Application {
     recipesTable.setItems(recipesData);
     setRecipesTableColumns();
 
+    recipesTable.setOnMouseClicked((MouseEvent event) -> {
+      if(event.getButton().equals(MouseButton.PRIMARY)){
+          Recipe currRecipe = recipesTable.getSelectionModel().getSelectedItem();
+          try {
+            recipeSelectedHandler(currRecipe);
+          } catch(FileNotFoundException e) {
+            e.printStackTrace();
+          }
+      }
+  });
+
     //set up Recipe Info Section
-    Image image = new Image(new FileInputStream("creamy_pesto_shrimp.jpeg"));
-    ImageView recipePic = new ImageView(image); 
+    Image image = new Image(new FileInputStream("GenerateRecipes.png"));
+    recipePic = new ImageView(image); 
     recipePic.setFitHeight(50);
     recipePic.setFitWidth(50);
-    Text recipeIngredients = new Text();
-    String recipeIngredientsStr = "Recipe Ingredients Here"; 
-    recipeIngredients.setText(recipeIngredientsStr);
-    Text recipeInstructions = new Text();
-    String recipeInstructionsStr = "Recipe Instructions Here"; 
-    recipeInstructions.setText(recipeInstructionsStr);
+    recipeIngredients.setText("Recipe Ingredients Here");
+    recipeInstructions.setText("Recipe Instructions Here");
     recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
 
     center.getChildren().addAll(recipesTable, recipeInfo);
