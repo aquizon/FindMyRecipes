@@ -39,22 +39,25 @@ public class ReadRecipeData {
         ingredientsStr = ingredientsStr.replace("[", "").replace("]", "");
         String[] split = ingredientsStr.split("',");
 
-        System.out.println("ingredientsStr after split");
+        // System.out.println("ingredientsStr after split");
 
-        ArrayList<String> ingredients = new ArrayList<>();
+        ArrayList<String> ingredientsWithQuantities = new ArrayList<>();
+        ArrayList<String> ingredientsNoQuantities = new ArrayList<>();
 
 
-        // System.out.println(split[0].charAt(0));
+        // add to ingredientsWithQuantities and ingredientsNoQuantities
         for (String str: split) {
           str = str.strip();
           // System.out.println(str.charAt(0) == '\'');
           str = str.replace("'", ""); // have to 
-          ingredients.add(str);
-          System.out.println(str);
+          ingredientsWithQuantities.add(str);
+          // System.out.println(str);
+
+          // get the ingredient without quantities
           
         }
 
-        for (String ingredient: ingredients) {
+        for (String ingredient: ingredientsWithQuantities) {
           System.out.println(ingredient + "\n");
         }
   }
