@@ -94,8 +94,8 @@ public class GeneratedRecipes extends Application {
 
   static HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
 
-  static HBox center = new HBox();
-  static VBox recipeInfo = new VBox();
+  static HBox center = new HBox(10);
+  static VBox recipeInfo = new VBox(20);
   static ImageView recipePic;
   static Text recipeIngredients = new Text();
   static Text recipeInstructions = new Text();
@@ -108,9 +108,7 @@ public class GeneratedRecipes extends Application {
 
   private static Button makeHeartButton(int width, int height) {
     Button heart = new Button();
-    heart.setStyle(
-        "-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\"; "
-    );
+    heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
     heart.setPrefSize(width, height);
     return heart;
   }
@@ -204,7 +202,7 @@ public class GeneratedRecipes extends Application {
     title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
 
     // set up Recipes Table
-    recipesTable.setPrefSize(400, 250);
+    recipesTable.setPrefSize(350, 250);
     recipesTable.setItems(recipesData);
     setRecipesTableColumns();
 
@@ -222,12 +220,15 @@ public class GeneratedRecipes extends Application {
     //set up Recipe Info Section
     Image image = new Image(new FileInputStream("GenerateRecipes.png"));
     recipePic = new ImageView(image); 
-    recipePic.setFitHeight(50);
-    recipePic.setFitWidth(50);
+    recipePic.setFitHeight(125);
+    recipePic.setFitWidth(125);
     recipeIngredients.setText("Recipe Ingredients Here");
     recipeInstructions.setText("Recipe Instructions Here");
     recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
+    recipeInfo.setPrefSize(350, 250);
+    recipeInfo.setAlignment(Pos.TOP_CENTER);
 
+    center.setPadding(new Insets(10, 0, 10, 0));
     center.getChildren().addAll(recipesTable, recipeInfo);
 
     mainPane.setCenter(center);
