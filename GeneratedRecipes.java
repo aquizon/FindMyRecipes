@@ -59,8 +59,10 @@ import javafx.geometry.Insets;
 import javafx.event.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text; 
 
-public class GeneratedRecipes {
+// public class GeneratedRecipes {
+public class GeneratedRecipes extends Application {
     private Stage stage;
     private Scene scene;
   
@@ -79,7 +81,7 @@ public class GeneratedRecipes {
   // buttons/textFields for the Generated Recipes Window
   static Label title = new Label("FindMyRecipes");
 
-  // buttons + Labels for the bottom menu for Catalog Fridge Window
+  // buttons + Labels for the bottom menu for Generated Recipes Window
   static Button favoritesRecipesButton = new Button();
   static Label favoritesRecipesButtonLabel = new Label("Favorites");
   static Button backToFridgeButton = new Button();
@@ -91,28 +93,14 @@ public class GeneratedRecipes {
 
   static HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
 
-  // public void start(Stage stage) {
-  //   Recipe r = new Recipe(1, "Steamed Broccoli");
-  //   recipesData.add(r);
-  //   setUpMenuBarBox();
-  //   mainPane.setTop(title);
-  //   mainPane.setAlignment(title, Pos.CENTER);
-  //   title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+  static HBox center = new HBox();
+  static VBox recipeInfo = new VBox();
 
-  //   // set up Recipes Table
-  //   recipesTable.setPrefSize(400, 250);
-  //   recipesTable.setItems(recipesData);
-  //   setRecipesTableColumns();
-  //   mainPane.setCenter(recipesTable);
-
-  //   setButtonHandlers();
-  //   mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
-
-  //   Scene scene = new Scene(mainPane, initWidth, initHeight);
-  //   stage.setScene(scene);
-  //   stage.setResizable(false);
-  //   stage.show();
-  // }
+  public void start(Stage stage) throws FileNotFoundException {
+    Scene scene = generateGeneratedRecipesScene();
+    stage.setScene(scene);
+    stage.show();
+  }
 
   private static Button makeHeartButton(int width, int height) {
     Button heart = new Button();
@@ -192,9 +180,13 @@ public class GeneratedRecipes {
     Platform.exit();
   }
 
-  public static Scene generateGeneratedRecipesScene() {
-    Recipe r = new Recipe(1, "Steamed Broccoli");
+  private static void seedRecipes() {
+    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp");
     recipesData.add(r);
+  }
+
+  public static Scene generateGeneratedRecipesScene() throws FileNotFoundException {
+    seedRecipes();
     setUpMenuBarBox();
     mainPane.setTop(title);
     mainPane.setAlignment(title, Pos.CENTER);
@@ -204,7 +196,23 @@ public class GeneratedRecipes {
     recipesTable.setPrefSize(400, 250);
     recipesTable.setItems(recipesData);
     setRecipesTableColumns();
-    mainPane.setCenter(recipesTable);
+
+    //set up Recipe Info Section
+    Image image = new Image(new FileInputStream("creamy_pesto_shrimp.jpeg"));
+    ImageView recipePic = new ImageView(image); 
+    recipePic.setFitHeight(50);
+    recipePic.setFitWidth(50);
+    Text recipeIngredients = new Text();
+    String recipeIngredientsStr = "Recipe Ingredients Here"; 
+    recipeIngredients.setText(recipeIngredientsStr);
+    Text recipeInstructions = new Text();
+    String recipeInstructionsStr = "Recipe Instructions Here"; 
+    recipeInstructions.setText(recipeInstructionsStr);
+    recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
+
+    center.getChildren().addAll(recipesTable, recipeInfo);
+
+    mainPane.setCenter(center);
 
     setButtonHandlers();
     mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
@@ -212,7 +220,7 @@ public class GeneratedRecipes {
     return new Scene(mainPane, initWidth, initHeight);
   }
 
-  // public static void main(String[] args) {
-  //   launch(args);
-  // }
+  public static void main(String[] args) {
+    launch(args);
+  }
 }
