@@ -60,7 +60,7 @@ import javafx.event.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
-public class GeneratedRecipes extends Application {
+public class GeneratedRecipes {
     private Stage stage;
     private Scene scene;
   
@@ -82,8 +82,8 @@ public class GeneratedRecipes extends Application {
   // buttons + Labels for the bottom menu for Catalog Fridge Window
   static Button favoritesRecipesButton = new Button();
   static Label favoritesRecipesButtonLabel = new Label("Favorites");
-  static Button generateRecipesButton = new Button();
-  static Label generateRecipesButtonLabel = new Label("Generate Recipes");
+  static Button backToFridgeButton = new Button();
+  static Label backToFridgeButtonLabel = new Label("Back to Fridge");
   static Button saveAndExitButton = new Button("Exit Image Here");
   static Label saveAndExitButtonLabel = new Label("Save and Exit");
 
@@ -91,28 +91,28 @@ public class GeneratedRecipes extends Application {
 
   static HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
 
-  public void start(Stage stage) {
-    Recipe r = new Recipe(1, "Steamed Broccoli");
-    recipesData.add(r);
-    setUpMenuBarBox();
-    mainPane.setTop(title);
-    mainPane.setAlignment(title, Pos.CENTER);
-    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+  // public void start(Stage stage) {
+  //   Recipe r = new Recipe(1, "Steamed Broccoli");
+  //   recipesData.add(r);
+  //   setUpMenuBarBox();
+  //   mainPane.setTop(title);
+  //   mainPane.setAlignment(title, Pos.CENTER);
+  //   title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
 
-    // set up Recipes Table
-    recipesTable.setPrefSize(400, 250);
-    recipesTable.setItems(recipesData);
-    setRecipesTableColumns();
-    mainPane.setCenter(recipesTable);
+  //   // set up Recipes Table
+  //   recipesTable.setPrefSize(400, 250);
+  //   recipesTable.setItems(recipesData);
+  //   setRecipesTableColumns();
+  //   mainPane.setCenter(recipesTable);
 
-    setButtonHandlers();
-    mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
+  //   setButtonHandlers();
+  //   mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
 
-    Scene scene = new Scene(mainPane, initWidth, initHeight);
-    stage.setScene(scene);
-    stage.setResizable(false);
-    stage.show();
-  }
+  //   Scene scene = new Scene(mainPane, initWidth, initHeight);
+  //   stage.setScene(scene);
+  //   stage.setResizable(false);
+  //   stage.show();
+  // }
 
   private static Button makeHeartButton(int width, int height) {
     Button heart = new Button();
@@ -130,25 +130,18 @@ public class GeneratedRecipes extends Application {
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
 
-    Image img = new Image("GenerateRecipes.png");
+    Image img = new Image("FridgeLogo.png");
     ImageView view = new ImageView(img);
-    view.setFitHeight(60);
+    view.setFitHeight(50);
     view.setPreserveRatio(true);
-    generateRecipesButton.setPrefSize(60, 60);
+    backToFridgeButton.setPrefSize(20, 50);
       //Setting a graphic to the button
-      generateRecipesButton.setGraphic(view);
-      generateRecipesButton.setStyle(
-            "-fx-background-radius: 5em; " +
-            "-fx-min-width: 65px; " +
-            "-fx-min-height: 65px; " +
-            "-fx-max-width: 65px; " +
-            "-fx-max-height: 65px;"
-      );
-    VBox generateRecipesBox = new VBox();
-    generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
+    backToFridgeButton.setGraphic(view);
+    VBox backToFridgeBox = new VBox();
+    backToFridgeBox.getChildren().addAll(backToFridgeButton, backToFridgeButtonLabel);
     VBox saveAndExitBox = new VBox();
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
-    menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
+    menuBarBox.getChildren().addAll(favoritesBox, backToFridgeBox, saveAndExitBox);
     mainPane.setBottom(menuBarBox);
   }
 
@@ -219,7 +212,7 @@ public class GeneratedRecipes extends Application {
     return new Scene(mainPane, initWidth, initHeight);
   }
 
-  public static void main(String[] args) {
-    launch(args);
-  }
+  // public static void main(String[] args) {
+  //   launch(args);
+  // }
 }

@@ -1,3 +1,5 @@
+import javax.xml.catalog.Catalog;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -7,48 +9,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.Parent;
  
  
 public class Main extends Application  {
-    static Stage currStage;
     public static void main(String args[]){          
          launch(args);     
     } 
          
     @Override    
     public void start(Stage stage) throws Exception { 
-      //   VBox layout = new VBox();
-      //   VBox layout2 = new VBox();
-      //   layout.setAlignment(Pos.CENTER);
-      //   layout2.setAlignment(Pos.CENTER);
-     
-      //   Scene scene = new Scene(layout, 300, 300);
-      //   Scene scene2 = new Scene(layout2, 300, 300);
-         
-      //   Label label1 = new Label("This is the First Scene");
-      //   Label label2 = new Label("This is the Second Scene");
-         
-      //   Button button = new Button("Forward");
-      //   button.setOnAction(e -> primaryStage.setScene(scene2));
-         
-      //   Button button2 = new Button("Backwards");
-      //   button2.setOnAction(e -> primaryStage.setScene(scene));
-         
-      //   TextField text = new TextField();
-      //   text.setMaxWidth(100);
-             
-      //   layout.getChildren().addAll(label1, button);
-      //   layout2.getChildren().addAll(label2, button2, text);
-         
-      //   primaryStage.setTitle("CodersLegacy");
-      //   primaryStage.setScene(scene);   
-      //   primaryStage.show();
-      currStage = stage;
-      currStage.setScene(CatalogFridge.generateCatalogFridgeScene());
-      currStage.show();
-    }
-
-    public static void switchToGenerateRecipes() {
-      currStage.setScene(GeneratedRecipes.generateGeneratedRecipesScene());
+      Scene grScene = GeneratedRecipes.generateGeneratedRecipesScene();
+      Scene cfScene = CatalogFridge.generateCatalogFridgeScene();
+      CatalogFridge.generateRecipesButton.setOnAction(e -> stage.setScene(grScene));
+      GeneratedRecipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
+      stage.setScene(cfScene);
+      stage.show();
     }
 }
