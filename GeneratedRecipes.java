@@ -190,7 +190,7 @@ public class GeneratedRecipes extends Application {
   }
 
   private static void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
-    Image image = new Image(new FileInputStream(r.getImgFname()));
+    Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
     recipePic.setImage(image);
     recipeIngredients.setText(r.getIngredients());
     recipeInstructions.setText(r.getInstructions());

@@ -26,7 +26,8 @@ public class Main extends Application  {
     @Override    
     public void start(Stage stage) throws Exception { 
       Scene cfScene = fridge.generateCatalogFridgeScene();
-      Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
+      // Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
+      Scene grScene = recipes.generateGeneratedRecipesScene();
       Scene frScene = favorites.generateFavoritesScene();
 
       //Changes scenes from the catalog fridge scene
