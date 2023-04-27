@@ -147,8 +147,6 @@ public class Favorites extends Application {
         Image img = new Image("./images/FridgeLogo.png");
         ImageView view = new ImageView(img);
         view.setFitHeight(50);
-        view.setPreserveRatio(true);
-        view.setFitHeight(50);
         view.setFitWidth(30);
         // view.setPreserveRatio(false);
         backToFridgeButton.setMaxSize(25, 50);
