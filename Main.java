@@ -36,7 +36,7 @@ public class Main extends Application  {
       
       //changes scenes from the generatedRecipes scene
       recipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
-      recipes.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
+      recipes.favoritesRecipesButton.getHeart().setOnAction(e -> stage.setScene(frScene));
 
       //changes scenes from the favorites scene
       favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
