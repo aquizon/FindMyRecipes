@@ -85,7 +85,7 @@ public class Favorites extends Application {
     Label generateRecipesButtonLabel = new Label("Generate Recipes");
     Button backToFridgeButton = new Button();
     Label backToFridgeButtonLabel = new Label("Back to Fridge");
-    Button saveAndExitButton = new Button("Exit Image Here");
+    Button saveAndExitButton = new Button();
     Label saveAndExitButtonLabel = new Label("Save and Exit");
 
     BorderPane mainPane = new BorderPane(); // main container
@@ -148,12 +148,24 @@ public class Favorites extends Application {
         ImageView view = new ImageView(img);
         view.setFitHeight(50);
         view.setPreserveRatio(true);
-        backToFridgeButton.setPrefSize(20, 50);
+        view.setFitHeight(50);
+        view.setFitWidth(30);
+        // view.setPreserveRatio(false);
+        backToFridgeButton.setMaxSize(25, 50);
+        backToFridgeButton.setMinSize(10, 5);
         //Setting a graphic to the button
         backToFridgeButton.setGraphic(view);
         VBox backToFridgeBox = new VBox();
         backToFridgeBox.getChildren().addAll(backToFridgeButton, backToFridgeButtonLabel);
         VBox saveAndExitBox = new VBox();
+        Image img2 = new Image("./images/saveAndExit.png");
+        ImageView view2 = new ImageView(img2);
+        view2.setFitHeight(50);
+        view2.setFitWidth(40);
+        // view2.setPreserveRatio(true);
+        saveAndExitButton.setGraphic(view2);
+        saveAndExitButton.setMaxSize(30, 50);
+        saveAndExitButton.setMinSize(10, 5);
         saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
         menuBarBox.getChildren().addAll(generateRecipesBox, backToFridgeBox, saveAndExitBox);
         mainPane.setBottom(menuBarBox);

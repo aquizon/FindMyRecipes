@@ -96,7 +96,7 @@ public class CatalogFridge{
   Label favoritesRecipesButtonLabel = new Label("Favorites");
   Button generateRecipesButton = new Button();
   Label generateRecipesButtonLabel = new Label("Generate Recipes");
-  Button saveAndExitButton = new Button("Exit Image Here");
+  Button saveAndExitButton = new Button();
   Label saveAndExitButtonLabel = new Label("Save and Exit");
   Label ingredientCatalogLabel = new Label("Ingredient Catalog");
   Label fridgeLabel = new Label("My Fridge");
@@ -144,6 +144,14 @@ public class CatalogFridge{
     VBox generateRecipesBox = new VBox();
     generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
     VBox saveAndExitBox = new VBox();
+    Image img2 = new Image("./images/saveAndExit.png");
+    ImageView view2 = new ImageView(img2);
+    view2.setFitHeight(50);
+    view2.setFitWidth(40);
+    // view2.setPreserveRatio(true);
+    saveAndExitButton.setGraphic(view2);
+    saveAndExitButton.setMaxSize(30, 50);
+    saveAndExitButton.setMinSize(10, 5);
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
     mainPane.add(menuBarBox, 0, 6, 3, 1);
