@@ -90,7 +90,7 @@ public class Favorites extends Application {
 
     BorderPane mainPane = new BorderPane(); // main container
 
-    HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+    HBox menuBarBox = new HBox(125); // contains the three buttons at the bottom
 
     HBox center = new HBox(10);
     VBox recipeInfo = new VBox(20);

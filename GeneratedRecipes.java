@@ -92,7 +92,7 @@ public class GeneratedRecipes extends Application {
 
   BorderPane mainPane = new BorderPane(); // main container
 
-  HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+  HBox menuBarBox = new HBox(125); // contains the three buttons at the bottom
 
   HBox center = new HBox(10);
   VBox recipeInfo = new VBox(20);
@@ -215,7 +215,7 @@ public class GeneratedRecipes extends Application {
     title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
 
     // set up Recipes Table
-    recipesTable.setPrefSize(350, 250);
+    recipesTable.setPrefSize(350, 300);
     recipesTable.setItems(recipesData);
     setRecipesTableColumns();
 
