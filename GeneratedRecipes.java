@@ -127,7 +127,7 @@ public class GeneratedRecipes extends Application {
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
 
-    Image img = new Image("FridgeLogo.png");
+    Image img = new Image("./images/FridgeLogo.png");
     ImageView view = new ImageView(img);
     view.setFitHeight(50);
     view.setPreserveRatio(true);
@@ -225,7 +225,7 @@ public class GeneratedRecipes extends Application {
   });
 
     //set up Recipe Info Section
-    Image image = new Image(new FileInputStream("GenerateRecipes.png"));
+    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png"));
     recipePic = new ImageView(image); 
     recipePic.setFitHeight(125);
     recipePic.setFitWidth(125);

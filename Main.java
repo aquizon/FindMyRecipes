@@ -19,10 +19,21 @@ public class Main extends Application  {
          
     @Override    
     public void start(Stage stage) throws Exception { 
-      Scene grScene = GeneratedRecipes.generateGeneratedRecipesScene();
       Scene cfScene = CatalogFridge.generateCatalogFridgeScene();
+      Scene grScene = GeneratedRecipes.generateGeneratedRecipesScene();
+      Scene frScene = Favorites.generateFavoritesScene();
+
+      //Changes scenes from the catalog fridge scene
       CatalogFridge.generateRecipesButton.setOnAction(e -> stage.setScene(grScene));
+      CatalogFridge.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
+      
+      //changes scenes from the generatedRecipes scene
       GeneratedRecipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
+      GeneratedRecipes.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
+
+      //changes scenes from the favorites scene
+      Favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
+      Favorites.generateRecipesButton.setOnAction(e -> stage.setScene(grScene));
       stage.setScene(cfScene);
       stage.show();
     }
