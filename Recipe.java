@@ -1,31 +1,33 @@
+import java.util.*;
+
 public class Recipe {
 
     private int id;
     private String name;
-    private String ingredients;
-    private String instructions;
-    private String link;
-    private String imgFname;
-<<<<<<< HEAD
+    private ArrayList<String> ingredientsWithQuantities; // change to ArrayList - ingredients with quantities (to be
+                                                         // displayed in theGenerated Recipes/Favorites window)
+    private ArrayList<String> ingredientsNoQuantities; // added ArrayList - ingredients without quantities (to be used
+                                                       // in the
+    // generated recipes algorithm)
+    private ArrayList<String> instructions; // change to ArrayList
+    // private String link; // remove -> don't use anymore
+    private String imgFname; // use empty strings for now
     private boolean isFavorited;
-=======
-    private Boolean favorited; 
->>>>>>> e1180181352183e33509d0fe2b68382d47ee1d49
-    
-    public Recipe(int id, String name, String ingredients, String instructions, String link, String imgFname, Boolean favorited) {
+
+    public Recipe(int id, String name, ArrayList<String> ingredientsWithQuantities,
+            ArrayList<String> ingredientsNoQuantities, ArrayList<String> instructions,
+            String imgFname,
+            Boolean favorited) {
         this.id = id;
         this.name = name;
-        this.ingredients = ingredients;
+        this.ingredientsWithQuantities = ingredientsWithQuantities;
+        this.ingredientsNoQuantities = ingredientsNoQuantities;
         this.instructions = instructions;
-        this.link = link;
+        // this.link = link;
         this.imgFname = imgFname;
-<<<<<<< HEAD
-        // this.isFavorited = false;
-=======
-        this.favorited = favorited;
->>>>>>> e1180181352183e33509d0fe2b68382d47ee1d49
+        this.isFavorited = false;
     }
-  
+
     public void setIsFavorited(boolean newVal) {
         isFavorited = newVal;
     }
@@ -33,43 +35,37 @@ public class Recipe {
     public int getId() {
         return id;
     }
-  
+
     public String getName() {
         return name;
     }
 
-    public String getIngredients() {
-        return ingredients;
+    public ArrayList<String> getIngredientWithQuantities() {
+        return ingredientsWithQuantities;
     }
 
-    public String getInstructions() {
+    public ArrayList<String> getIngredientNoQuantities() {
+        return ingredientsNoQuantities;
+    }
+
+    public ArrayList<String> getInstructions() {
         return instructions;
     }
 
-    public String getLink() {
-        return link;
-    }
+    // public String getLink() {
+    // return link;
+    // }
 
     public String getImgFname() {
         return imgFname;
     }
 
-<<<<<<< HEAD
     // public boolean getIsFavorited() {
-    //     return isFavorited;
+    // return isFavorited;
     // }
-=======
-    public Boolean getFavorited() {
-        return favorited;
-    }
 
-    public void favorite() { 
-        favorited = !favorited; 
-    }
->>>>>>> e1180181352183e33509d0fe2b68382d47ee1d49
-  
     @Override
-      public String toString() {
-          return "Recipe " + id + ": " + name;
-      }
-  }
+    public String toString() {
+        return "Recipe " + id + ": " + name;
+    }
+}
