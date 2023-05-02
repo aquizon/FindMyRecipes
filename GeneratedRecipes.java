@@ -155,7 +155,8 @@ public class GeneratedRecipes extends Application {
                   private Button btn = hb.getHeart();
                   {
                       btn.setOnAction((ActionEvent e) -> {
-                          clickHeartButtonHandler(hb);
+                          Recipe selectedRecipe = getTableView().getItems().get(getIndex());
+                          clickHeartButtonHandler(hb, selectedRecipe);
                       });
                   }
                   @Override
@@ -168,7 +169,7 @@ public class GeneratedRecipes extends Application {
                       }
                   }
               };
-              return cell;
+            return cell;
           }
       };
       colBtn.setCellFactory(cellFactory);
@@ -191,14 +192,16 @@ public class GeneratedRecipes extends Application {
     recipeInstructions.setText(r.getInstructions());
   }
 
-  private void clickHeartButtonHandler(heartButton heart) {
+  private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
     if (heart.getIsFilled()) {
       heart.emptyHeart();
       heart.setIsFilled(false);
+      Favorites.favoritesData.remove(selectedRecipe);
     }
     else {
       heart.fillHeart();
       heart.setIsFilled(true);
+      Favorites.favoritesData.add(selectedRecipe);
     }
   }
 

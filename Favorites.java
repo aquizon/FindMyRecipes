@@ -72,10 +72,10 @@ public class Favorites extends Application {
     private final int initHeight = 500;
 
     //create the tableview of favorited recipes. 
-    static private TableView<Recipe> favoritesTable = new TableView<>();
+    private static TableView<Recipe> favoritesTable = new TableView<>();
 
     // ObservableList objects to be associated with the TableView objects
-    private static ObservableList<Recipe> favoritesData = FXCollections.observableArrayList();
+    public static ObservableList<Recipe> favoritesData = FXCollections.observableArrayList();
 
     //Topmost label
     Label title = new Label("FindMyRecipes");
@@ -175,7 +175,7 @@ public class Favorites extends Application {
     
         favoritesTable.getColumns().addAll(nameCol);
         addButtonToFavoritesTable();
-      }
+    }
 
     private void addButtonToFavoritesTable() {
         TableColumn<Recipe, Void> colBtn = new TableColumn("");
@@ -184,11 +184,12 @@ public class Favorites extends Application {
             @Override
             public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
                 final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
-                    private heartButton hb = new heartButton(false, 20, 20);
+                    private heartButton hb = new heartButton(true, 20, 20);
                     private Button btn = hb.getHeart();
                     {
                         btn.setOnAction((ActionEvent e) -> {
-                            clickHeartButtonHandler(hb);
+                            Recipe selectedRecipe = getTableView().getItems().get(getIndex());
+                            clickHeartButtonHandler(hb, selectedRecipe);
                         });
                     }
                     @Override
@@ -217,10 +218,12 @@ public class Favorites extends Application {
     Platform.exit();
     }
 
-    private void clickHeartButtonHandler(heartButton heart) {
+    private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
         if (heart.getIsFilled()) {
           heart.emptyHeart();
           heart.setIsFilled(false);
+
+          favoritesData.remove(selectedRecipe);
         }
         else {
           heart.fillHeart();
@@ -234,14 +237,14 @@ public class Favorites extends Application {
         recipeIngredients.setText(r.getIngredients());
         recipeInstructions.setText(r.getInstructions());
     }
-    
+
     private void seedRecipes() {
         Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
         favoritesData.add(r);
     }
 
     public Scene generateFavoritesScene() throws FileNotFoundException {
-        seedRecipes();
+        // seedRecipes();
         setUpMenuBarBox();
         mainPane.setTop(title);
         mainPane.setAlignment(title, Pos.CENTER);
