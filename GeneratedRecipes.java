@@ -68,37 +68,37 @@ public class GeneratedRecipes extends Application {
     private Scene scene;
   
   // set the dimensions of the stage
-  private final static int initWidth = 675;
-  private final static int initHeight = 500;
+  private final int initWidth = 675;
+  private final int initHeight = 500;
 
   // create three TableView objects: Recipes, Fridge, Ingredient List
-  static private TableView<Recipe> recipesTable = new TableView<>();
+  private TableView<Recipe> recipesTable = new TableView<>();
   
   // private HashMap<String, ObservableList<Ingredient>> recipesMap = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
-  private static ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
+  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
 
   // buttons/textFields for the Generated Recipes Window
-  static Label title = new Label("FindMyRecipes");
+  Label title = new Label("FindMyRecipes");
 
   // buttons + Labels for the bottom menu for Generated Recipes Window
-  static Button favoritesRecipesButton = new Button();
-  static Label favoritesRecipesButtonLabel = new Label("Favorites");
-  static Button backToFridgeButton = new Button();
-  static Label backToFridgeButtonLabel = new Label("Back to Fridge");
-  static Button saveAndExitButton = new Button("Exit Image Here");
-  static Label saveAndExitButtonLabel = new Label("Save and Exit");
+  heartButton favoritesRecipesButton;
+  Label favoritesRecipesButtonLabel = new Label("Favorites");
+  Button backToFridgeButton = new Button();
+  Label backToFridgeButtonLabel = new Label("Back to Fridge");
+  Button saveAndExitButton = new Button();
+  Label saveAndExitButtonLabel = new Label("Save and Exit");
 
-  static BorderPane mainPane = new BorderPane(); // main container
+  BorderPane mainPane = new BorderPane(); // main container
 
-  static HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+  HBox menuBarBox = new HBox(125); // contains the three buttons at the bottom
 
-  static HBox center = new HBox(10);
-  static VBox recipeInfo = new VBox(20);
-  static ImageView recipePic;
-  static Text recipeIngredients = new Text();
-  static Text recipeInstructions = new Text();
+  HBox center = new HBox(10);
+  VBox recipeInfo = new VBox(20);
+  ImageView recipePic;
+  Text recipeIngredients = new Text();
+  Text recipeInstructions = new Text();
 
   public void start(Stage stage) throws FileNotFoundException {
     Scene scene = generateGeneratedRecipesScene();
@@ -106,43 +106,37 @@ public class GeneratedRecipes extends Application {
     stage.show();
   }
 
-  private static Button makeHeartFilledButton(int width, int height) {
-    Button heart = new Button();
-    heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
-    heart.setPrefSize(width, height);
-    return heart;
-  }
-
-  private static Button makeHeartEmptyButton(int width, int height) {
-    Button heart = new Button();
-    heart.setStyle("-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
-    heart.setPrefSize(width, height);
-    return heart;
-  }
-
-  private static void setUpMenuBarBox() {
+  private void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
-    favoritesRecipesButton = makeHeartFilledButton(60, 60);
-    // favoritesRecipesButton.setPrefSize(width, height);
+    favoritesRecipesButton = new heartButton(true, 60, 60);
     VBox favoritesBox = new VBox();
-    favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
+    favoritesBox.getChildren().addAll(favoritesRecipesButton.getHeart(), favoritesRecipesButtonLabel);
 
     Image img = new Image("./images/FridgeLogo.png");
     ImageView view = new ImageView(img);
     view.setFitHeight(50);
-    view.setPreserveRatio(true);
-    backToFridgeButton.setPrefSize(20, 50);
-      //Setting a graphic to the button
+    view.setFitWidth(30);
+    // view.setPreserveRatio(false);
+    backToFridgeButton.setMaxSize(30, 50);
+    backToFridgeButton.setMinSize(10, 5);
     backToFridgeButton.setGraphic(view);
     VBox backToFridgeBox = new VBox();
     backToFridgeBox.getChildren().addAll(backToFridgeButton, backToFridgeButtonLabel);
     VBox saveAndExitBox = new VBox();
+    Image img2 = new Image("./images/saveAndExit.png");
+    ImageView view2 = new ImageView(img2);
+    view2.setFitHeight(50);
+    view2.setFitWidth(40);
+    // view2.setPreserveRatio(true);
+    saveAndExitButton.setGraphic(view2);
+    saveAndExitButton.setMaxSize(30, 50);
+    saveAndExitButton.setMinSize(10, 5);
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, backToFridgeBox, saveAndExitBox);
     mainPane.setBottom(menuBarBox);
   }
 
-  private static void setRecipesTableColumns() {
+  private void setRecipesTableColumns() {
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -150,17 +144,20 @@ public class GeneratedRecipes extends Application {
     addButtonToRecipesTable();
   }
 
-  private static void addButtonToRecipesTable() {
+  private void addButtonToRecipesTable() {
       TableColumn<Recipe, Void> colBtn = new TableColumn("");
       colBtn.setStyle( "-fx-alignment: CENTER;");
       Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>> cellFactory = new Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>>() {
           @Override
           public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
               final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
-                  private Button btn = makeHeartEmptyButton(20, 20);
+
+                  private heartButton hb = new heartButton(false, 20, 20);
+                  private Button btn = hb.getHeart();
                   {
                       btn.setOnAction((ActionEvent e) -> {
-                          btn = makeHeartFilledButton(20, 20);
+                          Recipe selectedRecipe = getTableView().getItems().get(getIndex());
+                          clickHeartButtonHandler(hb, selectedRecipe);
                       });
                   }
                   @Override
@@ -173,35 +170,48 @@ public class GeneratedRecipes extends Application {
                       }
                   }
               };
-              return cell;
+            return cell;
           }
       };
       colBtn.setCellFactory(cellFactory);
       recipesTable.getColumns().add(colBtn);
   }
 
-  private static void setButtonHandlers() {
+  private void setButtonHandlers() {
     saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
   }
 
   // Handler Methods
-  private static void saveAndExitButtonHandler() {
+  private void saveAndExitButtonHandler() {
     Platform.exit();
   }
 
-  private static void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
+  private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
     Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
     recipePic.setImage(image);
     recipeIngredients.setText(r.getIngredients());
     recipeInstructions.setText(r.getInstructions());
   }
 
-  private static void seedRecipes() {
-    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+  private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
+    if (heart.getIsFilled()) {
+      heart.emptyHeart();
+      heart.setIsFilled(false);
+      Favorites.favoritesData.remove(selectedRecipe);
+    }
+    else {
+      heart.fillHeart();
+      heart.setIsFilled(true);
+      Favorites.favoritesData.add(selectedRecipe);
+    }
+  }
+
+  private void seedRecipes() {
+    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg", true);
     recipesData.add(r);
   }
 
-  public static Scene generateGeneratedRecipesScene() throws FileNotFoundException {
+  public Scene generateGeneratedRecipesScene() throws FileNotFoundException {
     seedRecipes();
     setUpMenuBarBox();
     mainPane.setTop(title);
@@ -209,7 +219,7 @@ public class GeneratedRecipes extends Application {
     title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
 
     // set up Recipes Table
-    recipesTable.setPrefSize(350, 250);
+    recipesTable.setPrefSize(350, 300);
     recipesTable.setItems(recipesData);
     setRecipesTableColumns();
 
@@ -248,5 +258,41 @@ public class GeneratedRecipes extends Application {
 
   public static void main(String[] args) {
     launch(args);
+  }
+
+  class heartButton {
+    private boolean isFilled;
+    private int width;
+    private int height;
+    private Button heart = new Button();
+    public heartButton(boolean isFilled, int w, int h) {
+      width = w;
+      height = h;
+      heart.setPrefSize(w, h);
+      if (isFilled) {
+        fillHeart();
+      }
+      else {
+        emptyHeart();
+      }
+    }
+    private void fillHeart() {
+      heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
+    }
+
+    public void emptyHeart() {
+      heart.setStyle("-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
+    }
+    public boolean getIsFilled() {
+      return isFilled;
+    }
+
+    public void setIsFilled(boolean status) {
+      isFilled = status;
+    }
+
+    public Button getHeart() {
+      return heart;
+    }
   }
 }

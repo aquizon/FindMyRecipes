@@ -69,11 +69,14 @@ public class CatalogFridge{
   private final static int initWidth = 675;
   private final static int initHeight = 500;
 
+  private final static int categoryWidth = 200;
+  private final static int categoryHeight = 100;
+
   // create three TableView objects: Recipes, Fridge, Ingredient List
   private TableView<Ingredient> fridgeTable = new TableView<>();
   private TableView<Ingredient> ingredientsTable = new TableView<>();
   
-  private static HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
+  private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
   private ObservableList<Ingredient> fridgeData = FXCollections.observableArrayList();
@@ -96,7 +99,7 @@ public class CatalogFridge{
   Label favoritesRecipesButtonLabel = new Label("Favorites");
   Button generateRecipesButton = new Button();
   Label generateRecipesButtonLabel = new Label("Generate Recipes");
-  Button saveAndExitButton = new Button("Exit Image Here");
+  Button saveAndExitButton = new Button();
   Label saveAndExitButtonLabel = new Label("Save and Exit");
   Label ingredientCatalogLabel = new Label("Ingredient Catalog");
   Label fridgeLabel = new Label("My Fridge");
@@ -105,7 +108,7 @@ public class CatalogFridge{
   GridPane mainPane = new GridPane(); // main container
   GridPane foodCategoriesPane = new GridPane();
 
-  HBox menuBarBox = new HBox(100); // contains the three buttons at the bottom
+  HBox menuBarBox = new HBox(125); // contains the three buttons at the bottom
 
   String currWindow;
 
@@ -144,6 +147,14 @@ public class CatalogFridge{
     VBox generateRecipesBox = new VBox();
     generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
     VBox saveAndExitBox = new VBox();
+    Image img2 = new Image("./images/saveAndExit.png");
+    ImageView view2 = new ImageView(img2);
+    view2.setFitHeight(60);
+    view2.setFitWidth(50);
+    // view2.setPreserveRatio(true);
+    saveAndExitButton.setGraphic(view2);
+    saveAndExitButton.setMaxSize(40, 60);
+    saveAndExitButton.setMinSize(10, 5);
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
     mainPane.add(menuBarBox, 0, 6, 3, 1);
@@ -340,41 +351,12 @@ public class CatalogFridge{
     mainPane.add(ingredientsTable, 0, 4, 2, 2);
   }
 
-  private void loadIngredientsFromFile() {
- 
-    String CsvFile = "Ingredients_Dataset.csv";
-    String FieldDelimiter = ",";
+  public void setIngredientCategories(HashMap<String, ObservableList<Ingredient>> t) {
+    ingredientCategories = t;
+  }
 
-    BufferedReader br;
-
-    try {
-        br = new BufferedReader(new FileReader(CsvFile));
-        String line;
-        br.readLine(); // Read first line cause they're column headers
-        while ((line = br.readLine()) != null) {
-            String[] fields = line.split(FieldDelimiter, -1);
-
-            Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2]);
-            ingredientsData.add(record);
-            // Add to hashmap
-            String category = fields[2];
-            ObservableList<Ingredient> categoryData;
-            if (ingredientCategories.containsKey(category)) {
-              categoryData = ingredientCategories.get(category);
-            }
-            else {
-              categoryData = FXCollections.observableArrayList();
-            }
-            categoryData.add(record);
-            ingredientCategories.put(category, categoryData);
-        }
-    } catch (FileNotFoundException ex) {
-        Logger.getLogger(CatalogFridge.class.getName())
-                .log(Level.SEVERE, null, ex);
-    } catch (IOException ex) {
-        Logger.getLogger(CatalogFridge.class.getName())
-                .log(Level.SEVERE, null, ex);
-    }
+  public void setIngredientsData(ObservableList<Ingredient> t) {
+    ingredientsData = t;
   }
   /* 
   private void loadRecipesFromFile() {
@@ -430,6 +412,8 @@ public class CatalogFridge{
            Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
   }
 
+
+
   public Scene generateCatalogFridgeScene() {
     currWindow = "Categories";
     setUpMenuBarBox();
@@ -463,7 +447,7 @@ public class CatalogFridge{
     ingredientsTable.setPrefSize(400, 250);
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
-    loadIngredientsFromFile();
+    // loadIngredientsFromFile();
     currIngredientList = ingredientsData;
 
     setButtonHandlers();
