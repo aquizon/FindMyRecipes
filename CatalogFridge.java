@@ -265,7 +265,6 @@ public class CatalogFridge{
       fridgeTable.getColumns().add(colImg);
       */ 
       
-      //Simply ~Incorrect~ 
       colImg.setCellFactory(param -> {
         final ImageView imgView = new ImageView(); 
         imgView.setFitHeight(30);
