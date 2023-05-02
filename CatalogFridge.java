@@ -412,6 +412,8 @@ public class CatalogFridge{
            Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
   }
 
+
+
   public Scene generateCatalogFridgeScene() {
     currWindow = "Categories";
     setUpMenuBarBox();
