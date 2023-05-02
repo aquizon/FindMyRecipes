@@ -15,7 +15,7 @@ public class Recipe {
         this.instructions = instructions;
         this.link = link;
         this.imgFname = imgFname;
-        // this.isFavorited = false;
+        this.isFavorited = false;
     }
   
     public void setIsFavorited(boolean newVal) {
@@ -46,9 +46,9 @@ public class Recipe {
         return imgFname;
     }
 
-    // public boolean getIsFavorited() {
-    //     return isFavorited;
-    // }
+    public boolean getIsFavorited() {
+        return isFavorited;
+    }
   
     @Override
       public String toString() {
