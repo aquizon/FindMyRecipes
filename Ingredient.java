@@ -3,7 +3,7 @@ public class Ingredient {
   private int id;
   private String name;
   private String category;
-  private String imgFname;
+  private String imgFname; //should have some form like '/images/filename' 
   
   public Ingredient(int id, String name, String category, String imgFname) {
     this.id = id;

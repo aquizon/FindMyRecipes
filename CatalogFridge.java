@@ -52,10 +52,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumnModel;
-
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -193,8 +191,33 @@ public class CatalogFridge{
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
     ingredientsTable.getColumns().addAll(idCol, nameCol);
+    addImageToIngredientTable();
     addButtonToIngredientTable();
   }
+
+  private void addImageToIngredientTable() { 
+    TableColumn<Ingredient, String> colImg = new TableColumn("Image");
+    colImg.setStyle("-fx-alignment: CENTER;");
+
+    colImg.setCellFactory(param -> {
+      final ImageView imgView = new ImageView();  //so these images themselves need to be cropped later unless we just want to keep as is.  
+      imgView.setFitHeight(30);
+      imgView.setFitWidth(30);
+      TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() { 
+        public void updateItem(String imgname, boolean empty){ 
+          if (imgname != null){
+            imgView.setImage(new Image(imgname)); 
+          }
+        }
+      }; 
+      cell.setGraphic(imgView);
+      return cell;
+    }); 
+
+    colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("imgFname")); 
+    ingredientsTable.getColumns().add(colImg); 
+    
+}
 
   private void addButtonToIngredientTable() {
       TableColumn<Ingredient, Void> colBtn = new TableColumn("");
@@ -266,7 +289,7 @@ public class CatalogFridge{
       */ 
       
       colImg.setCellFactory(param -> {
-        final ImageView imgView = new ImageView(); 
+        final ImageView imgView = new ImageView(); //same thing here, the images should be cropped. 
         imgView.setFitHeight(30);
         imgView.setFitWidth(30);
         TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() { 
