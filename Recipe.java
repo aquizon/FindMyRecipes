@@ -6,14 +6,16 @@ public class Recipe {
     private String instructions;
     private String link;
     private String imgFname;
+    private Boolean favorited; 
     
-    public Recipe(int id, String name, String ingredients, String instructions, String link, String imgFname) {
+    public Recipe(int id, String name, String ingredients, String instructions, String link, String imgFname, Boolean favorited) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
         this.instructions = instructions;
         this.link = link;
         this.imgFname = imgFname;
+        this.favorited = favorited;
     }
   
     public int getId() {
@@ -38,6 +40,14 @@ public class Recipe {
 
     public String getImgFname() {
         return imgFname;
+    }
+
+    public Boolean getFavorited() {
+        return favorited;
+    }
+
+    public void favorite() { 
+        favorited = !favorited; 
     }
   
     @Override

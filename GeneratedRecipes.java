@@ -151,6 +151,7 @@ public class GeneratedRecipes extends Application {
           @Override
           public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
               final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
+
                   private heartButton hb = new heartButton(false, 20, 20);
                   private Button btn = hb.getHeart();
                   {
@@ -203,7 +204,7 @@ public class GeneratedRecipes extends Application {
   }
 
   private void seedRecipes() {
-    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg", true);
     recipesData.add(r);
   }
 
