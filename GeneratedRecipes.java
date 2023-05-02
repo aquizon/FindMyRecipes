@@ -169,10 +169,6 @@ public class GeneratedRecipes {
                       if (empty) {
                           setGraphic(null);
                       } else {
-                          Recipe r = getTableView().getItems().get(getIndex());
-                          if (r.getIsFavorited()) {
-                            hb.fillHeart();
-                          }
                           setGraphic(btn);
                       }
                   }
@@ -196,8 +192,8 @@ public class GeneratedRecipes {
   private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
     Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
     recipePic.setImage(image);
-    recipeIngredients.setText(r.getIngredients());
-    recipeInstructions.setText(r.getInstructions());
+    // recipeIngredients.setText(r.getIngredients());
+    // recipeInstructions.setText(r.getInstructions());
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
@@ -214,10 +210,17 @@ public class GeneratedRecipes {
   }
 
   private void seedRecipes() {
-    Recipe r = new Recipe(2, "Hello Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-    Recipe r2 = new Recipe(3, "Big gumbo", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-    recipesData.add(r);
-    recipesData.add(r2);
+    // ArrayList<String> iwq1,
+    // Recipe r = new Recipe(2, "Hello Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+    // Recipe r2 = new Recipe(3, "Big gumbo", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+    // recipesData.add(r);
+    // recipesData.add(r2);
+    RecipeData rd = new RecipeData("Recipes_Dataset_Modified.csv");
+    Map<String, Recipe> rmap = rd.getRecipeMap();
+    for (String rname : rmap.keySet()) {
+      Recipe r = rmap.get(rname);
+      recipesData.add(r);
+    } 
   }
 
   public Scene generateGeneratedRecipesScene(FavoritesList f) throws FileNotFoundException {
