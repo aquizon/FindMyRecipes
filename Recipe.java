@@ -1,23 +1,33 @@
+import java.util.*;
+
 public class Recipe {
 
     private int id;
     private String name;
-    private String ingredients;
-    private String instructions;
-    private String link;
-    private String imgFname;
+    private ArrayList<String> ingredientsWithQuantities; // change to ArrayList - ingredients with quantities (to be
+                                                         // displayed in theGenerated Recipes/Favorites window)
+    private ArrayList<String> ingredientsNoQuantities; // added ArrayList - ingredients without quantities (to be used
+                                                       // in the
+    // generated recipes algorithm)
+    private ArrayList<String> instructions; // change to ArrayList
+    // private String link; // remove -> don't use anymore
+    private String imgFname; // use empty strings for now
     private boolean isFavorited;
-    
-    public Recipe(int id, String name, String ingredients, String instructions, String link, String imgFname) {
+
+    public Recipe(int id, String name, ArrayList<String> ingredientsWithQuantities,
+            ArrayList<String> ingredientsNoQuantities, ArrayList<String> instructions,
+            String imgFname,
+            Boolean favorited) {
         this.id = id;
         this.name = name;
-        this.ingredients = ingredients;
+        this.ingredientsWithQuantities = ingredientsWithQuantities;
+        this.ingredientsNoQuantities = ingredientsNoQuantities;
         this.instructions = instructions;
-        this.link = link;
+        // this.link = link;
         this.imgFname = imgFname;
-        // this.isFavorited = false;
+        this.isFavorited = false;
     }
-  
+
     public void setIsFavorited(boolean newVal) {
         isFavorited = newVal;
     }
@@ -25,33 +35,37 @@ public class Recipe {
     public int getId() {
         return id;
     }
-  
+
     public String getName() {
         return name;
     }
 
-    public String getIngredients() {
-        return ingredients;
+    public ArrayList<String> getIngredientWithQuantities() {
+        return ingredientsWithQuantities;
     }
 
-    public String getInstructions() {
+    public ArrayList<String> getIngredientNoQuantities() {
+        return ingredientsNoQuantities;
+    }
+
+    public ArrayList<String> getInstructions() {
         return instructions;
     }
 
-    public String getLink() {
-        return link;
-    }
+    // public String getLink() {
+    // return link;
+    // }
 
     public String getImgFname() {
         return imgFname;
     }
 
     // public boolean getIsFavorited() {
-    //     return isFavorited;
+    // return isFavorited;
     // }
-  
+
     @Override
-      public String toString() {
-          return "Recipe " + id + ": " + name;
-      }
-  }
+    public String toString() {
+        return "Recipe " + id + ": " + name;
+    }
+}

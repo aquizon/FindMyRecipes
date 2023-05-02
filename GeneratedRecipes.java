@@ -62,8 +62,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text; 
 import javafx.scene.input.MouseButton;
 
-// public class GeneratedRecipes {
-public class GeneratedRecipes extends Application {
+public class GeneratedRecipes {
+// public class GeneratedRecipes extends Application {
     private Stage stage;
     private Scene scene;
   
@@ -101,15 +101,18 @@ public class GeneratedRecipes extends Application {
   Text recipeIngredients = new Text();
   Text recipeInstructions = new Text();
 
-  public void start(Stage stage) throws FileNotFoundException {
-    Scene scene = generateGeneratedRecipesScene();
-    stage.setScene(scene);
-    stage.show();
-  }
+  FavoritesList fList;
+
+  // public void start(Stage stage) throws FileNotFoundException {
+  //   Scene scene = generateGeneratedRecipesScene();
+  //   stage.setScene(scene);
+  //   stage.show();
+  // }
 
   private void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
     favoritesRecipesButton = new heartButton(true, 60, 60);
+    favoritesRecipesButton.fillHeart();
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton.getHeart(), favoritesRecipesButtonLabel);
 
@@ -152,7 +155,7 @@ public class GeneratedRecipes extends Application {
           @Override
           public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
               final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
-
+                  // System.out.println(getTableView().getItems().get(getIndex());
                   private heartButton hb = new heartButton(false, 20, 20);
                   private Button btn = hb.getHeart();
                   {
@@ -190,29 +193,39 @@ public class GeneratedRecipes extends Application {
   private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
     Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
     recipePic.setImage(image);
-    recipeIngredients.setText(r.getIngredients());
-    recipeInstructions.setText(r.getInstructions());
+    // recipeIngredients.setText(r.getIngredients());
+    // recipeInstructions.setText(r.getInstructions());
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
     if (heart.getIsFilled()) {
       heart.emptyHeart();
       heart.setIsFilled(false);
-      Favorites.favoritesData.remove(selectedRecipe);
+      fList.removeRecipe(selectedRecipe);
     }
     else {
       heart.fillHeart();
       heart.setIsFilled(true);
-      Favorites.favoritesData.add(selectedRecipe);
+     fList.addRecipe(selectedRecipe);
     }
   }
 
   private void seedRecipes() {
-    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-    recipesData.add(r);
+    // ArrayList<String> iwq1,
+    // Recipe r = new Recipe(2, "Hello Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+    // Recipe r2 = new Recipe(3, "Big gumbo", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+    // recipesData.add(r);
+    // recipesData.add(r2);
+    RecipeData rd = new RecipeData("Recipes_Dataset_Modified.csv");
+    Map<String, Recipe> rmap = rd.getRecipeMap();
+    for (String rname : rmap.keySet()) {
+      Recipe r = rmap.get(rname);
+      recipesData.add(r);
+    } 
   }
 
-  public Scene generateGeneratedRecipesScene() throws FileNotFoundException {
+  public Scene generateGeneratedRecipesScene(FavoritesList f) throws FileNotFoundException {
+    fList = f;
     seedRecipes();
     setUpMenuBarBox();
     mainPane.setTop(title);
@@ -257,43 +270,7 @@ public class GeneratedRecipes extends Application {
     return new Scene(mainPane, initWidth, initHeight);
   }
 
-  public static void main(String[] args) {
-    launch(args);
-  }
-
-  class heartButton {
-    private boolean isFilled;
-    private int width;
-    private int height;
-    private Button heart = new Button();
-    public heartButton(boolean isFilled, int w, int h) {
-      width = w;
-      height = h;
-      heart.setPrefSize(w, h);
-      if (isFilled) {
-        fillHeart();
-      }
-      else {
-        emptyHeart();
-      }
-    }
-    private void fillHeart() {
-      heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
-    }
-
-    public void emptyHeart() {
-      heart.setStyle("-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
-    }
-    public boolean getIsFilled() {
-      return isFilled;
-    }
-
-    public void setIsFilled(boolean status) {
-      isFilled = status;
-    }
-
-    public Button getHeart() {
-      return heart;
-    }
-  }
+  // public static void main(String[] args) {
+  //   launch(args);
+  // }
 }

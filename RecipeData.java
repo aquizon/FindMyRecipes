@@ -5,7 +5,7 @@ import java.util.*;
 
 public class RecipeData {
 
-  private ArrayList<String> allIngredients = new ArrayList<>(); // no quantities
+  private ArrayList<String> allIngredients; // no quantities
 
   // Recipe object has list of ingredients with quantities and list without
   // quantities
@@ -21,6 +21,7 @@ public class RecipeData {
 
   public RecipeData(String csv) {
     this.recipeMap = parseFile(csv);
+    this.allIngredients = getAllIngredients(recipeMap);
 
   }
 
@@ -38,7 +39,7 @@ public class RecipeData {
 
         if (row != null) {
           // addRecipe(row);
-          parseRow(row);
+          parseRow(row, recipeMap);
         }
       }
 
@@ -46,10 +47,12 @@ public class RecipeData {
 
     }
 
+    // print out all ingredients
+
     return recipeMap;
   }
 
-  private void parseRow(String row) {
+  private void parseRow(String row, Map<String, Recipe> recipeMap) {
     // System.out.println(row);
 
     // row contains all attributes of the Recipe (ID, ingredients list, instructions
@@ -59,11 +62,11 @@ public class RecipeData {
     String name = tok.nextToken();
     String ingredientsStr = tok.nextToken();
     String instructionsStr = tok.nextToken();
-    
+
     ingredientsStr = ingredientsStr.replace("[", "").replace("]", "");
     String[] ingredientsList = ingredientsStr.split("',");
 
-    System.out.println("\n" + name);
+    // System.out.println("\n" + name);
     // System.out.println(Arrays.toString(ingredientsList));
 
     // after creating the list, virtually all of the tokens will start with "\'"
@@ -73,12 +76,32 @@ public class RecipeData {
 
     ArrayList<String> ingredientsNoDetails = parseIngredientsNoDetails(ingredientsWithQuantities);
 
-    printArrayList(ingredientsWithQuantities);
-    System.out.println();
-    printArrayList(ingredientsNoDetails);
+    ArrayList<String> instructions = parseInstructions(instructionsStr);
+
+    // printArrayList(ingredientsWithQuantities);
+    // System.out.println();
+    // printArrayList(ingredientsNoDetails);
 
     // create the Recipe object
+    // attributes: ID, name, ingredients with quantities, ingredietns no quantities,
+    // instructions,
 
+    recipeMap.put(name, new Recipe(ID, name, ingredientsWithQuantities, ingredientsNoDetails, instructions, "", false));
+
+  }
+
+  private ArrayList<String> parseInstructions(String instructionsStr) {
+    ArrayList<String> instructions = new ArrayList<>();
+
+    instructionsStr = instructionsStr.replace("[", "").replace("]", "");
+    String[] instructionsList = instructionsStr.split("',");
+
+    for (String instruction : instructionsList) {
+      instruction = instruction.replace("'", "").strip();
+      instructions.add(instruction);
+    }
+
+    return instructions;
   }
 
   // get ingredients without quantities and the end details (--xxx) and adjectives
@@ -109,6 +132,8 @@ public class RecipeData {
     return ingredientsNoDetails;
   }
 
+  // takes a String containing the ingredient (e.g. 3 small tomatoes--diced) and
+  // removes the details like quantity, size, the stuff at the end
   private String removeDetails(String ingredient) {
     final String[] measurements = { "can", "cup", "ounce", "oz", "pound", "tablespoon", "teaspoon", "inch", "pinch",
         "clove", "slice", "bunch", "quart", "sprig", "cube", "dash", "package", "jar", "bottle" };
@@ -203,4 +228,29 @@ public class RecipeData {
     return ingredientsWithQuantities;
   }
 
+  // helper method that returns the list of all ingredients from all recipes in
+  // the dataset
+  private ArrayList<String> getAllIngredients(Map<String, Recipe> recipeMap) {
+    ArrayList<String> ingredients = new ArrayList<>();
+    for (String recipe : recipeMap.keySet()) {
+      for (String ingredient : recipeMap.get(recipe).getIngredientNoQuantities()) {
+        if (!ingredients.contains(ingredient)) {
+          ingredients.add(ingredient);
+        }
+      }
+    }
+
+    return ingredients;
+
+  }
+
+  public Map<String, Recipe> getRecipeMap() {
+    return recipeMap;
+  }
+
+  public void printIngredients() {
+    for (String ingredient : allIngredients) {
+      System.out.println(ingredient);
+    }
+  }
 }

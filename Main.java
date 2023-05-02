@@ -27,6 +27,7 @@ public class Main extends Application  {
   private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
   private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
+  private FavoritesList fList = new FavoritesList();
 
     public static void main(String args[]){          
          launch(args);     
@@ -37,8 +38,8 @@ public class Main extends Application  {
       loadIngredientsFromFile();
       Scene cfScene = fridge.generateCatalogFridgeScene();
       // Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
-      Scene grScene = recipes.generateGeneratedRecipesScene();
-      Scene frScene = favorites.generateFavoritesScene();
+      Scene grScene = recipes.generateGeneratedRecipesScene(fList);
+      Scene frScene = favorites.generateFavoritesScene(fList);
       fridge.setIngredientCategories(ingredientCategories);
       fridge.setIngredientsData(ingredientsData);
 
