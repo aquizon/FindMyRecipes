@@ -187,6 +187,7 @@ public class Favorites {
             public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
                 final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
                     private heartButton hb = new heartButton(true, 20, 20);
+                    // hb.fillHeart();
                     private Button btn = hb.getHeart();
                     {
                         btn.setOnAction((ActionEvent e) -> {
@@ -236,18 +237,18 @@ public class Favorites {
     private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
         Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
         recipePic.setImage(image);
-        recipeIngredients.setText(r.getIngredients());
-        recipeInstructions.setText(r.getInstructions());
+        // recipeIngredients.setText(r.getIngredients());
+        // recipeInstructions.setText(r.getInstructions());
     }
 
-    private void seedRecipes() {
-        Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-        fList.addRecipe(r);
-    }
+    // private void seedRecipes() {
+        // Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+        // fList.addRecipe(r);
+    // }
 
     public Scene generateFavoritesScene(FavoritesList f) throws FileNotFoundException {
         this.fList = f;
-        seedRecipes();
+        // seedRecipes();
         setUpMenuBarBox();
         mainPane.setTop(title);
         mainPane.setAlignment(title, Pos.CENTER);

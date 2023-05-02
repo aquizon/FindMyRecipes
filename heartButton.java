@@ -9,6 +9,7 @@ public class heartButton {
       width = w;
       height = h;
       heart.setPrefSize(w, h);
+      this.isFilled = isFilled;
       if (isFilled) {
         fillHeart();
       }
