@@ -52,6 +52,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableColumnModel;
+
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -231,7 +235,55 @@ public class CatalogFridge{
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
     fridgeTable.getColumns().addAll(idCol, nameCol);
+    addImageToFridgeTable(); 
     addButtonToFridgeTable();
+  }
+
+  private void addImageToFridgeTable() { 
+      TableColumn<Ingredient, String> colImg = new TableColumn("Image");
+      colImg.setStyle("-fx-alignment: CENTER;");
+      /* Works even worse i think lmao 
+      Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> () { 
+          @Override 
+          public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) { 
+              final TableCell<Ingredient, Void> cell = new TableCell<Ingredient, Void>() {
+                private final Image img = new Image(imgName);
+                @Override
+                  public void updateItem(void item, Boolean empty){ 
+                    super.updateItem(item, empty); 
+                    if (empty) { 
+                      setGraphic(null);
+                    } else{ 
+                      setGraphic(img);
+                    }
+                  }
+              };
+              return cell;
+          }
+      };
+      colImg.setCellFactory(cellFactory);
+      fridgeTable.getColumns().add(colImg);
+      */ 
+      
+      //Simply ~Incorrect~ 
+      colImg.setCellFactory(param -> {
+        final ImageView imgView = new ImageView(); 
+        imgView.setFitHeight(30);
+        imgView.setFitWidth(30);
+        TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() { 
+          public void updateItem(String imgname, boolean empty){ 
+            if (imgname != null){
+              imgView.setImage(new Image(imgname)); 
+
+            }
+          }
+        }; 
+        cell.setGraphic(imgView);
+        return cell;
+      }); 
+      colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("imgFname")); 
+      fridgeTable.getColumns().add(colImg);
+      
   }
 
   private void addButtonToFridgeTable() {
