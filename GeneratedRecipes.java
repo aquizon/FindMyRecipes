@@ -78,6 +78,7 @@ public class GeneratedRecipes extends Application {
 
   // ObservableList objects to be associated with the TableView objects
   private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
+  private 
 
   // buttons/textFields for the Generated Recipes Window
   Label title = new Label("FindMyRecipes");
@@ -220,7 +221,7 @@ public class GeneratedRecipes extends Application {
 
     // set up Recipes Table
     recipesTable.setPrefSize(350, 300);
-    recipesTable.setItems(recipesData);
+    recipesTable.setItems(recipesData); //replaced recipesData here with the list of recipes that fit the fridgeData. 
     setRecipesTableColumns();
 
     recipesTable.setOnMouseClicked((MouseEvent event) -> {
