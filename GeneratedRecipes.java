@@ -207,7 +207,7 @@ public class GeneratedRecipes extends Application {
   }
 
   private void seedRecipes() {
-    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg", true);
+    Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
     recipesData.add(r);
   }
 
