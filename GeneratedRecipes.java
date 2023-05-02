@@ -111,6 +111,7 @@ public class GeneratedRecipes {
   private void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
     favoritesRecipesButton = new heartButton(true, 60, 60);
+    favoritesRecipesButton.fillHeart();
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton.getHeart(), favoritesRecipesButtonLabel);
 
@@ -153,7 +154,7 @@ public class GeneratedRecipes {
           @Override
           public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
               final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
-
+                  // System.out.println(getTableView().getItems().get(getIndex());
                   private heartButton hb = new heartButton(false, 20, 20);
                   private Button btn = hb.getHeart();
                   {
@@ -168,6 +169,10 @@ public class GeneratedRecipes {
                       if (empty) {
                           setGraphic(null);
                       } else {
+                          Recipe r = getTableView().getItems().get(getIndex());
+                          if (r.getIsFavorited()) {
+                            hb.fillHeart();
+                          }
                           setGraphic(btn);
                       }
                   }
@@ -210,7 +215,9 @@ public class GeneratedRecipes {
 
   private void seedRecipes() {
     Recipe r = new Recipe(2, "Hello Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+    Recipe r2 = new Recipe(3, "Big gumbo", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
     recipesData.add(r);
+    recipesData.add(r2);
   }
 
   public Scene generateGeneratedRecipesScene(FavoritesList f) throws FileNotFoundException {
