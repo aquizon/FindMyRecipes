@@ -16,5 +16,9 @@ public class FavoritesList {
         favoritesList.add(r);
     }
 
+    public void removeRecipe(Recipe r) {
+        favoritesList.remove(r);
+    }
+
 }
 

@@ -431,6 +431,7 @@ public class CatalogFridge{
     mainPane.setHalignment(fridgeLabel, HPos.CENTER);
     fridgeLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
 
+    searchBox.setPromptText("Search for Ingredient: ");
     mainPane.add(searchBox, 0, 2, 2, 1);
 
     fridgeTable.setPrefSize(250, 300);

@@ -62,8 +62,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text; 
 import javafx.scene.input.MouseButton;
 
-// public class Favorites {
-public class Favorites extends Application {
+public class Favorites {
+// public class Favorites extends Application {
     private Stage stage;
     private Scene scene;
 
@@ -75,7 +75,7 @@ public class Favorites extends Application {
     private static TableView<Recipe> favoritesTable = new TableView<>();
 
     // ObservableList objects to be associated with the TableView objects
-    public static ObservableList<Recipe> favoritesData = FXCollections.observableArrayList();
+    // public static ObservableList<Recipe> favoritesData = FXCollections.observableArrayList();
 
     //Topmost label
     Label title = new Label("FindMyRecipes");
@@ -98,11 +98,13 @@ public class Favorites extends Application {
     Text recipeIngredients = new Text();
     Text recipeInstructions = new Text();
 
-    public void start(Stage stage) throws FileNotFoundException {
-        Scene scene = generateFavoritesScene();
-        stage.setScene(scene);
-        stage.show();
-    }
+    FavoritesList fList;
+
+    // public void start(Stage stage) throws FileNotFoundException {
+    //     Scene scene = generateFavoritesScene();
+    //     stage.setScene(scene);
+    //     stage.show();
+    // }
 
     private Button makeHeartFilledButton(int width, int height) {
         Button heart = new Button();
@@ -223,7 +225,7 @@ public class Favorites extends Application {
           heart.emptyHeart();
           heart.setIsFilled(false);
 
-          favoritesData.remove(selectedRecipe);
+          fList.removeRecipe(selectedRecipe);
         }
         else {
           heart.fillHeart();
@@ -239,12 +241,13 @@ public class Favorites extends Application {
     }
 
     private void seedRecipes() {
-        Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg", true);
-        favoritesData.add(r);
+        Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+        fList.addRecipe(r);
     }
 
-    public Scene generateFavoritesScene() throws FileNotFoundException {
-        // seedRecipes();
+    public Scene generateFavoritesScene(FavoritesList f) throws FileNotFoundException {
+        this.fList = f;
+        seedRecipes();
         setUpMenuBarBox();
         mainPane.setTop(title);
         mainPane.setAlignment(title, Pos.CENTER);
@@ -252,7 +255,7 @@ public class Favorites extends Application {
     
         // set up Recipes Table
         favoritesTable.setPrefSize(350, 250);
-        favoritesTable.setItems(favoritesData);
+        favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
     
         favoritesTable.setOnMouseClicked((MouseEvent event) -> {
@@ -288,42 +291,7 @@ public class Favorites extends Application {
         return new Scene(mainPane, initWidth, initHeight);
       }
     
-      public static void main(String[] args) {
-        launch(args);
-      }
-      class heartButton {
-        private boolean isFilled;
-        private int width;
-        private int height;
-        private Button heart = new Button();
-        public heartButton(boolean isFilled, int w, int h) {
-          width = w;
-          height = h;
-          heart.setPrefSize(w, h);
-          if (isFilled) {
-            fillHeart();
-          }
-          else {
-            emptyHeart();
-          }
-        }
-        private void fillHeart() {
-          heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
-        }
-    
-        public void emptyHeart() {
-          heart.setStyle("-fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
-        }
-        public boolean getIsFilled() {
-          return isFilled;
-        }
-    
-        public void setIsFilled(boolean status) {
-          isFilled = status;
-        }
-    
-        public Button getHeart() {
-          return heart;
-        }
-      }
+      // public static void main(String[] args) {
+      //   launch(args);
+      // }
 } 
