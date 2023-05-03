@@ -198,30 +198,6 @@ public class CatalogFridge{
     addButtonToIngredientTable();
   }
 
-  private void addImageToIngredientTable() { 
-    TableColumn<Ingredient, Image> colImg = new TableColumn("Image");
-    colImg.setStyle("-fx-alignment: CENTER;");
-
-    colImg.setCellFactory(param -> {
-      final ImageView imgView = new ImageView();  //so these images themselves need to be cropped later unless we just want to keep as is.  
-      imgView.setFitHeight(30);
-      imgView.setFitWidth(30);
-      TableCell<Ingredient, Image> cell = new TableCell<Ingredient, Image>() { 
-        public void updateItem(Image img, boolean empty){ 
-          if (img != null){
-            imgView.setImage(img); 
-          }
-        }
-      }; 
-      cell.setGraphic(imgView);
-      return cell;
-    }); 
-
-    colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, Image>("img")); 
-    ingredientsTable.getColumns().add(colImg); 
-    
-}
-
   private void addButtonToIngredientTable() {
       TableColumn<Ingredient, Void> colBtn = new TableColumn("");
       colBtn.setStyle( "-fx-alignment: CENTER;");
@@ -264,30 +240,6 @@ public class CatalogFridge{
     //addImageToFridgeTable();
     fridgeTable.getColumns().addAll(idCol, nameCol, imageCol);
     addButtonToFridgeTable();
-  }
-
-  private void addImageToFridgeTable() { 
-      TableColumn<Ingredient, Image> colImg = new TableColumn("Image");
-      colImg.setStyle("-fx-alignment: CENTER;");
-
-      colImg.setCellFactory(param -> {
-        final ImageView imgView = new ImageView(); //same thing here, the images should be cropped. 
-        imgView.setFitHeight(30);
-        imgView.setFitWidth(30);
-        TableCell<Ingredient, Image> cell = new TableCell<Ingredient, Image>() { 
-          public void updateItem(Image img, boolean empty){ 
-            if (img != null){
-              imgView.setImage(img); 
-
-            }
-          }
-        }; 
-        cell.setGraphic(imgView);
-        return cell;
-      }); 
-      colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, Image>("img")); 
-      fridgeTable.getColumns().add(colImg);
-      
   }
 
   private void addButtonToFridgeTable() {
