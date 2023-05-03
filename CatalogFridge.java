@@ -190,23 +190,26 @@ public class CatalogFridge{
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-    ingredientsTable.getColumns().addAll(idCol, nameCol);
-    addImageToIngredientTable();
+    TableColumn imgCol = new TableColumn("Image");
+    imgCol.setCellValueFactory(new PropertyValueFactory<>("img"));
+
+    ingredientsTable.getColumns().addAll(idCol, nameCol, imgCol);
+    //addImageToIngredientTable();
     addButtonToIngredientTable();
   }
 
   private void addImageToIngredientTable() { 
-    TableColumn<Ingredient, String> colImg = new TableColumn("Image");
+    TableColumn<Ingredient, Image> colImg = new TableColumn("Image");
     colImg.setStyle("-fx-alignment: CENTER;");
 
     colImg.setCellFactory(param -> {
       final ImageView imgView = new ImageView();  //so these images themselves need to be cropped later unless we just want to keep as is.  
       imgView.setFitHeight(30);
       imgView.setFitWidth(30);
-      TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() { 
-        public void updateItem(String imgname, boolean empty){ 
-          if (imgname != null){
-            imgView.setImage(new Image(imgname)); 
+      TableCell<Ingredient, Image> cell = new TableCell<Ingredient, Image>() { 
+        public void updateItem(Image img, boolean empty){ 
+          if (img != null){
+            imgView.setImage(img); 
           }
         }
       }; 
@@ -214,7 +217,7 @@ public class CatalogFridge{
       return cell;
     }); 
 
-    colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("imgFname")); 
+    colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, Image>("img")); 
     ingredientsTable.getColumns().add(colImg); 
     
 }
@@ -256,46 +259,25 @@ public class CatalogFridge{
  
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-    fridgeTable.getColumns().addAll(idCol, nameCol);
-    addImageToFridgeTable(); 
+    TableColumn imageCol = new TableColumn("Image");
+    imageCol.setCellValueFactory(new PropertyValueFactory<>("img"));
+    //addImageToFridgeTable();
+    fridgeTable.getColumns().addAll(idCol, nameCol, imageCol);
     addButtonToFridgeTable();
   }
 
   private void addImageToFridgeTable() { 
-      TableColumn<Ingredient, String> colImg = new TableColumn("Image");
+      TableColumn<Ingredient, Image> colImg = new TableColumn("Image");
       colImg.setStyle("-fx-alignment: CENTER;");
-      /* Works even worse i think lmao 
-      Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> () { 
-          @Override 
-          public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) { 
-              final TableCell<Ingredient, Void> cell = new TableCell<Ingredient, Void>() {
-                private final Image img = new Image(imgName);
-                @Override
-                  public void updateItem(void item, Boolean empty){ 
-                    super.updateItem(item, empty); 
-                    if (empty) { 
-                      setGraphic(null);
-                    } else{ 
-                      setGraphic(img);
-                    }
-                  }
-              };
-              return cell;
-          }
-      };
-      colImg.setCellFactory(cellFactory);
-      fridgeTable.getColumns().add(colImg);
-      */ 
-      
+
       colImg.setCellFactory(param -> {
         final ImageView imgView = new ImageView(); //same thing here, the images should be cropped. 
         imgView.setFitHeight(30);
         imgView.setFitWidth(30);
-        TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() { 
-          public void updateItem(String imgname, boolean empty){ 
-            if (imgname != null){
-              imgView.setImage(new Image(imgname)); 
+        TableCell<Ingredient, Image> cell = new TableCell<Ingredient, Image>() { 
+          public void updateItem(Image img, boolean empty){ 
+            if (img != null){
+              imgView.setImage(img); 
 
             }
           }
@@ -303,7 +285,7 @@ public class CatalogFridge{
         cell.setGraphic(imgView);
         return cell;
       }); 
-      colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, String>("imgFname")); 
+      colImg.setCellValueFactory(new PropertyValueFactory<Ingredient, Image>("img")); 
       fridgeTable.getColumns().add(colImg);
       
   }

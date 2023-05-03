@@ -1,9 +1,12 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView; 
+
 public class Ingredient {
 
   private int id;
   private String name;
   private String category;
-  private String imgFname; //should have some form like '/images/filename' 
+  private ImageView img; //I needed to create an image here instead since the delete function is tied to the ingredient itself. 
   
   public Ingredient(int id, String name, String category) {
     this(id, name, category, "");
@@ -13,7 +16,10 @@ public class Ingredient {
     this.id = id;
     this.name = name;
     this.category = category;
-    this.imgFname = imgFname;
+    this.img = new ImageView();
+    img.setFitHeight(30);
+    img.setFitWidth(30);
+    img.setImage(new Image(imgFname));
   }
 
   public int getId() {
@@ -27,9 +33,9 @@ public class Ingredient {
   public String getCategory() {
     return category;
   }
-  
-  public String getImgFname() { 
-    return imgFname;
+
+  public ImageView getImg() { 
+    return img;
   }
 
   @Override

@@ -1,5 +1,5 @@
-ID,Title,Category
-1,Salt,Other
+ID,Title,Category,Image
+1,Salt,Other,./images/ingredients/salt.png
 2,Pepper,Other
 3,Olive Oil,Other
 4,Vegetable Oil,Other
@@ -25,7 +25,7 @@ ID,Title,Category
 24,Linguine,Grains
 25,Heavy Cream,Dairy
 26,Shrimp,Proteins
-27,EGG,Dairy
+27,EGG,Dairy,./images/ingredients/egg.jpeg
 28,Chicken,Proteins
 29,Spaghetti,Grains
 30,Cheese,Dairy
