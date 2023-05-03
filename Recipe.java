@@ -60,9 +60,9 @@ public class Recipe {
         return imgFname;
     }
 
-    // public boolean getIsFavorited() {
-    // return isFavorited;
-    // }
+    public boolean getIsFavorited() {
+        return isFavorited;
+    }
 
     @Override
     public String toString() {

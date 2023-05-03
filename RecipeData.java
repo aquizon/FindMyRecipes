@@ -125,18 +125,37 @@ public class RecipeData {
       // remove the details (quantity, other details, etc.)
       ingredient = removeDetails(ingredient);
 
-      ingredientsNoDetails.add(ingredient);
+      // capitalize ingredient
+
+      ingredientsNoDetails.add(capitalizeIngredient(ingredient));
 
     }
 
     return ingredientsNoDetails;
   }
 
+  private String capitalizeIngredient(String ingredient) {
+    String capitalizedIngredient = "";
+
+    // split the string
+    String[] ingredientWords = ingredient.split(" ");
+    for (String word : ingredientWords) {
+      if (!word.toLowerCase().equals("of")) {
+        String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
+        capitalizedIngredient += cap + " ";
+      } else {
+        capitalizedIngredient += word + " ";
+      }
+    }
+
+    return capitalizedIngredient.strip();
+  }
+
   // takes a String containing the ingredient (e.g. 3 small tomatoes--diced) and
   // removes the details like quantity, size, the stuff at the end
   private String removeDetails(String ingredient) {
     final String[] measurements = { "can", "cup", "ounce", "oz", "pound", "tablespoon", "teaspoon", "inch", "pinch",
-        "clove", "slice", "bunch", "quart", "sprig", "cube", "dash", "package", "jar", "bottle" };
+        "clove", "slice", "bunch", "quart", "sprig", "cube", "dash", "package", "jar", "bottle", "packet" };
 
     final String[] sizes = { "small", "medium", "large" };
 
@@ -201,6 +220,8 @@ public class RecipeData {
       ingredientNoMeasurement = "tomatoes";
     else if (ingredientNoMeasurement.toUpperCase().equals("potato".toUpperCase()))
       ingredientNoMeasurement = "potatoes";
+    else if (ingredientNoMeasurement.toUpperCase().equals("green onion".toUpperCase()))
+      ingredientNoMeasurement = "green onions";
 
     // System.out.println("ingredient without measurement: " +
     // ingredientNoMeasurement);

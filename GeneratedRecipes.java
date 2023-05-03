@@ -155,7 +155,6 @@ public class GeneratedRecipes {
           @Override
           public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
               final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
-                  // System.out.println(getTableView().getItems().get(getIndex());
                   private heartButton hb = new heartButton(false, 20, 20);
                   private Button btn = hb.getHeart();
                   {
@@ -211,11 +210,6 @@ public class GeneratedRecipes {
   }
 
   private void seedRecipes() {
-    // ArrayList<String> iwq1,
-    // Recipe r = new Recipe(2, "Hello Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-    // Recipe r2 = new Recipe(3, "Big gumbo", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-    // recipesData.add(r);
-    // recipesData.add(r2);
     RecipeData rd = new RecipeData("Recipes_Dataset_Modified.csv");
     Map<String, Recipe> rmap = rd.getRecipeMap();
     for (String rname : rmap.keySet()) {

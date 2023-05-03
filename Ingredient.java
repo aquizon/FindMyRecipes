@@ -5,6 +5,10 @@ public class Ingredient {
   private String category;
   private String imgFname; //should have some form like '/images/filename' 
   
+  public Ingredient(int id, String name, String category) {
+    this(id, name, category, "");
+  }
+
   public Ingredient(int id, String name, String category, String imgFname) {
     this.id = id;
     this.name = name;

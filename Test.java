@@ -62,25 +62,89 @@ import javafx.scene.input.KeyCode;
 
 public class Test extends Application {
     TableView<Recipe> favoritesTable = new TableView<>();
+    FavoritesList l1 = new FavoritesList();
     public static void main(String args[]){          
         launch(args);     
     } 
         
     @Override    
     public void start(Stage stage) throws Exception {
-        FavoritesList l1 = new FavoritesList();
-        Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-        l1.addRecipe(r);
+        seedRecipes();
         setFavoritesTableColumns();
         favoritesTable.setItems(l1.getFavoritesList());
         stage.setScene(new Scene(favoritesTable));
         stage.show();
     }
 
+    private void seedRecipes() {
+        RecipeData rd = new RecipeData("Recipes_Dataset_Modified.csv");
+        Map<String, Recipe> rmap = rd.getRecipeMap();
+        int count = 0;
+        for (String rname : rmap.keySet()) {
+          Recipe r = rmap.get(rname);
+          l1.addRecipe(r);
+          count++;
+          if (count >= 5) {
+            break;
+          }
+        } 
+      }
+
+    private void getTableViewValues() {
+        // ArrayList<String> values = new ArrayList<>();
+        // ObservableList<TableColumn> columns = favoritesTable.getColumns();
+
+        for (Recipe row : favoritesTable.getItems()) {
+            System.out.println(row);
+        }
+
+        // return values;
+    }  
+
     private void setFavoritesTableColumns() {
         TableColumn nameCol = new TableColumn("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
     
-        favoritesTable.getColumns().addAll(nameCol);
+        TableColumn favoritedCol = new TableColumn("Is Favorited");
+        favoritedCol.setCellValueFactory(new PropertyValueFactory<>("isFavorited"));
+
+        favoritesTable.getColumns().addAll(nameCol, favoritedCol);
+        addButtonToRecipesTable();
+    }
+
+    private Node createFilledHeartButton(){
+        heartButton hb = new heartButton(false, 20, 20);
+        return hb.getHeart();
+    }
+    
+    private void addButtonToRecipesTable() {
+        TableColumn<Recipe, Void> colBtn = new TableColumn("");
+        colBtn.setStyle( "-fx-alignment: CENTER;");
+        Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>> cellFactory = new Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>>() {
+            @Override
+            public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
+                final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
+                    private heartButton hb = new heartButton(false, 20, 20);
+                    private Button btn = hb.getHeart();
+                    {
+                        btn.setOnAction((ActionEvent e) -> {
+                            Recipe selectedRecipe = getTableView().getItems().get(getIndex());
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+            return cell;
+            }
+        };
+        colBtn.setCellFactory(cellFactory);
+        favoritesTable.getColumns().add(colBtn);
     }
 }
