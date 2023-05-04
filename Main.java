@@ -39,9 +39,10 @@ public class Main extends Application  {
     @Override    
     public void start(Stage stage) throws Exception { 
       loadIngredientsFromFile();
+      seedFavoritesList();
       Scene cfScene = fridge.generateCatalogFridgeScene();
       // Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
-      Scene grScene = recipes.generateGeneratedRecipesScene(fList);
+      Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
       Scene frScene = favorites.generateFavoritesScene(fList);
       fridge.setIngredientCategories(ingredientCategories);
       fridge.setIngredientsData(ingredientsData);
@@ -59,6 +60,14 @@ public class Main extends Application  {
       favorites.generateRecipesButton.setOnAction(e -> stage.setScene(grScene));
       stage.setScene(cfScene);
       stage.show();
+    }
+
+    private void seedFavoritesList() {
+      for (Recipe r : recipesData) {
+        if (r.getIsFavorited()) {
+          fList.addRecipe(r);
+        }
+      }
     }
 
     private void loadIngredientsFromFile() {

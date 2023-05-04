@@ -240,14 +240,8 @@ public class Favorites {
         // recipeInstructions.setText(r.getInstructions());
     }
 
-    // private void seedRecipes() {
-        // Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
-        // fList.addRecipe(r);
-    // }
-
     public Scene generateFavoritesScene(FavoritesList f) throws FileNotFoundException {
         this.fList = f;
-        // seedRecipes();
         setUpMenuBarBox();
         mainPane.setTop(title);
         mainPane.setAlignment(title, Pos.CENTER);
