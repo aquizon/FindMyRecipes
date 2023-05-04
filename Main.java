@@ -73,7 +73,7 @@ public class Main extends Application  {
           while ((line = br.readLine()) != null) {
               String[] fields = line.split(FieldDelimiter, -1);
   
-              Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2]);
+              Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2], fields[3]);
               ingredientsData.add(record);
               // Add to hashmap
               String category = fields[2];
