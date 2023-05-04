@@ -52,7 +52,7 @@ We came across challenges in our implementation that led us to modify our approa
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
-## Technical Outline and Implementations
+## Technical Details and Decisions
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
 
 ### Recipe.java
