@@ -53,7 +53,30 @@ We came across challenges in our implementation that led us to modify our approa
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
 ## Technical Outline and Implementations
+The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
+
+### Recipe.java
+
+### Ingredient.java
+This class contains the following attributes:
+* int id
+* String name
+* String category
+* ImageView img
+* ImageView imgFridge
+
+### RecipeData.java
+This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
+
+Figure 5: RecipeDataset Sample
+<img width="1200" alt="RecipeDatasetStample" src="https://user-images.githubusercontent.com/90003553/236317389-1c75b78e-d62b-4c37-a146-c1f728fbfd17.png">
+
+A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
+
+Figure 6: RecipeIngredientsDataset Sample
+<img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
 
 
-Obtaining the recipes/ingredients dataset
+
+
 

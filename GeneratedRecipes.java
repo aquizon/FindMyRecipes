@@ -251,6 +251,12 @@ public class GeneratedRecipes {
     }
   }
 
+  public void seedRecipesTable() { 
+    ObservableList<Ingredient> fridge = CatalogFridge.getFridge(); //list of ingredients we have in the fridge.
+    Array
+
+  }
+
   public Scene generateGeneratedRecipesScene(FavoritesList f, ObservableList<Recipe> rList) throws FileNotFoundException {
     fList = f;
     recipesData = rList;
@@ -261,6 +267,7 @@ public class GeneratedRecipes {
 
     // set up Recipes Table
     recipesTable.setPrefSize(350, 300);
+    //seedRecipesTable();
     recipesTable.setItems(recipesData); //replaced recipesData here with the list of recipes that fit the fridgeData. 
     setRecipesTableColumns();
 
@@ -276,7 +283,7 @@ public class GeneratedRecipes {
   });
 
     //set up Recipe Info Section
-    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png"));
+    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); //to fix later 
     recipePic = new ImageView(image); 
     recipePic.setFitHeight(125);
     recipePic.setFitWidth(125);
