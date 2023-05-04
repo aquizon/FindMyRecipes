@@ -20,8 +20,9 @@ There is a search bar above the ingredient catalog for the user to easily find a
 Figure 2: Selecting "Fruits" on the Main Window
 ![SelectedCategoryMockUp](https://user-images.githubusercontent.com/90003553/236040726-66d75dd0-c01f-4359-944e-02b1a2c05c70.jpeg)
 
+Clicking the Generate Recipes button switches windows to display a list of recipes that the user can cook based on the ingredients within the user's fridge. Selecting one of the recipes reveals the recipe information, and clicking the heart adds the recipe to the user's list of favorite recipes. Refer t Figure 3 below.
 
-
-
+Figure 3: Generate Recipes Window
+![GeneratedRecipesMockUp](https://user-images.githubusercontent.com/90003553/236274601-5b49cdea-1e05-4b84-b1af-f42363d0db36.jpeg)
 
 ## Objectives
