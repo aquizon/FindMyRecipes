@@ -235,13 +235,15 @@ public class CatalogFridge{
  
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-    TableColumn imageCol = new TableColumn("Image");
-    imageCol.setCellValueFactory(new PropertyValueFactory<>("img"));
+    TableColumn imgCol = new TableColumn("Image");
+    imgCol.setCellValueFactory(new PropertyValueFactory<>("imgFridge"));
     //addImageToFridgeTable();
-    fridgeTable.getColumns().addAll(idCol, nameCol, imageCol);
+    fridgeTable.getColumns().addAll(idCol, nameCol, imgCol);
     addButtonToFridgeTable();
   }
 
+
+  
   private void addButtonToFridgeTable() {
       TableColumn<Ingredient, Void> colBtn = new TableColumn("");
       colBtn.setStyle( "-fx-alignment: CENTER;");

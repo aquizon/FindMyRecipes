@@ -6,8 +6,8 @@ public class Ingredient {
   private int id;
   private String name;
   private String category;
-  private ImageView img; //I needed to create an image here instead since the delete function is tied to the ingredient itself. 
-  
+  private ImageView img; 
+  private ImageView imgFridge; //this is one of the wackiest lines of code ive ever written like what why
   public Ingredient(int id, String name, String category) {
     this(id, name, category, "");
   }
@@ -20,6 +20,10 @@ public class Ingredient {
     img.setFitHeight(30);
     img.setFitWidth(30);
     img.setImage(new Image(imgFname));
+    this.imgFridge = new ImageView(); 
+    imgFridge.setFitHeight(30);
+    imgFridge.setFitWidth(30);
+    imgFridge.setImage(new Image(imgFname));
   }
 
   public int getId() {
@@ -36,6 +40,10 @@ public class Ingredient {
 
   public ImageView getImg() { 
     return img;
+  }
+
+  public ImageView getImgFridge() { 
+    return imgFridge;
   }
 
   @Override
