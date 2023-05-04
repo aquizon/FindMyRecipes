@@ -46,7 +46,7 @@ We came across challenges in our implementation that led us to modify our approa
 
 5. Displaying a selected recipe's information with good design for the user's readability
 
-6. Switching scenes based on the user's interaction with the application to reduce crowding everything on one window
+6. Switching scenes/part of a scene based on the user's interaction with the application
 
 7. Implementing a search bar for the user to quickly find ingredients
 
