@@ -61,3 +61,5 @@ Using information obtained from Allrecipes, we chose 30 recipes and added them t
 Figure 5: RecipeDataset Sample
 <img width="1200" alt="RecipeDatasetStample" src="https://user-images.githubusercontent.com/90003553/236317389-1c75b78e-d62b-4c37-a146-c1f728fbfd17.png">
 
+
+
