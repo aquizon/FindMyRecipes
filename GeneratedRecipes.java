@@ -244,9 +244,13 @@ public class GeneratedRecipes {
   }
 
   public void seedRecipesTable() { 
-    ObservableList<Ingredient> fridge = CatalogFridge.getFridge(); //list of ingredients we have in the fridge.
-    Array
-
+    //first get the fridge itself, then I want to iterate over the recipe list and check if its in the fridge? if they all match add to the rList. 
+   
+    for (Recipe r : recipesData){ 
+      ArrayList<String> ingredients = r.getIngredientNoQuantities();
+      
+    }
+    
   }
 
   public Scene generateGeneratedRecipesScene(FavoritesList f, ObservableList<Recipe> rList) throws FileNotFoundException {

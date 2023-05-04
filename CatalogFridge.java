@@ -341,10 +341,6 @@ public class CatalogFridge{
     }
   }
 
-  public ObservableList<Ingredient> getFridge() { 
-    return fridgeData;
-  }
-
   private void removeFromFridgeHandler(Ingredient t) {
     fridgeData.remove(t);
   }
