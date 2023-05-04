@@ -37,6 +37,7 @@ Our original objectives and modifications/realizations are as follows:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images
 
+
 2. Implementing the algorithm that generates a list of recipes the user can cook for the main functionality of the application
 
 3. Displaying the images corresponding to the correct recipes and ingredients on the windows
