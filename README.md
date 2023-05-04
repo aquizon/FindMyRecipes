@@ -53,7 +53,7 @@ We came across challenges in our implementation that led us to modify our approa
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
 ## Technical Outline and Implementations
-The backend and frontend make use of a group of classes that handle different functionality. The features and implementations are described below.
+The implementation of our application involves the creation of multiple classes and information/images found online. Below is the description of these features.
 
 ### Obtaining the Recipes/Ingredients Dataset
 
