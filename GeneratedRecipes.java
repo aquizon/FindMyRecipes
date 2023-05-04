@@ -148,6 +148,7 @@ public class GeneratedRecipes {
 
     // TableColumn favoritedCol = new TableColumn("Is Favorited");
     favoritedCol.setCellValueFactory(new PropertyValueFactory<>("isFavorited"));
+    // favoritedCol.setCellFactory(cellFactory);
     // favoritedCol.setCellFactory(col -> {
     //     TableCell<Recipe, Boolean> cell = new TableCell<>();
     //     cell.itemProperty().addListener((obs, old, newVal) -> {
@@ -164,6 +165,17 @@ public class GeneratedRecipes {
     recipesTable.getColumns().addAll(nameCol);
     addButtonToRecipesTable();
   }
+
+  private Node createHeartGraphic(Boolean isFavorited){
+    if(isFavorited){
+      heartButton hb = new heartButton(true, 20, 20);
+      return hb.getHeart();
+    }
+    else {
+      heartButton hb = new heartButton(false, 20, 20);
+      return hb.getHeart();
+    }
+}
 
   private void addButtonToRecipesTable() {
       // TableColumn<Recipe, Void> colBtn = new TableColumn("");
@@ -184,27 +196,20 @@ public class GeneratedRecipes {
                   @Override
                   public void updateItem(Boolean item, boolean empty) {
                       super.updateItem(item, empty);
+                      System.out.println()
                       if (!empty) {
                         if (item) {
                             hb.fillHeart();
                         } else {
                             hb.emptyHeart();
                         }
+                        setGraphic(btn);
                       }
-                      setGraphic(hb.getHeart());
+                      else {
+                        setGraphic(null);
+                      }
                   }
               };
-            //   cell.itemProperty().addListener((obs, old, newVal) -> {
-            //     if (newVal != null) {
-            //       if (newVal) {
-            //         hb.fillHeart();
-            //       }
-            //       else {
-            //         hb.emptyHeart();
-            //       }
-            //       cell.graphicProperty().bind(Bindings.when(cell.emptyProperty()).then((Node) null).otherwise(hb));
-            //     }
-            // });
             return cell;
           }
       };
@@ -231,15 +236,18 @@ public class GeneratedRecipes {
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
+    System.out.println(selectedRecipe);
     if (heart.getIsFilled()) {
       heart.emptyHeart();
       heart.setIsFilled(false);
       fList.removeRecipe(selectedRecipe);
+      selectedRecipe.setIsFavorited(false);
     }
     else {
       heart.fillHeart();
       heart.setIsFilled(true);
      fList.addRecipe(selectedRecipe);
+     selectedRecipe.setIsFavorited(true);
     }
   }
 

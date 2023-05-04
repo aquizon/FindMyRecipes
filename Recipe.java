@@ -27,7 +27,6 @@ public class Recipe {
         // this.link = link;
         this.imgFname = imgFname;
         this.isFavorited = false;
-        this.hb = new heartButton(isFavorited, 20, 20);
     }
 
     public void setIsFavorited(boolean newVal) {
@@ -64,10 +63,6 @@ public class Recipe {
 
     public boolean getIsFavorited() {
         return isFavorited;
-    }
-
-    public heartButton getHeartButton() {
-        return hb;
     }
 
     @Override

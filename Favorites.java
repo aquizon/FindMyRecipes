@@ -226,10 +226,12 @@ public class Favorites {
           heart.setIsFilled(false);
 
           fList.removeRecipe(selectedRecipe);
+          selectedRecipe.setIsFavorited(false);
         }
         else {
           heart.fillHeart();
           heart.setIsFilled(true);
+          selectedRecipe.setIsFavorited(true);
         }
       }
     
@@ -239,6 +241,11 @@ public class Favorites {
         // recipeIngredients.setText(r.getIngredients());
         // recipeInstructions.setText(r.getInstructions());
     }
+
+    // private void seedRecipes() {
+        // Recipe r = new Recipe(1, "Creamy Pesto Shrimp", "Shrimp, Pesto, Cream", "Cook the shrimp", "Hello.com", "creamy_pesto_shrimp.jpeg");
+        // fList.addRecipe(r);
+    // }
 
     public Scene generateFavoritesScene(FavoritesList f) throws FileNotFoundException {
         this.fList = f;
