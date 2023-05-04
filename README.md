@@ -42,7 +42,7 @@ While working on our objectives, we came across challenges in our implementation
 
 3. Displaying the images corresponding to the correct recipes and ingredients on the windows
 
-4. Adding a feature that allows the user to add recipes to a list of favorites
+4. Adding a favorite recipes feature that uses a heart-shaped button for the user to easily add/remove recipes from the favorites list
 
 5. Displaying a selected recipe's information with good design for the user's readability
 
