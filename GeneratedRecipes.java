@@ -185,10 +185,12 @@ public class GeneratedRecipes {
                   @Override
                   public void updateItem(Boolean item, boolean empty) {
                       super.updateItem(item, empty);
-                      if (item) {
-                          hb.fillHeart();
-                      } else {
-                          hb.emptyHeart();
+                      if (!empty) {
+                        if (item) {
+                            hb.fillHeart();
+                        } else {
+                            hb.emptyHeart();
+                        }
                       }
                       setGraphic(hb.getHeart());
                   }
