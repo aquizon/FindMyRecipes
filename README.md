@@ -84,6 +84,10 @@ A helper function is used to print all of the ingredients listed in the spreadsh
 
 Figure 6: RecipeIngredientsDataset Sample
 <img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
+   
+### CatalogFridge.java
+### GeneratedRecipes.java
+### Favorites.java
 
 
 
