@@ -39,7 +39,6 @@ public class Main extends Application  {
     @Override    
     public void start(Stage stage) throws Exception { 
       loadIngredientsFromFile();
-      // loadRecipesFromFile();
       Scene cfScene = fridge.generateCatalogFridgeScene();
       // Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
       Scene grScene = recipes.generateGeneratedRecipesScene(fList);
@@ -98,42 +97,5 @@ public class Main extends Application  {
                   .log(Level.SEVERE, null, ex);
       }
     }
-
-  //   private void loadRecipesFromFile() {
-  
-  //     String CsvFile = "Recipes_Dataset_Modified.csv";
-  //     String FieldDelimiter = ",";
-
-  //     BufferedReader br;
-
-  //     try {
-  //         br = new BufferedReader(new FileReader(CsvFile));
-  //         String line;
-  //         br.readLine(); // Read first line cause they're column headers
-  //         while ((line = br.readLine()) != null) {
-  //             String[] fields = line.split(FieldDelimiter, -1);
-
-  //             Recipe record = new Recipe(Integer.parseInt(fields[0]), fields[1], fields[2], fields[3], fields[4]);
-  //             ingredientsData.add(record);
-  //             // Add to hashmap
-  //             String category = fields[2];
-  //             ObservableList<Ingredient> categoryData;
-  //             if (ingredientCategories.containsKey(category)) {
-  //               categoryData = ingredientCategories.get(category);
-  //             }
-  //             else {
-  //               categoryData = FXCollections.observableArrayList();
-  //             }
-  //             categoryData.add(record);
-  //             ingredientCategories.put(category, categoryData);
-  //         }
-  //   } catch (FileNotFoundException ex) {
-  //       Logger.getLogger(CatalogFridge.class.getName())
-  //               .log(Level.SEVERE, null, ex);
-  //   } catch (IOException ex) {
-  //       Logger.getLogger(CatalogFridge.class.getName())
-  //               .log(Level.SEVERE, null, ex);
-  //     }
-  // }
      //Commented this out temporarily so as to avoid problems but in my thought so we dont have to grab the recipes all the time we just load it on main? 
 }
