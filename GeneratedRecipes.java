@@ -78,8 +78,7 @@ public class GeneratedRecipes {
   // private HashMap<String, ObservableList<Ingredient>> recipesMap = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
-  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
-  private 
+  private ObservableList<Recipe> recipesData;
 
   // buttons/textFields for the Generated Recipes Window
   Label title = new Label("FindMyRecipes");
@@ -185,10 +184,12 @@ public class GeneratedRecipes {
                   @Override
                   public void updateItem(Boolean item, boolean empty) {
                       super.updateItem(item, empty);
-                      if (item) {
-                          hb.fillHeart();
-                      } else {
-                          hb.emptyHeart();
+                      if (!empty) {
+                        if (item) {
+                            hb.fillHeart();
+                        } else {
+                            hb.emptyHeart();
+                        }
                       }
                       setGraphic(hb.getHeart());
                   }
@@ -242,23 +243,9 @@ public class GeneratedRecipes {
     }
   }
 
-  private void seedRecipes() {
-    RecipeData rd = new RecipeData("Recipes_Dataset_Modified.csv");
-    Map<String, Recipe> rmap = rd.getRecipeMap();
-    int count = 0;
-    for (String rname : rmap.keySet()) {
-      Recipe r = rmap.get(rname);
-      recipesData.add(r);
-      count++;
-      if (count == 2) {
-        r.setIsFavorited(true);
-      }
-    } 
-  }
-
-  public Scene generateGeneratedRecipesScene(FavoritesList f) throws FileNotFoundException {
+  public Scene generateGeneratedRecipesScene(FavoritesList f, ObservableList<Recipe> rList) throws FileNotFoundException {
     fList = f;
-    seedRecipes();
+    recipesData = rList;
     setUpMenuBarBox();
     mainPane.setTop(title);
     mainPane.setAlignment(title, Pos.CENTER);
