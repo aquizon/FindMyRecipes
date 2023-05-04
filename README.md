@@ -56,4 +56,4 @@ We came across challenges in our implementation that led us to modify our approa
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
 
 ### Obtaining the Recipes/Ingredients Dataset
-
+Using information obtained from Allrecipes, we chose 30 recipes and added them to a spreadsheet with a sample shown in Figure 5.
