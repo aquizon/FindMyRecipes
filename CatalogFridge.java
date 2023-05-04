@@ -241,8 +241,6 @@ public class CatalogFridge{
     fridgeTable.getColumns().addAll(idCol, nameCol, imgCol);
     addButtonToFridgeTable();
   }
-
-
   
   private void addButtonToFridgeTable() {
       TableColumn<Ingredient, Void> colBtn = new TableColumn("");
@@ -341,6 +339,10 @@ public class CatalogFridge{
     if (!fridgeData.contains(t)) {
       fridgeData.add(t);
     }
+  }
+
+  public ObservableList<Ingredient> getFridge() { 
+    return fridgeData;
   }
 
   private void removeFromFridgeHandler(Ingredient t) {
