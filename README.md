@@ -54,4 +54,4 @@ We came across challenges in our implementation that led us to modify our approa
 
 ## Technical Outline
 
-### Populating the Database
+[i] Populating the database
