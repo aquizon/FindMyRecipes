@@ -86,13 +86,13 @@ Figure 6: RecipeIngredientsDataset Sample
 <img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
    
 ### CatalogFridge.java
-An object representing the stage and scene of the main window containing the ingredient catalog, fridge, and 3 buttons (Favorite Recipes, Generate Recipes, and Save and Exit).
+A class containing the stage and scene of the Catalog/Fridge window.
 
 ### GeneratedRecipes.java
-An object representing the stage and scene of the Generated Recipes window.
+A class containing the stage and scene of the Generated Recipes window.
 
 ### Favorites.java
-An object representing the stage and scene of the Favorite Recipes window.
+A class containing the stage and scene of the Favorite Recipes window.
 
 
 
