@@ -55,8 +55,12 @@ We came across challenges in our implementation that led us to modify our approa
 ## Technical Outline and Implementations
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
 
-### Obtaining the Recipes/Ingredients Dataset
-Using information obtained from Allrecipes, we chose 30 recipes and added them to a spreadsheet with a sample shown in Figure 5.
+### Recipe.java
+
+### Ingredient.java
+
+### RecipeData.java
+This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
 
 Figure 5: RecipeDataset Sample
 <img width="1200" alt="RecipeDatasetStample" src="https://user-images.githubusercontent.com/90003553/236317389-1c75b78e-d62b-4c37-a146-c1f728fbfd17.png">
