@@ -248,7 +248,6 @@ public class Favorites {
     public Scene generateFavoritesScene(FavoritesList f) throws FileNotFoundException {
         this.fList = f;
         // seedRecipes();
-        seedFavorites(f);
         setUpMenuBarBox();
         mainPane.setTop(title);
         mainPane.setAlignment(title, Pos.CENTER);

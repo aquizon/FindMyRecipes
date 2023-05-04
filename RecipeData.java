@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 public class RecipeData {
 
@@ -18,10 +20,12 @@ public class RecipeData {
   // categories)
 
   private Map<String, Recipe> recipeMap;
+  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
 
   public RecipeData(String csv) {
     this.recipeMap = parseFile(csv);
     this.allIngredients = getAllIngredients(recipeMap);
+    fillRecipesData();
 
   }
 
@@ -272,6 +276,16 @@ public class RecipeData {
   public void printIngredients() {
     for (String ingredient : allIngredients) {
       System.out.println(ingredient);
+    }
+  }
+
+  public ObservableList<Recipe> getRecipesData() {
+    return recipesData;
+  }
+
+  private void fillRecipesData() {
+    for (String s : recipeMap.keySet()) {
+      recipesData.add(recipeMap.get(s));
     }
   }
 }
