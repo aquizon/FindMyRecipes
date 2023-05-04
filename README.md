@@ -52,6 +52,5 @@ We came across challenges in our implementation that led us to modify our approa
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
-## Technical Outline
+## Technical Outline and Implementations
 
-<u>Gathering the recipes and ingredients<u>
