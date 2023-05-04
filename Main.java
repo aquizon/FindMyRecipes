@@ -27,7 +27,8 @@ public class Main extends Application  {
   private final String recipeFname = "Recipes_Dataset_Modified.csv";
   RecipeData rd = new RecipeData(recipeFname);
   private Map<String, Recipe> recipeMap = rd.getRecipeMap();
-  private ObservableList<Recipe> recipesData = rd.getRecipesData();
+  // private ObservableList<Recipe> recipesData = rd.getRecipesData();
+  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
   private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   private FavoritesList fList = new FavoritesList();
@@ -40,6 +41,8 @@ public class Main extends Application  {
     public void start(Stage stage) throws Exception { 
       loadIngredientsFromFile();
       seedFavoritesList();
+      recipesData.add(recipeMap.get("Waldorf Salad"));
+      recipesData.add(recipeMap.get("Creamy Pesto Shrimp"));
       Scene cfScene = fridge.generateCatalogFridgeScene();
       // Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
       Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
