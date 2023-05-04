@@ -54,4 +54,4 @@ We came across challenges in our implementation that led us to modify our approa
 
 ## Technical Outline
 
-[i] Populating the database
+<u>Gathering the recipes and ingredients<u>
