@@ -36,8 +36,7 @@ Clicking the Save and Quit button stores the user's fridge and favorited recipes
 While working on our objectives, we came across challenges in our implementation that led us to modify our approach. Below is the list of objectives and our modifications/realizations:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images
-a. test
-
+    * Modifications/realizations: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
 
 2. Implementing the algorithm that generates a list of recipes the user can cook for the main functionality of the application
 
