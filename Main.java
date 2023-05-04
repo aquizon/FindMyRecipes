@@ -24,7 +24,10 @@ public class Main extends Application  {
   GeneratedRecipes recipes = new GeneratedRecipes();
   Favorites favorites = new Favorites();
 
-  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
+  private final String recipeFname = "Recipes_Dataset_Modified.csv";
+  RecipeData rd = new RecipeData(recipeFname);
+  private Map<String, Recipe> recipeMap = rd.getRecipeMap();
+  private ObservableList<Recipe> recipesData = rd.getRecipesData();
   private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   private FavoritesList fList = new FavoritesList();
@@ -95,42 +98,5 @@ public class Main extends Application  {
                   .log(Level.SEVERE, null, ex);
       }
     }
-/* 
-    private void loadRecipesFromFile() {
-  
-      String CsvFile = "Recipes_Dataset.csv";
-      String FieldDelimiter = ",";
-
-      BufferedReader br;
-
-      try {
-          br = new BufferedReader(new FileReader(CsvFile));
-          String line;
-          br.readLine(); // Read first line cause they're column headers
-          while ((line = br.readLine()) != null) {
-              String[] fields = line.split(FieldDelimiter, -1);
-
-              Recipe record = new Recipe(Integer.parseInt(fields[0]), fields[1], fields[2], fields[3], fields[4]);
-              ingredientsData.add(record);
-              // Add to hashmap
-              String category = fields[2];
-              ObservableList<Ingredient> categoryData;
-              if (ingredientCategories.containsKey(category)) {
-                categoryData = ingredientCategories.get(category);
-              }
-              else {
-                categoryData = FXCollections.observableArrayList();
-              }
-              categoryData.add(record);
-              ingredientCategories.put(category, categoryData);
-          }
-    } catch (FileNotFoundException ex) {
-        Logger.getLogger(CatalogFridge.class.getName())
-                .log(Level.SEVERE, null, ex);
-    } catch (IOException ex) {
-        Logger.getLogger(CatalogFridge.class.getName())
-                .log(Level.SEVERE, null, ex);
-      }
-  }
-    */ //Commented this out temporarily so as to avoid problems but in my thought so we dont have to grab the recipes all the time we just load it on main? 
+     //Commented this out temporarily so as to avoid problems but in my thought so we dont have to grab the recipes all the time we just load it on main? 
 }

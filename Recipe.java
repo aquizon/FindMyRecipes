@@ -66,6 +66,6 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe " + id + ": " + name;
+        return "Recipe " + id + ": " + name + " is Favorited: " + isFavorited;
     }
 }
