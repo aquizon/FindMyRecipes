@@ -61,6 +61,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text; 
 import javafx.scene.input.MouseButton;
+import javafx.beans.binding.Bindings;
 
 public class GeneratedRecipes {
 // public class GeneratedRecipes extends Application {
@@ -100,6 +101,8 @@ public class GeneratedRecipes {
   ImageView recipePic;
   Text recipeIngredients = new Text();
   Text recipeInstructions = new Text();
+
+  TableColumn<Recipe,Boolean> favoritedCol = new TableColumn<Recipe, Boolean>("Is Favorited");
 
   FavoritesList fList;
 
@@ -144,40 +147,70 @@ public class GeneratedRecipes {
     TableColumn nameCol = new TableColumn("Name");
     nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+    // TableColumn favoritedCol = new TableColumn("Is Favorited");
+    favoritedCol.setCellValueFactory(new PropertyValueFactory<>("isFavorited"));
+    // favoritedCol.setCellFactory(col -> {
+    //     TableCell<Recipe, Boolean> cell = new TableCell<>();
+    //     cell.itemProperty().addListener((obs, old, newVal) -> {
+    //         if (newVal != null) {
+    //           Node hb = createHeartGraphic(newVal);
+    //           cell.graphicProperty().bind(Bindings.when(cell.emptyProperty()).then((Node) null).otherwise(hb));
+    //         }
+    //     });
+    //     return cell;
+    // });
+
+
+
     recipesTable.getColumns().addAll(nameCol);
     addButtonToRecipesTable();
   }
 
   private void addButtonToRecipesTable() {
-      TableColumn<Recipe, Void> colBtn = new TableColumn("");
-      colBtn.setStyle( "-fx-alignment: CENTER;");
-      Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>> cellFactory = new Callback<TableColumn<Recipe, Void>, TableCell<Recipe, Void>>() {
+      // TableColumn<Recipe, Void> colBtn = new TableColumn("");
+      // colBtn.setStyle( "-fx-alignment: CENTER;");
+      Callback<TableColumn<Recipe, Boolean>, TableCell<Recipe, Boolean>> cellFactory = new Callback<TableColumn<Recipe, Boolean>, TableCell<Recipe, Boolean>>() {
           @Override
-          public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
-              final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
+          public TableCell<Recipe, Boolean> call(TableColumn<Recipe, Boolean> param) {
+              TableCell<Recipe, Boolean> cell = new TableCell<Recipe, Boolean>() {
                   private heartButton hb = new heartButton(false, 20, 20);
                   private Button btn = hb.getHeart();
                   {
                       btn.setOnAction((ActionEvent e) -> {
                           Recipe selectedRecipe = getTableView().getItems().get(getIndex());
                           clickHeartButtonHandler(hb, selectedRecipe);
+
                       });
                   }
                   @Override
-                  public void updateItem(Void item, boolean empty) {
+                  public void updateItem(Boolean item, boolean empty) {
                       super.updateItem(item, empty);
-                      if (empty) {
-                          setGraphic(null);
+                      if (item) {
+                          hb.fillHeart();
                       } else {
-                          setGraphic(btn);
+                          hb.emptyHeart();
                       }
+                      setGraphic(hb.getHeart());
                   }
               };
+            //   cell.itemProperty().addListener((obs, old, newVal) -> {
+            //     if (newVal != null) {
+            //       if (newVal) {
+            //         hb.fillHeart();
+            //       }
+            //       else {
+            //         hb.emptyHeart();
+            //       }
+            //       cell.graphicProperty().bind(Bindings.when(cell.emptyProperty()).then((Node) null).otherwise(hb));
+            //     }
+            // });
             return cell;
           }
       };
-      colBtn.setCellFactory(cellFactory);
-      recipesTable.getColumns().add(colBtn);
+      // colBtn.setCellFactory(cellFactory);
+      // recipesTable.getColumns().add(colBtn);
+      favoritedCol.setCellFactory(cellFactory);
+      recipesTable.getColumns().add(favoritedCol);
   }
 
   private void setButtonHandlers() {
@@ -212,9 +245,14 @@ public class GeneratedRecipes {
   private void seedRecipes() {
     RecipeData rd = new RecipeData("Recipes_Dataset_Modified.csv");
     Map<String, Recipe> rmap = rd.getRecipeMap();
+    int count = 0;
     for (String rname : rmap.keySet()) {
       Recipe r = rmap.get(rname);
       recipesData.add(r);
+      count++;
+      if (count == 2) {
+        r.setIsFavorited(true);
+      }
     } 
   }
 

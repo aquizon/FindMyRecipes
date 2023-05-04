@@ -187,7 +187,6 @@ public class Favorites {
             public TableCell<Recipe, Void> call(final TableColumn<Recipe, Void> param) {
                 final TableCell<Recipe, Void> cell = new TableCell<Recipe, Void>() {
                     private heartButton hb = new heartButton(true, 20, 20);
-                    // hb.fillHeart();
                     private Button btn = hb.getHeart();
                     {
                         btn.setOnAction((ActionEvent e) -> {
@@ -249,6 +248,7 @@ public class Favorites {
     public Scene generateFavoritesScene(FavoritesList f) throws FileNotFoundException {
         this.fList = f;
         // seedRecipes();
+        seedFavorites(f);
         setUpMenuBarBox();
         mainPane.setTop(title);
         mainPane.setAlignment(title, Pos.CENTER);

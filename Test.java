@@ -59,6 +59,7 @@ import javafx.geometry.Insets;
 import javafx.event.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.beans.binding.Bindings;
 
 public class Test extends Application {
     TableView<Recipe> favoritesTable = new TableView<>();
@@ -72,6 +73,7 @@ public class Test extends Application {
         seedRecipes();
         setFavoritesTableColumns();
         favoritesTable.setItems(l1.getFavoritesList());
+        getTableViewValues();
         stage.setScene(new Scene(favoritesTable));
         stage.show();
     }
@@ -83,6 +85,9 @@ public class Test extends Application {
         for (String rname : rmap.keySet()) {
           Recipe r = rmap.get(rname);
           l1.addRecipe(r);
+          if (count == 1) {
+            r.setIsFavorited(true);
+          }
           count++;
           if (count >= 5) {
             break;
@@ -107,9 +112,30 @@ public class Test extends Application {
     
         TableColumn favoritedCol = new TableColumn("Is Favorited");
         favoritedCol.setCellValueFactory(new PropertyValueFactory<>("isFavorited"));
+        favoritedCol.setCellFactory(col -> {
+            TableCell<Recipe, Boolean> cell = new TableCell<>();
+            cell.itemProperty().addListener((obs, old, newVal) -> {
+                if (newVal != null) {
+                    Node hb = createHeartGraphic(newVal);
+                    cell.graphicProperty().bind(Bindings.when(cell.emptyProperty()).then((Node) null).otherwise(hb));
+                }
+            });
+            return cell;
+        });
 
         favoritesTable.getColumns().addAll(nameCol, favoritedCol);
         addButtonToRecipesTable();
+    }
+
+    private Node createHeartGraphic(Boolean isFavorited){
+        heartButton hb;
+        if(isFavorited){
+            hb = new heartButton(true, 20, 20);
+        }
+        else {
+            hb = new heartButton(false, 20, 20);
+        }
+        return hb.getHeart();
     }
 
     private Node createFilledHeartButton(){
