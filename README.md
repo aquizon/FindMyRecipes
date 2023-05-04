@@ -6,10 +6,10 @@ Receive recipe recommendations based on the ingredients you have at home!
 - Dan Kim
 - Katelyn Valete
 
-## Program Function
+## Program Description
 This application generates a list of recipes that the user can cook based on the ingredients that the user has. The collection of ingredients used in our algorithm is created via the user's interaction with the application (e.g. the user adding ingredients from an ingredient catalog into the fridge or removing ingredients from the fridge). After the list of recommended recipes is generated and displayed, the user may add selected recipes into a collection of favorited recipes. When exiting the application, the user's collection of ingredients and favorite recipes are saved and loaded when the user starts the application again.
 
-## Layout
+## Layout and Visual Elements
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
 Figure 1: Catalog/Fridge Window
@@ -31,6 +31,8 @@ Figure 4: Favorite Recipes Window
 ![FavoriteRecipesMockUp](https://user-images.githubusercontent.com/90003553/236275226-b6e71af1-51b4-46a4-838b-19c2fa97a5bf.jpeg)
 
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
+
+## Technical Details
 
 ## Objectives: Challenges/Modifications/Progress
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
