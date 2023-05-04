@@ -33,7 +33,7 @@ Figure 4: Favorite Recipes Window
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
 ## Objectives and Modifications
-While working on our objectives, we came across challenges in our implementation that led us to modify our approach. Below is the list of objectives and our modifications/realizations:
+We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images
     * Modifications/realizations: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
