@@ -44,3 +44,10 @@ While working on our objectives, we came across challenges in our implementation
 
 4. Adding a feature that allows the user to add recipes to a list of favorites
 
+5. Displaying a selected recipe's information with good design for the user's readability
+
+6. Switching scenes based on the user's interaction with the application to reduce crowding everything on one window
+
+7. Implementing a search bar for the user to quickly find ingredients
+
+8. Adding a pop-up that indicates whether a user's action was successfully done
