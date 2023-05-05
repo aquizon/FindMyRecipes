@@ -244,37 +244,41 @@ public class Favorites {
     private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
         GridPane recipePane = new GridPane(); 
         //this is commented out for now since the images do not yet exist. 
-        //Image img = new Image(r.getImgFname());
-        //recipePic.setFitHeight(125);
-        //recipePic.setFitWidth(125);
-        //recipePic.setImage(img);
+        Image img = new Image(r.getImgFname());
+        recipePic.setFitHeight(100);
+        recipePic.setFitWidth(100);
+        recipePic.setImage(img);
         
         Text recipeName = new Text(r.getName());
-        recipeName.setTextAlignment(TextAlignment.CENTER);
-        recipeName.setFont(new Font(20));
+        recipeName.setFont(new Font(14));
+        
+        Text ingredientText = new Text("Ingredients: "); 
 
         TextArea ingredientBox = new TextArea();
         ingredientBox.setPrefWidth(250);
         ArrayList<String> ingredients = r.getIngredientWithQuantities();
-        String toBuild = "Ingredients: \n"; 
+        String toBuild = ""; 
         for (String s : ingredients){ 
             toBuild = toBuild + "- " + s + "\n"; 
         }
         ingredientBox.setText(toBuild);
 
+        Text instructionsText = new Text("Instructions: ");
+
         TextArea instructionBox = new TextArea();
         instructionBox.setPrefWidth(250);
         ArrayList<String> instructions = r.getInstructions(); 
-        String instructionBuilder = "Instructions: \n";
+        String instructionBuilder = "";
         for (String s : instructions){
             instructionBuilder = instructionBuilder + "- " + s + "\n";
         }
         instructionBox.setText(instructionBuilder);
 
         recipeInfo.getChildren().clear();
-        recipeInfo.getChildren().addAll(recipeName, ingredientBox, instructionBox);
-        recipeInfo.setPadding(new Insets(0,10,0,0));
+        recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText, instructionBox); 
 
+        recipeInfo.setPadding(new Insets(0,10,0,0));
+        //so this works its just that it is kinda compressed do we want to just make the window bigger overall? 
 
         //Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
         //recipePic.setImage(image);
