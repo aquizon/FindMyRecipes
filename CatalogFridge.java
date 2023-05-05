@@ -82,6 +82,7 @@ public class CatalogFridge{
 
   // ObservableList objects to be associated with the TableView objects
   private ObservableList<Ingredient> fridgeData = FXCollections.observableArrayList();
+  private ArrayList<String> fridgeDataNames = new ArrayList<String>();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   //private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
   private ObservableList<Ingredient> currIngredientList;
@@ -338,11 +339,13 @@ public class CatalogFridge{
   private void addtoFridgeHandler(Ingredient t) {
     if (!fridgeData.contains(t)) {
       fridgeData.add(t);
+      fridgeDataNames.add(t.getName());
     }
   }
 
   private void removeFromFridgeHandler(Ingredient t) {
     fridgeData.remove(t);
+    fridgeDataNames.remove(t.getName());
   }
 
   private void searchBarHandler(String searchText) {
@@ -420,6 +423,9 @@ public class CatalogFridge{
            Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
   }
 
+  public ArrayList<String> getFridgeDataNames() {
+    return fridgeDataNames;
+  }
 
 
   public Scene generateCatalogFridgeScene() {
