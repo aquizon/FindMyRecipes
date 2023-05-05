@@ -228,10 +228,39 @@ public class GeneratedRecipes {
   }
 
   private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
-    Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
+    Image image = new Image(r.getImgFname());
+    recipePic.setFitHeight(100);
+    recipePic.setFitWidth(100);
     recipePic.setImage(image);
-    // recipeIngredients.setText(r.getIngredients());
-    // recipeInstructions.setText(r.getInstructions());
+
+    Label recipeName = new Label(r.getName());
+    recipeName.setFont(new Font(14));
+
+    Text ingredientText = new Text("Ingredients: ");
+
+    TextArea ingredientBox = new TextArea();
+    ingredientBox.setPrefWidth(250);
+    ArrayList<String> ingredients = r.getIngredientWithQuantities();
+    String toBuild = ""; 
+    for (String s : ingredients){ 
+        toBuild = toBuild + "- " + s + "\n"; 
+    }
+    ingredientBox.setText(toBuild);
+
+    Text instructionsText = new Text("Instructions: ");
+
+    TextArea instructionBox = new TextArea();
+    instructionBox.setPrefWidth(250);
+    ArrayList<String> instructions = r.getInstructions(); 
+    String instructionBuilder = "";
+    for (String s : instructions){
+        instructionBuilder = instructionBuilder + "- " + s + "\n";
+    }
+    instructionBox.setText(instructionBuilder);
+
+    recipeInfo.getChildren().clear();
+    recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText, instructionBox); 
+    recipeInfo.setPadding(new Insets(0,10,0,0));
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
