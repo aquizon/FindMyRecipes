@@ -52,7 +52,7 @@ We came across challenges in our implementation that led us to modify our approa
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
-## Technical Outline and Implementations
+## Technical Details and Decisions
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
 
 ### Recipe.java
@@ -84,6 +84,15 @@ A helper function is used to print all of the ingredients listed in the spreadsh
 
 Figure 6: RecipeIngredientsDataset Sample
 <img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
+   
+### CatalogFridge.java
+A class containing the stage and scene of the Catalog/Fridge window.
+
+### GeneratedRecipes.java
+A class containing the stage and scene of the Generated Recipes window.
+
+### Favorites.java
+A class containing the stage and scene of the Favorite Recipes window.
 
 
 
