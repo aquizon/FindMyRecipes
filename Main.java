@@ -64,6 +64,7 @@ public class Main extends Application  {
           stage.setScene(grScene);
     });
       stage.setScene(cfScene);
+      stage.setResizable(false);
       stage.show();
     }
 

@@ -17,12 +17,12 @@ public class Ingredient {
     this.name = name;
     this.category = category;
     this.img = new ImageView();
-    img.setFitHeight(30);
-    img.setFitWidth(30);
+    img.setFitHeight(50);
+    img.setFitWidth(50);
     img.setImage(new Image(imgFname));
     this.imgFridge = new ImageView(); 
-    imgFridge.setFitHeight(30);
-    imgFridge.setFitWidth(30);
+    imgFridge.setFitHeight(50);
+    imgFridge.setFitWidth(50);
     imgFridge.setImage(new Image(imgFname));
   }
 

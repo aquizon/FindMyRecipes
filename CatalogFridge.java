@@ -187,27 +187,31 @@ public class CatalogFridge{
   }
 
   private void setIngredientTableColumns() {
-    TableColumn idCol = new TableColumn("Id");
-    idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+    // TableColumn idCol = new TableColumn("Id");
+    // idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
  
-    TableColumn nameCol = new TableColumn("Name");
-    nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    // TableColumn nameCol = new TableColumn("Name");
+    // nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-    TableColumn imgCol = new TableColumn("Image");
+    ingredientsTable.setStyle("-fx-table-cell-border-color: transparent;");
+    TableColumn imgCol = new TableColumn();
     imgCol.setCellValueFactory(new PropertyValueFactory<>("img"));
 
-    ingredientsTable.getColumns().addAll(idCol, nameCol, imgCol);
+    ingredientsTable.getColumns().addAll(imgCol);
     //addImageToIngredientTable();
     addButtonToIngredientTable();
+    imgCol.prefWidthProperty().bind(ingredientsTable.widthProperty().multiply(0.3));
+    imgCol.setResizable(false);
   }
 
   private void addButtonToIngredientTable() {
-      TableColumn<Ingredient, Void> colBtn = new TableColumn("");
+      TableColumn<Ingredient, String> colBtn = new TableColumn("");
+      colBtn.setCellValueFactory(new PropertyValueFactory<>("name"));
       colBtn.setStyle( "-fx-alignment: CENTER;");
-      Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>>() {
+      Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>> cellFactory = new Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>>() {
           @Override
-          public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) {
-              final TableCell<Ingredient, Void> cell = new TableCell<Ingredient, Void>() {
+          public TableCell<Ingredient, String> call(final TableColumn<Ingredient, String> param) {
+              final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
                   private final Button btn = new Button("Add to Fridge");
                   {
                       btn.setOnAction((ActionEvent e) -> {
@@ -216,12 +220,16 @@ public class CatalogFridge{
                       });
                   }
                   @Override
-                  public void updateItem(Void item, boolean empty) {
+                  public void updateItem(String item, boolean empty) {
                       super.updateItem(item, empty);
                       if (empty) {
                           setGraphic(null);
                       } else {
-                          setGraphic(btn);
+                        VBox container = new VBox();
+                        Label name = new Label();
+                        name.setText(item);
+                        container.getChildren().addAll(name,btn);
+                        setGraphic(container);
                       }
                   }
               };
@@ -230,28 +238,34 @@ public class CatalogFridge{
       };
       colBtn.setCellFactory(cellFactory);
       ingredientsTable.getColumns().add(colBtn);
+      colBtn.prefWidthProperty().bind(ingredientsTable.widthProperty().multiply(0.7));
+      colBtn.setResizable(false);
   }
 
   private void setFridgeTableColumns() {
-    TableColumn idCol = new TableColumn("Id");
-    idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+    // TableColumn idCol = new TableColumn("Id");
+    // idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
  
-    TableColumn nameCol = new TableColumn("Name");
-    nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-    TableColumn imgCol = new TableColumn("Image");
+    // TableColumn nameCol = new TableColumn("Name");
+    // nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    fridgeTable.setStyle("-fx-table-cell-border-color: transparent;");
+    TableColumn imgCol = new TableColumn();
     imgCol.setCellValueFactory(new PropertyValueFactory<>("imgFridge"));
     //addImageToFridgeTable();
-    fridgeTable.getColumns().addAll(idCol, nameCol, imgCol);
+    fridgeTable.getColumns().addAll(imgCol);
     addButtonToFridgeTable();
+    imgCol.prefWidthProperty().bind(fridgeTable.widthProperty().multiply(0.3));
+    imgCol.setResizable(false);
   }
   
   private void addButtonToFridgeTable() {
-      TableColumn<Ingredient, Void> colBtn = new TableColumn("");
+      TableColumn<Ingredient, String> colBtn = new TableColumn("");
+      colBtn.setCellValueFactory(new PropertyValueFactory<>("name"));
       colBtn.setStyle( "-fx-alignment: CENTER;");
-      Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>>() {
+      Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>> cellFactory = new Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>>() {
           @Override
-          public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) {
-              final TableCell<Ingredient, Void> cell = new TableCell<Ingredient, Void>() {
+          public TableCell<Ingredient, String> call(final TableColumn<Ingredient, String> param) {
+              final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
                   private final Button btn = new Button("Remove");
                   {
                       btn.setOnAction((ActionEvent e) -> {
@@ -260,12 +274,16 @@ public class CatalogFridge{
                       });
                   }
                   @Override
-                  public void updateItem(Void item, boolean empty) {
+                  public void updateItem(String item, boolean empty) {
                       super.updateItem(item, empty);
                       if (empty) {
                           setGraphic(null);
                       } else {
-                          setGraphic(btn);
+                        VBox container = new VBox();
+                        Label name = new Label();
+                        name.setText(item);
+                        container.getChildren().addAll(name,btn);
+                        setGraphic(container);
                       }
                   }
               };
@@ -274,6 +292,8 @@ public class CatalogFridge{
       };
       colBtn.setCellFactory(cellFactory);
       fridgeTable.getColumns().add(colBtn);
+      colBtn.prefWidthProperty().bind(fridgeTable.widthProperty().multiply(0.7));
+      colBtn.setResizable(false);
   }
 
   private void setButtonHandlers() {
@@ -371,44 +391,7 @@ public class CatalogFridge{
   public void setIngredientsData(ObservableList<Ingredient> t) {
     ingredientsData = t;
   }
-  /* 
-  private void loadRecipesFromFile() {
- 
-    String CsvFile = "Recipes_Dataset.csv";
-    String FieldDelimiter = ",";
 
-    BufferedReader br;
-
-    try {
-        br = new BufferedReader(new FileReader(CsvFile));
-        String line;
-        br.readLine(); // Read first line cause they're column headers
-        while ((line = br.readLine()) != null) {
-            String[] fields = line.split(FieldDelimiter, -1);
-
-            Recipe record = new Recipe(Integer.parseInt(fields[0]), fields[1], fields[2], fields[3], fields[4]);
-            ingredientsData.add(record);
-            // Add to hashmap
-            String category = fields[2];
-            ObservableList<Ingredient> categoryData;
-            if (ingredientCategories.containsKey(category)) {
-              categoryData = ingredientCategories.get(category);
-            }
-            else {
-              categoryData = FXCollections.observableArrayList();
-            }
-            categoryData.add(record);
-            ingredientCategories.put(category, categoryData);
-        }
-    } catch (FileNotFoundException ex) {
-        Logger.getLogger(CatalogFridge.class.getName())
-                .log(Level.SEVERE, null, ex);
-    } catch (IOException ex) {
-        Logger.getLogger(CatalogFridge.class.getName())
-                .log(Level.SEVERE, null, ex);
-    }
-  }
-*/
   private ObservableList<Ingredient> filterList(String searchText) {
     List<Ingredient> filteredList = new ArrayList<>();
     for (Ingredient t : currIngredientList) { 
