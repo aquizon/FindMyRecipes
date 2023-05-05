@@ -301,7 +301,8 @@ public class GeneratedRecipes {
 
   private void setUpRecipesTable() {
     // set up Recipes Table
-    recipesTable.setPrefSize(350, 250);
+    recipesTable.setPrefSize(350, 350);
+    recipesTable.setMinWidth(350);
     recipesTable.setItems(recipesData); //replaced recipesData here with the list of recipes that fit the fridgeData. 
     setRecipesTableColumns();
 
@@ -336,7 +337,7 @@ public class GeneratedRecipes {
     recipeIngredients.setText("Recipe Ingredients Here");
     recipeInstructions.setText("Recipe Instructions Here");
     recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
-    recipeInfo.setPrefSize(550, 400);
+    recipeInfo.setPrefSize(350, 300);
     recipeInfo.setAlignment(Pos.TOP_CENTER);
 
     center.setPadding(new Insets(10, 0, 10, 0));
