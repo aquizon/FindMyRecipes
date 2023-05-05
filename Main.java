@@ -27,31 +27,31 @@ public class Main extends Application  {
   private final String recipeFname = "Recipes_Dataset_Modified.csv";
   RecipeData rd = new RecipeData(recipeFname);
   private Map<String, Recipe> recipeMap = rd.getRecipeMap();
-  // private ObservableList<Recipe> recipesData = rd.getRecipesData();
-  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
+  private ObservableList<Recipe> recipesData = rd.getRecipesData();
   private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   private FavoritesList fList = new FavoritesList();
+
 
     public static void main(String args[]){          
          launch(args);     
     } 
          
     @Override    
-    public void start(Stage stage) throws Exception { 
+    public void start(Stage stage) throws FileNotFoundException { 
       loadIngredientsFromFile();
       seedFavoritesList();
-      recipesData.add(recipeMap.get("Waldorf Salad"));
-      recipesData.add(recipeMap.get("Creamy Pesto Shrimp"));
       Scene cfScene = fridge.generateCatalogFridgeScene();
-      // Scene grScene = recipes.getScene(); //.generateGeneratedRecipesScene();
       Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
       Scene frScene = favorites.generateFavoritesScene(fList);
       fridge.setIngredientCategories(ingredientCategories);
       fridge.setIngredientsData(ingredientsData);
 
       //Changes scenes from the catalog fridge scene
-      fridge.generateRecipesButton.setOnAction(e -> stage.setScene(grScene));
+      fridge.generateRecipesButton.setOnAction(e -> {
+        recipes.fillRecipesData(recipesData, fridge.getFridgeDataNames());
+       stage.setScene(grScene);
+    });
       fridge.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
       
       //changes scenes from the generatedRecipes scene
@@ -60,7 +60,9 @@ public class Main extends Application  {
 
       //changes scenes from the favorites scene
       favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
-      favorites.generateRecipesButton.setOnAction(e -> stage.setScene(grScene));
+      favorites.generateRecipesButton.setOnAction(e -> {
+          stage.setScene(grScene);
+    });
       stage.setScene(cfScene);
       stage.show();
     }

@@ -78,7 +78,7 @@ public class GeneratedRecipes {
   // private HashMap<String, ObservableList<Ingredient>> recipesMap = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
-  private ObservableList<Recipe> recipesData;
+  private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();;
 
   // buttons/textFields for the Generated Recipes Window
   Label title = new Label("FindMyRecipes");
@@ -196,7 +196,6 @@ public class GeneratedRecipes {
                   @Override
                   public void updateItem(Boolean item, boolean empty) {
                       super.updateItem(item, empty);
-                      System.out.println()
                       if (!empty) {
                         if (item) {
                             hb.fillHeart();
@@ -251,27 +250,27 @@ public class GeneratedRecipes {
     }
   }
 
-  public void seedRecipesTable() { 
+  public void fillRecipesData(ObservableList<Recipe> rList, ArrayList<String> fridge) { 
     //first get the fridge itself, then I want to iterate over the recipe list and check if its in the fridge? if they all match add to the rList. 
    
-    for (Recipe r : recipesData){ 
-      ArrayList<String> ingredients = r.getIngredientNoQuantities();
-      
+    for (Recipe r : rList){ 
+      boolean flag = true;
+      ArrayList<String> ingredientNoQuantities = r.getIngredientNoQuantities();
+      for (String i : ingredientNoQuantities) {
+        if (!fridge.contains(i)) {
+          flag = false;
+        }
+      }
+      if (flag) {
+        recipesData.add(r);
+      }
     }
     
   }
 
-  public Scene generateGeneratedRecipesScene(FavoritesList f, ObservableList<Recipe> rList) throws FileNotFoundException {
-    fList = f;
-    recipesData = rList;
-    setUpMenuBarBox();
-    mainPane.setTop(title);
-    mainPane.setAlignment(title, Pos.CENTER);
-    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
-
+  private void setUpRecipesTable() {
     // set up Recipes Table
     recipesTable.setPrefSize(350, 300);
-    //seedRecipesTable();
     recipesTable.setItems(recipesData); //replaced recipesData here with the list of recipes that fit the fridgeData. 
     setRecipesTableColumns();
 
@@ -284,7 +283,19 @@ public class GeneratedRecipes {
             e.printStackTrace();
           }
       }
-  });
+    });
+  }
+
+  public Scene generateGeneratedRecipesScene(FavoritesList f, ObservableList<Recipe> rList) throws FileNotFoundException {
+    fList = f;
+    // System.out.println("Fridge Data: " + String.join(", ", fridge));
+    // recipesData = rList;
+    setUpMenuBarBox();
+    mainPane.setTop(title);
+    mainPane.setAlignment(title, Pos.CENTER);
+    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+
+    setUpRecipesTable();
 
     //set up Recipe Info Section
     Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); //to fix later 
