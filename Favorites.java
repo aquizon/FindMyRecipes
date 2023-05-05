@@ -241,8 +241,8 @@ public class Favorites {
         //GridPane recipePane = new GridPane(); 
         //this is commented out for now since the images do not yet exist. 
         Image img = new Image(r.getImgFname());
-        recipePic.setFitHeight(125);
-        recipePic.setFitWidth(125);
+        recipePic.setFitHeight(150);
+        recipePic.setFitWidth(150);
         recipePic.setImage(img);
         
         Label recipeName = new Label(r.getName());
