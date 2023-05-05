@@ -196,7 +196,6 @@ public class GeneratedRecipes {
                   @Override
                   public void updateItem(Boolean item, boolean empty) {
                       super.updateItem(item, empty);
-                      System.out.println()
                       if (!empty) {
                         if (item) {
                             hb.fillHeart();
