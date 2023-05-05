@@ -13,7 +13,7 @@ This application generates a list of recipes that the user can cook based on the
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
 Figure 1: Catalog/Fridge Window
-![CatalogFridgeMockUp](https://user-images.githubusercontent.com/90003553/236037240-f1cdff9d-ff88-49f0-bca3-f208745056ee.jpeg)
+![CatalogFridgeMockUpNew](https://user-images.githubusercontent.com/90003553/236377531-beda10dd-8e8d-4486-bcbd-ecf6092f81cf.jpeg)
 
 There is a search bar above the ingredient catalog for the user to easily find an ingredient in the catalog. Searching for an ingredient or clicking on one of the 6 food categories updates the main window to show the ingredients within the selected food category. For instance, clicking on the "Fruits" category displays all the ingredients that are labeled as fruits as shown in Figure 2.
 

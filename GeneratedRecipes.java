@@ -283,7 +283,7 @@ public class GeneratedRecipes {
 
   public void fillRecipesData(ObservableList<Recipe> rList, ArrayList<String> fridge) { 
     //first get the fridge itself, then I want to iterate over the recipe list and check if its in the fridge? if they all match add to the rList. 
-   
+   recipesData.clear();
     for (Recipe r : rList){ 
       boolean flag = true;
       ArrayList<String> ingredientNoQuantities = r.getIngredientNoQuantities();
