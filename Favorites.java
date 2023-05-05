@@ -242,14 +242,14 @@ public class Favorites {
       }
     
     private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
-        GridPane recipePane = new GridPane(); 
+        //GridPane recipePane = new GridPane(); 
         //this is commented out for now since the images do not yet exist. 
         Image img = new Image(r.getImgFname());
         recipePic.setFitHeight(100);
         recipePic.setFitWidth(100);
         recipePic.setImage(img);
         
-        Text recipeName = new Text(r.getName());
+        Label recipeName = new Label(r.getName());
         recipeName.setFont(new Font(14));
         
         Text ingredientText = new Text("Ingredients: "); 
