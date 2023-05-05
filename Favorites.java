@@ -295,7 +295,7 @@ public class Favorites {
         title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
     
         // set up Recipes Table
-        favoritesTable.setPrefSize(350, 350);
+        favoritesTable.setPrefSize(450, 400);
         favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
     
@@ -318,7 +318,7 @@ public class Favorites {
         recipeIngredients.setText("Recipe Ingredients Here");
         recipeInstructions.setText("Recipe Instructions Here");
         recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
-        recipeInfo.setPrefSize(350, 300);
+        recipeInfo.setPrefSize(400, 400);
         recipeInfo.setAlignment(Pos.TOP_CENTER);
     
         center.setPadding(new Insets(10, 0, 10, 0));
