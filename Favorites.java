@@ -106,12 +106,6 @@ public class Favorites {
 
     FavoritesList fList;
 
-    // public void start(Stage stage) throws FileNotFoundException {
-    //     Scene scene = generateFavoritesScene();
-    //     stage.setScene(scene);
-    //     stage.show();
-    // }
-
     private Button makeHeartFilledButton(int width, int height) {
         Button heart = new Button();
         heart.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
@@ -125,7 +119,6 @@ public class Favorites {
         heart.setPrefSize(width, height);
         return heart;
     }
-
 
     private void setUpMenuBarBox() {
         menuBarBox.setAlignment(Pos.CENTER);
@@ -302,7 +295,7 @@ public class Favorites {
         title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
     
         // set up Recipes Table
-        favoritesTable.setPrefSize(350, 250);
+        favoritesTable.setPrefSize(350, 350);
         favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
     
@@ -325,7 +318,7 @@ public class Favorites {
         recipeIngredients.setText("Recipe Ingredients Here");
         recipeInstructions.setText("Recipe Instructions Here");
         recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
-        recipeInfo.setPrefSize(350, 250);
+        recipeInfo.setPrefSize(350, 300);
         recipeInfo.setAlignment(Pos.TOP_CENTER);
     
         center.setPadding(new Insets(10, 0, 10, 0));
