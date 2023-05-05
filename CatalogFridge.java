@@ -68,11 +68,11 @@ public class CatalogFridge{
     private Scene scene;
   
   // set the dimensions of the stage
-  private final static int initWidth = 675;
-  private final static int initHeight = 500;
+  private final static int initWidth = 925;
+  private final static int initHeight = 625;
 
-  private final static int categoryWidth = 200;
-  private final static int categoryHeight = 100;
+  private final static int categoryWidth = 400;
+  private final static int categoryHeight = 300;
 
   // create three TableView objects: Recipes, Fridge, Ingredient List
   private TableView<Ingredient> fridgeTable = new TableView<>();
@@ -99,7 +99,7 @@ public class CatalogFridge{
 
   // buttons + Labels for the bottom menu for Catalog Fridge Window
   Button favoritesRecipesButton = new Button();
-  Label favoritesRecipesButtonLabel = new Label("Favorites");
+  Label favoritesRecipesButtonLabel = new Label("  Favorites");
   Button generateRecipesButton = new Button();
   Label generateRecipesButtonLabel = new Label("Generate Recipes");
   Button saveAndExitButton = new Button();
@@ -147,6 +147,7 @@ public class CatalogFridge{
             "-fx-max-width: 65px; " +
             "-fx-max-height: 65px;"
       );
+    generateRecipesButton.setTranslateX(17);
     VBox generateRecipesBox = new VBox();
     generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
     VBox saveAndExitBox = new VBox();
@@ -158,23 +159,24 @@ public class CatalogFridge{
     saveAndExitButton.setGraphic(view2);
     saveAndExitButton.setMaxSize(40, 60);
     saveAndExitButton.setMinSize(10, 5);
+    saveAndExitButton.setTranslateX(17);
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, generateRecipesBox, saveAndExitBox);
     mainPane.add(menuBarBox, 0, 6, 3, 1);
   }
 
   private void setUpFoodCategories() {
-    fruitsButton.setPrefSize(200, 100);
+    fruitsButton.setPrefSize(275, 150);
     fruitsButton.setStyle("-fx-background-color: #ED220D;" + "-fx-text-fill: #FFFFFF");
-    vegetablesButton.setPrefSize(200, 100);
+    vegetablesButton.setPrefSize(275, 150);
     vegetablesButton.setStyle("-fx-background-color: #60D938;" + "-fx-text-fill: #FFFFFF");
-    grainsButton.setPrefSize(200, 100);
+    grainsButton.setPrefSize(275, 150);
     grainsButton.setStyle("-fx-background-color: #FEAE00;" + "-fx-text-fill: #FFFFFF");
-    proteinsButton.setPrefSize(200, 100);
+    proteinsButton.setPrefSize(275, 150);
     proteinsButton.setStyle("-fx-background-color: #7B2CDF;" + "-fx-text-fill: #FFFFFF");
-    dairyButton.setPrefSize(200, 100);
+    dairyButton.setPrefSize(275, 150);
     dairyButton.setStyle("-fx-background-color: #00A1FF;" + "-fx-text-fill: #FFFFFF");
-    otherButton.setPrefSize(200, 100);
+    otherButton.setPrefSize(275, 150);
     otherButton.setStyle("-fx-background-color: #929292;" + "-fx-text-fill: #FFFFFF");
     foodCategoriesPane.add(fruitsButton, 0, 0);
     foodCategoriesPane.add(vegetablesButton, 1, 0);
@@ -448,7 +450,7 @@ public class CatalogFridge{
     searchBox.setPromptText("Search for Ingredient: ");
     mainPane.add(searchBox, 0, 2, 2, 1);
 
-    fridgeTable.setPrefSize(250, 300);
+    fridgeTable.setPrefSize(350, 400);
     mainPane.add(fridgeTable, 2, 2, 1, 4);
     
     setUpFoodCategories();
@@ -459,7 +461,7 @@ public class CatalogFridge{
     setFridgeTableColumns();
 
     // set up Ingredients Table
-    ingredientsTable.setPrefSize(400, 250);
+    ingredientsTable.setPrefSize(550, 400);
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
     // loadIngredientsFromFile();

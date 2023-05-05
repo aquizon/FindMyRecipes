@@ -69,8 +69,8 @@ public class GeneratedRecipes {
     private Scene scene;
   
   // set the dimensions of the stage
-  private final int initWidth = 675;
-  private final int initHeight = 500;
+  private final int initWidth = 925;
+  private final int initHeight = 625;
 
   // create three TableView objects: Recipes, Fridge, Ingredient List
   private TableView<Recipe> recipesTable = new TableView<>();
@@ -126,6 +126,7 @@ public class GeneratedRecipes {
     backToFridgeButton.setMaxSize(30, 50);
     backToFridgeButton.setMinSize(10, 5);
     backToFridgeButton.setGraphic(view);
+    backToFridgeButton.setTranslateX(21);
     VBox backToFridgeBox = new VBox();
     backToFridgeBox.getChildren().addAll(backToFridgeButton, backToFridgeButtonLabel);
     VBox saveAndExitBox = new VBox();
@@ -137,6 +138,7 @@ public class GeneratedRecipes {
     saveAndExitButton.setGraphic(view2);
     saveAndExitButton.setMaxSize(30, 50);
     saveAndExitButton.setMinSize(10, 5);
+    saveAndExitButton.setTranslateX(20);
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, backToFridgeBox, saveAndExitBox);
     mainPane.setBottom(menuBarBox);
@@ -299,7 +301,7 @@ public class GeneratedRecipes {
 
   private void setUpRecipesTable() {
     // set up Recipes Table
-    recipesTable.setPrefSize(350, 300);
+    recipesTable.setPrefSize(350, 250);
     recipesTable.setItems(recipesData); //replaced recipesData here with the list of recipes that fit the fridgeData. 
     setRecipesTableColumns();
 
@@ -334,7 +336,7 @@ public class GeneratedRecipes {
     recipeIngredients.setText("Recipe Ingredients Here");
     recipeInstructions.setText("Recipe Instructions Here");
     recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
-    recipeInfo.setPrefSize(350, 250);
+    recipeInfo.setPrefSize(550, 400);
     recipeInfo.setAlignment(Pos.TOP_CENTER);
 
     center.setPadding(new Insets(10, 0, 10, 0));

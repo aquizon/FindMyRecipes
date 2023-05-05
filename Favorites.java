@@ -74,8 +74,8 @@ public class Favorites {
     private Scene scene;
 
     // set the dimensions of the stage
-    private final int initWidth = 675;
-    private final int initHeight = 500;
+    private final int initWidth = 925;
+    private final int initHeight = 625;
 
     //create the tableview of favorited recipes. 
     private static TableView<Recipe> favoritesTable = new TableView<>();
@@ -149,6 +149,7 @@ public class Favorites {
             "-fx-max-width: 65px; " +
             "-fx-max-height: 65px;"
         );
+        generateRecipesButton.setTranslateX(17);
         VBox generateRecipesBox = new VBox();
         generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
 
@@ -161,6 +162,7 @@ public class Favorites {
         backToFridgeButton.setMinSize(10, 5);
         //Setting a graphic to the button
         backToFridgeButton.setGraphic(view);
+        backToFridgeButton.setTranslateX(21);
         VBox backToFridgeBox = new VBox();
         backToFridgeBox.getChildren().addAll(backToFridgeButton, backToFridgeButtonLabel);
         VBox saveAndExitBox = new VBox();
@@ -172,6 +174,7 @@ public class Favorites {
         saveAndExitButton.setGraphic(view2);
         saveAndExitButton.setMaxSize(30, 50);
         saveAndExitButton.setMinSize(10, 5);
+        saveAndExitButton.setTranslateX(20);
         saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
         menuBarBox.getChildren().addAll(generateRecipesBox, backToFridgeBox, saveAndExitBox);
         mainPane.setBottom(menuBarBox);
@@ -245,8 +248,8 @@ public class Favorites {
         //GridPane recipePane = new GridPane(); 
         //this is commented out for now since the images do not yet exist. 
         Image img = new Image(r.getImgFname());
-        recipePic.setFitHeight(100);
-        recipePic.setFitWidth(100);
+        recipePic.setFitHeight(125);
+        recipePic.setFitWidth(125);
         recipePic.setImage(img);
         
         Label recipeName = new Label(r.getName());
