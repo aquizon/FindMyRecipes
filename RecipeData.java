@@ -66,6 +66,7 @@ public class RecipeData {
     String name = tok.nextToken();
     String ingredientsStr = tok.nextToken();
     String instructionsStr = tok.nextToken();
+    String imgFilename = tok.nextToken();
 
     ingredientsStr = ingredientsStr.replace("[", "").replace("]", "");
     String[] ingredientsList = ingredientsStr.split("',");
@@ -90,7 +91,8 @@ public class RecipeData {
     // attributes: ID, name, ingredients with quantities, ingredietns no quantities,
     // instructions,
 
-    recipeMap.put(name, new Recipe(ID, name, ingredientsWithQuantities, ingredientsNoDetails, instructions, "", false));
+    recipeMap.put(name,
+        new Recipe(ID, name, ingredientsWithQuantities, ingredientsNoDetails, instructions, imgFilename, false));
 
   }
 

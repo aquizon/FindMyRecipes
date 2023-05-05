@@ -41,6 +41,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TablePosition;
 import javafx.event.ActionEvent;
 import java.lang.String;
+import java.lang.instrument.IllegalClassFormatException;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.layout.Priority;
@@ -52,6 +54,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.ImageIcon;
+import javax.swing.plaf.basic.BasicInternalFrameUI.InternalFramePropertyChangeListener;
+
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -236,8 +242,46 @@ public class Favorites {
       }
     
     private void recipeSelectedHandler(Recipe r) throws FileNotFoundException{
-        Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
-        recipePic.setImage(image);
+        GridPane recipePane = new GridPane(); 
+        //this is commented out for now since the images do not yet exist. 
+        Image img = new Image(r.getImgFname());
+        recipePic.setFitHeight(100);
+        recipePic.setFitWidth(100);
+        recipePic.setImage(img);
+        
+        Text recipeName = new Text(r.getName());
+        recipeName.setFont(new Font(14));
+        
+        Text ingredientText = new Text("Ingredients: "); 
+
+        TextArea ingredientBox = new TextArea();
+        ingredientBox.setPrefWidth(250);
+        ArrayList<String> ingredients = r.getIngredientWithQuantities();
+        String toBuild = ""; 
+        for (String s : ingredients){ 
+            toBuild = toBuild + "- " + s + "\n"; 
+        }
+        ingredientBox.setText(toBuild);
+
+        Text instructionsText = new Text("Instructions: ");
+
+        TextArea instructionBox = new TextArea();
+        instructionBox.setPrefWidth(250);
+        ArrayList<String> instructions = r.getInstructions(); 
+        String instructionBuilder = "";
+        for (String s : instructions){
+            instructionBuilder = instructionBuilder + "- " + s + "\n";
+        }
+        instructionBox.setText(instructionBuilder);
+
+        recipeInfo.getChildren().clear();
+        recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText, instructionBox); 
+
+        recipeInfo.setPadding(new Insets(0,10,0,0));
+        //so this works its just that it is kinda compressed do we want to just make the window bigger overall? 
+
+        //Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
+        //recipePic.setImage(image);
         // recipeIngredients.setText(r.getIngredients());
         // recipeInstructions.setText(r.getInstructions());
     }
