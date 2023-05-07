@@ -378,9 +378,11 @@ public class CatalogFridge {
   }
 
   private void searchBarHandler(String searchText) {
+    // System.out.println("entered searchBarHandler body");
     if (currWindow == "Categories") {
       switchToFilteredTableScene();
     }
+
     ingredientsTable.setItems(filterList(searchText));
 
     searchBox.clear();
@@ -401,8 +403,14 @@ public class CatalogFridge {
   }
 
   private ObservableList<Ingredient> filterList(String searchText) {
+    // System.out.println("entered filterList body");
     List<Ingredient> filteredList = new ArrayList<>();
+    if (currWindow.equals("Categories")) {
+      currIngredientList = ingredientsData;
+    }
     for (Ingredient t : currIngredientList) {
+      // System.out.println("calling searchFindsIngredient on searchText = " +
+      // searchText);
       if (searchFindsIngredient(t, searchText)) {
         filteredList.add(t);
       }
@@ -427,7 +435,9 @@ public class CatalogFridge {
 
   private boolean searchFindsIngredient(Ingredient t, String searchText) {
     return (t.getName().toLowerCase().contains(searchText.toLowerCase())) ||
-        Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
+        Integer.valueOf(t.getId()).toString()
+            .equals(searchText.toLowerCase())
+        || (searchText.toLowerCase()).contains(t.getName().toLowerCase());
   }
 
   public ArrayList<String> getFridgeDataNames() {
