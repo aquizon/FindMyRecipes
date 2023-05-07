@@ -456,6 +456,7 @@ public class CatalogFridge {
 
     fridgeTable.setPrefSize(350, 400);
     mainPane.add(fridgeTable, 2, 2, 1, 4);
+    fridgeTable.setPlaceholder(new Label("Your fridge is empty!"));
 
     setUpFoodCategories();
     mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
