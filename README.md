@@ -71,7 +71,7 @@ This class contains the attributes for a single recipe:
 * List of ingredients without quantities (to be used in the Generate Recipes algorithm)
 * List of instructions
 * Image filename
-* Boolen indicating if the recipe was favorited
+* Boolean indicating if the recipe was favorited
 * HeartButton
 
 ### Ingredient.java
