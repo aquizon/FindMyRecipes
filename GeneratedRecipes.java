@@ -306,6 +306,7 @@ public class GeneratedRecipes {
   private void setUpRecipesTable() {
     // set up Recipes Table
     recipesTable.setPrefSize(450, 400);
+    recipesTable.setPlaceholder(new Label("No recipes.... ? "));
     recipesTable.setItems(recipesData); //replaced recipesData here with the list of recipes that fit the fridgeData. 
     setRecipesTableColumns();
 

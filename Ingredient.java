@@ -7,7 +7,8 @@ public class Ingredient {
   private String name;
   private String category;
   private ImageView img; 
-  private ImageView imgFridge; //this is one of the wackiest lines of code ive ever written like what why
+  private ImageView imgFridge; //this is one of the strangest lines of code ive ever written like what why? 
+  
   public Ingredient(int id, String name, String category) {
     this(id, name, category, "");
   }
