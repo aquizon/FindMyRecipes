@@ -296,6 +296,7 @@ public class Favorites {
     
         // set up Recipes Table
         favoritesTable.setPrefSize(450, 400);
+        favoritesTable.setPlaceholder(new Label("No favorites yet! Favorite a recipe!"));
         favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
     

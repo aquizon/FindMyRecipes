@@ -414,6 +414,7 @@ public class CatalogFridge {
     // System.out.println("entered searchBarHandler body");
     if (currWindow == "Categories") {
       switchToFilteredTableScene();
+      currWindow = "Filtered";
     }
 
     ingredientsTable.setItems(filterList(searchText));
@@ -438,7 +439,7 @@ public class CatalogFridge {
   private ObservableList<Ingredient> filterList(String searchText) {
     // System.out.println("entered filterList body");
     List<Ingredient> filteredList = new ArrayList<>();
-    if (currWindow.equals("Categories")) {
+    if (currWindow.equals("Categories") || currWindow.equals("Filtered")) {
       currIngredientList = ingredientsData;
     }
     for (Ingredient t : currIngredientList) {

@@ -68,6 +68,10 @@ public class Main extends Application  {
       stage.show();
     }
 
+    private void addTestRecipes() {
+      recipesData.add(recipeMap.get("Waldorf Salad"));
+    }
+
     private void seedFavoritesList() {
       for (Recipe r : recipesData) {
         if (r.getIsFavorited()) {
