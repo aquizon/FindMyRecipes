@@ -85,13 +85,9 @@ This class contains the attributes for a single ingredient:
 ### RecipeData.java
 This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
 
-Figure 5: RecipeDataset Sample
-<img width="1200" alt="RecipeDatasetStample" src="https://user-images.githubusercontent.com/90003553/236317389-1c75b78e-d62b-4c37-a146-c1f728fbfd17.png">
-images/RecipeDatasetStample.png
-
 <p align="center">
    <i>Figure 5: RecipeDataset Sample</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeDatasetStample.png" width="500">
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeDatasetStample.png" width="700">
 </p>   
 
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
