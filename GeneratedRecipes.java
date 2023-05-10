@@ -331,8 +331,8 @@ public class GeneratedRecipes {
     //set up Recipe Info Section
     Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); //to fix later 
     recipePic = new ImageView(image); 
-    recipePic.setFitHeight(125);
-    recipePic.setFitWidth(125);
+    recipePic.setFitHeight(150);
+    recipePic.setFitWidth(150);
     recipeIngredients.setText("Recipe Ingredients Here");
     recipeInstructions.setText("Recipe Instructions Here");
     recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
