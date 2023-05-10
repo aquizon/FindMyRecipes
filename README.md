@@ -92,8 +92,12 @@ This class parses through a CSV containing information on 30 hand-picked recipes
 
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
 
-Figure 6: RecipeIngredientsDataset Sample
-<img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
+<p align="center">
+   <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
+</p>   
+
+
    
 ### CatalogFridge.java
 A class containing the stage and scene of the Catalog/Fridge window.
