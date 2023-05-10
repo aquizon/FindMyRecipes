@@ -17,9 +17,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 import java.io.BufferedReader;
- 
- 
-public class Main extends Application  {
+
+public class Main extends Application {
   CatalogFridge fridge = new CatalogFridge();
   GeneratedRecipes recipes = new GeneratedRecipes();
   Favorites favorites = new Favorites();
@@ -32,91 +31,96 @@ public class Main extends Application  {
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   private FavoritesList fList = new FavoritesList();
 
+  public static void main(String args[]) {
+    launch(args);
+  }
 
-    public static void main(String args[]){          
-         launch(args);     
-    } 
-         
-    @Override    
-    public void start(Stage stage) throws FileNotFoundException { 
-      loadIngredientsFromFile();
-      seedFavoritesList();
-      Scene cfScene = fridge.generateCatalogFridgeScene();
-      Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
-      Scene frScene = favorites.generateFavoritesScene(fList);
-      fridge.setIngredientCategories(ingredientCategories);
-      fridge.setIngredientsData(ingredientsData);
+  @Override
+  public void start(Stage stage) throws FileNotFoundException {
+    loadIngredientsFromFile();
+    seedFavoritesList();
+    Scene cfScene = fridge.generateCatalogFridgeScene();
+    Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
+    Scene frScene = favorites.generateFavoritesScene(fList);
+    fridge.setIngredientCategories(ingredientCategories);
+    fridge.setIngredientsData(ingredientsData);
 
-      //Changes scenes from the catalog fridge scene
-      fridge.generateRecipesButton.setOnAction(e -> {
-        recipes.fillRecipesData(recipesData, fridge.getFridgeDataNames());
-       stage.setScene(grScene);
+    // Changes scenes from the catalog fridge scene
+    fridge.generateRecipesButton.setOnAction(e -> {
+      recipes.fillRecipesData(recipeMap, recipesData, fridge.getFridgeDataNames());
+      stage.setScene(grScene);
     });
-      fridge.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
-      
-      //changes scenes from the generatedRecipes scene
-      recipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
-      recipes.favoritesRecipesButton.getHeart().setOnAction(e -> stage.setScene(frScene));
+    fridge.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
 
-      //changes scenes from the favorites scene
-      favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
-      favorites.generateRecipesButton.setOnAction(e -> {
-        recipes.fillRecipesData(recipesData, fridge.getFridgeDataNames());
-        stage.setScene(grScene);
+    // changes scenes from the generatedRecipes scene
+    recipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
+    recipes.favoritesRecipesButton.getHeart().setOnAction(e -> stage.setScene(frScene));
+
+    // changes scenes from the favorites scene
+    favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
+    favorites.generateRecipesButton.setOnAction(e -> {
+      recipes.fillRecipesData(recipeMap, recipesData, fridge.getFridgeDataNames());
+      stage.setScene(grScene);
     });
-      stage.setScene(cfScene);
-      stage.setResizable(false);
-      stage.show();
-    }
+    stage.setScene(cfScene);
+    stage.setResizable(false);
+    stage.show();
+  }
 
-    private void addTestRecipes() {
-      recipesData.add(recipeMap.get("Waldorf Salad"));
-    }
+  private void addTestRecipes() {
+    recipesData.add(recipeMap.get("Waldorf Salad"));
+  }
 
-    private void seedFavoritesList() {
-      for (Recipe r : recipesData) {
-        if (r.getIsFavorited()) {
-          fList.addRecipe(r);
+  private void seedFavoritesList() {
+    for (Recipe r : recipesData) {
+      if (r.getIsFavorited()) {
+        fList.addRecipe(r);
+      }
+    }
+  }
+
+  private void loadIngredientsFromFile() {
+
+    String CsvFile = "RecipeIngredientsDataset.csv";
+    String FieldDelimiter = ",";
+
+    BufferedReader br;
+
+    try {
+      br = new BufferedReader(new FileReader(CsvFile));
+      String line;
+      br.readLine(); // Read first line cause they're column headers
+      while ((line = br.readLine()) != null) {
+        String[] fields = line.split(FieldDelimiter, -1);
+
+        Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2], fields[3]); // lemons
+                                                                                                          // potatos
+                                                                                                          // tomatos
+                                                                                                          // missing
+                                                                                                          // image.
+                                                                                                          // sirloin
+                                                                                                          // beef top
+        ingredientsData.add(record);
+
+        // Add to hashmap
+        String category = fields[2];
+        ObservableList<Ingredient> categoryData;
+        if (ingredientCategories.containsKey(category)) {
+          categoryData = ingredientCategories.get(category);
+        } else {
+          categoryData = FXCollections.observableArrayList();
         }
+        categoryData.add(record);
+        ingredientCategories.put(category, categoryData);
       }
+    } catch (FileNotFoundException ex) {
+      Logger.getLogger(CatalogFridge.class.getName())
+          .log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+      Logger.getLogger(CatalogFridge.class.getName())
+          .log(Level.SEVERE, null, ex);
     }
-
-    private void loadIngredientsFromFile() {
- 
-      String CsvFile = "RecipeIngredientsDataset.csv";
-      String FieldDelimiter = ",";
-  
-      BufferedReader br;
-  
-      try {
-          br = new BufferedReader(new FileReader(CsvFile));
-          String line;
-          br.readLine(); // Read first line cause they're column headers
-          while ((line = br.readLine()) != null) {
-              String[] fields = line.split(FieldDelimiter, -1);
-  
-              Ingredient record = new Ingredient(Integer.parseInt(fields[0]), fields[1], fields[2], fields[3]); //lemons potatos tomatos missing image. sirloin beef top
-              ingredientsData.add(record);
-
-              // Add to hashmap
-              String category = fields[2];
-              ObservableList<Ingredient> categoryData;
-              if (ingredientCategories.containsKey(category)) {
-                categoryData = ingredientCategories.get(category);
-              }
-              else {
-                categoryData = FXCollections.observableArrayList();
-              }
-              categoryData.add(record);
-              ingredientCategories.put(category, categoryData);
-          }
-      } catch (FileNotFoundException ex) {
-          Logger.getLogger(CatalogFridge.class.getName())
-                  .log(Level.SEVERE, null, ex);
-      } catch (IOException ex) {
-          Logger.getLogger(CatalogFridge.class.getName())
-                  .log(Level.SEVERE, null, ex);
-      }
-    }
-     //Commented this out temporarily so as to avoid problems but in my thought so we dont have to grab the recipes all the time we just load it on main? 
+  }
+  // Commented this out temporarily so as to avoid problems but in my thought so
+  // we dont have to grab the recipes all the time we just load it on main?
 }
