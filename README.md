@@ -57,14 +57,14 @@ The implementation of our application involves the creation of multiple classes 
 
 ### Recipe.java
 This class contains the attributes for a single recipe:
-* int id
-* String name
-* ArrayList<String> ingredientsWithQuantities
-* ArrayList<String> ingredientsNoQuantities
-* ArrayList<String> instructions
-* String imgFilename
-* boolean isFavorited
-* heartButton hb
+* ID
+* Name
+* List of ingredients with quantities (to be displayed in the Generate Recipes Window)
+* List of ingredients without quantities (to be used in the Generate Recipes algorithm)
+* List of instructions
+* Image filename
+* Boolen indicating if the recipe was favorited
+* HeartButton
 
 ### Ingredient.java
 This class contains the attributes for a single ingredient:
