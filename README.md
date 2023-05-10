@@ -100,11 +100,17 @@ A helper function is used to print all of the ingredients listed in the spreadsh
 ### CatalogFridge.java
 A class containing the stage and scene of the Catalog/Fridge window.
 
+(add details on data structures used, other attributes)
+
 ### GeneratedRecipes.java
 A class containing the stage and scene of the Generated Recipes window.
 
+(add details on data structures used, other attributes)
+
 ### Favorites.java
 A class containing the stage and scene of the Favorite Recipes window.
+
+(add details on data structures used, other attributes)
 
 
 
