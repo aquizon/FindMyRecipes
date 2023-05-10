@@ -225,6 +225,9 @@ public class GeneratedRecipes {
 
   // Handler Methods
   private void saveAndExitButtonHandler() {
+    // need to call getFridgeDataNames and favorites
+    // SCOPE ISSUE: cannot access fridge
+    // FindMyRecipesFileHandler.saveRecords(null, fridge.getFridgeDataNames());
     Platform.exit();
   }
 

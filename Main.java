@@ -24,6 +24,7 @@ public class Main extends Application {
   Favorites favorites = new Favorites();
 
   private final String recipeFname = "Recipes_Dataset_Modified.csv";
+  String CsvFile = "RecipeIngredientsDataset.csv";
   RecipeData rd = new RecipeData(recipeFname);
   private Map<String, Recipe> recipeMap = rd.getRecipeMap();
   private ObservableList<Recipe> recipesData = rd.getRecipesData();
@@ -81,7 +82,7 @@ public class Main extends Application {
 
   private void loadIngredientsFromFile() {
 
-    String CsvFile = "RecipeIngredientsDataset.csv";
+    CsvFile = "RecipeIngredientsDataset.csv";
     String FieldDelimiter = ",";
 
     BufferedReader br;

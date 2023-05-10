@@ -345,7 +345,13 @@ public class CatalogFridge {
   }
 
   // Handler Methods
+
+  // saves the user's fridge and favorite recipes list
+  // for now just do the fridge
+  // save the name of the dataset file too
   private void saveAndExitButtonHandler() {
+    // need to get FridgeDataNames and favorites
+    // FindMyRecpesFileHandler.saveRecords(null, fridgeDataNames);
     Platform.exit();
   }
 
