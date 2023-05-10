@@ -63,10 +63,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
 // public class CatalogFridge {
-public class CatalogFridge{
-    private Stage stage;
-    private Scene scene;
-  
+public class CatalogFridge {
+  private Stage stage;
+  private Scene scene;
+
   // set the dimensions of the stage
   private final static int initWidth = 925;
   private final static int initHeight = 625;
@@ -77,14 +77,15 @@ public class CatalogFridge{
   // create three TableView objects: Recipes, Fridge, Ingredient List
   private TableView<Ingredient> fridgeTable = new TableView<>();
   private TableView<Ingredient> ingredientsTable = new TableView<>();
-  
+
   private HashMap<String, ObservableList<Ingredient>> ingredientCategories = new HashMap<>();
 
   // ObservableList objects to be associated with the TableView objects
   private ObservableList<Ingredient> fridgeData = FXCollections.observableArrayList();
   private ArrayList<String> fridgeDataNames = new ArrayList<String>();
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
-  //private ObservableList<Recipe> recipesData = FXCollections.observableArrayList();
+  // private ObservableList<Recipe> recipesData =
+  // FXCollections.observableArrayList();
   private ObservableList<Ingredient> currIngredientList;
 
   // buttons/textFields for the Catalog Fridge Window
@@ -119,16 +120,17 @@ public class CatalogFridge{
     searchBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent ke) {
-          if (ke.getCode().equals(KeyCode.ENTER)) {
-              searchBarHandler(searchBox.getText());
-          }
+        if (ke.getCode().equals(KeyCode.ENTER)) {
+          searchBarHandler(searchBox.getText());
+        }
       }
     });
   }
 
   private void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
-    favoritesRecipesButton.setStyle("-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
+    favoritesRecipesButton.setStyle(
+        "-fx-background-color: red; -fx-shape: \"M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.26.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z\";");
     favoritesRecipesButton.setPrefSize(60, 60);
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton, favoritesRecipesButtonLabel);
@@ -138,15 +140,14 @@ public class CatalogFridge{
     view.setFitHeight(60);
     view.setPreserveRatio(true);
     generateRecipesButton.setPrefSize(60, 60);
-      //Setting a graphic to the button
-      generateRecipesButton.setGraphic(view);
-      generateRecipesButton.setStyle(
-            "-fx-background-radius: 5em; " +
+    // Setting a graphic to the button
+    generateRecipesButton.setGraphic(view);
+    generateRecipesButton.setStyle(
+        "-fx-background-radius: 5em; " +
             "-fx-min-width: 65px; " +
             "-fx-min-height: 65px; " +
             "-fx-max-width: 65px; " +
-            "-fx-max-height: 65px;"
-      );
+            "-fx-max-height: 65px;");
     generateRecipesButton.setTranslateX(17);
     VBox generateRecipesBox = new VBox();
     generateRecipesBox.getChildren().addAll(generateRecipesButton, generateRecipesButtonLabel);
@@ -189,7 +190,7 @@ public class CatalogFridge{
   private void setIngredientTableColumns() {
     // TableColumn idCol = new TableColumn("Id");
     // idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
- 
+
     // TableColumn nameCol = new TableColumn("Name");
     // nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -198,102 +199,104 @@ public class CatalogFridge{
     imgCol.setCellValueFactory(new PropertyValueFactory<>("img"));
 
     ingredientsTable.getColumns().addAll(imgCol);
-    //addImageToIngredientTable();
+    // addImageToIngredientTable();
     addButtonToIngredientTable();
     imgCol.prefWidthProperty().bind(ingredientsTable.widthProperty().multiply(0.3));
     imgCol.setResizable(false);
   }
 
   private void addButtonToIngredientTable() {
-      TableColumn<Ingredient, String> colBtn = new TableColumn("");
-      colBtn.setCellValueFactory(new PropertyValueFactory<>("name"));
-      colBtn.setStyle( "-fx-alignment: CENTER;");
-      Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>> cellFactory = new Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>>() {
-          @Override
-          public TableCell<Ingredient, String> call(final TableColumn<Ingredient, String> param) {
-              final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
-                  private final Button btn = new Button("Add to Fridge");
-                  {
-                      btn.setOnAction((ActionEvent e) -> {
-                          Ingredient t = getTableView().getItems().get(getIndex());
-                          addtoFridgeHandler(t);
-                      });
-                  }
-                  @Override
-                  public void updateItem(String item, boolean empty) {
-                      super.updateItem(item, empty);
-                      if (empty) {
-                          setGraphic(null);
-                      } else {
-                        VBox container = new VBox();
-                        Label name = new Label();
-                        name.setText(item);
-                        container.getChildren().addAll(name,btn);
-                        setGraphic(container);
-                      }
-                  }
-              };
-              return cell;
+    TableColumn<Ingredient, String> colBtn = new TableColumn("");
+    colBtn.setCellValueFactory(new PropertyValueFactory<>("name"));
+    colBtn.setStyle("-fx-alignment: CENTER;");
+    Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>> cellFactory = new Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>>() {
+      @Override
+      public TableCell<Ingredient, String> call(final TableColumn<Ingredient, String> param) {
+        final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
+          private final Button btn = new Button("Add to Fridge");
+          {
+            btn.setOnAction((ActionEvent e) -> {
+              Ingredient t = getTableView().getItems().get(getIndex());
+              addtoFridgeHandler(t);
+            });
           }
-      };
-      colBtn.setCellFactory(cellFactory);
-      ingredientsTable.getColumns().add(colBtn);
-      colBtn.prefWidthProperty().bind(ingredientsTable.widthProperty().multiply(0.7));
-      colBtn.setResizable(false);
+
+          @Override
+          public void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+              setGraphic(null);
+            } else {
+              VBox container = new VBox();
+              Label name = new Label();
+              name.setText(item);
+              container.getChildren().addAll(name, btn);
+              setGraphic(container);
+            }
+          }
+        };
+        return cell;
+      }
+    };
+    colBtn.setCellFactory(cellFactory);
+    ingredientsTable.getColumns().add(colBtn);
+    colBtn.prefWidthProperty().bind(ingredientsTable.widthProperty().multiply(0.7));
+    colBtn.setResizable(false);
   }
 
   private void setFridgeTableColumns() {
     // TableColumn idCol = new TableColumn("Id");
     // idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
- 
+
     // TableColumn nameCol = new TableColumn("Name");
     // nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
     fridgeTable.setStyle("-fx-table-cell-border-color: transparent;");
     TableColumn imgCol = new TableColumn();
     imgCol.setCellValueFactory(new PropertyValueFactory<>("imgFridge"));
-    //addImageToFridgeTable();
+    // addImageToFridgeTable();
     fridgeTable.getColumns().addAll(imgCol);
     addButtonToFridgeTable();
     imgCol.prefWidthProperty().bind(fridgeTable.widthProperty().multiply(0.3));
     imgCol.setResizable(false);
   }
-  
+
   private void addButtonToFridgeTable() {
-      TableColumn<Ingredient, String> colBtn = new TableColumn("");
-      colBtn.setCellValueFactory(new PropertyValueFactory<>("name"));
-      colBtn.setStyle( "-fx-alignment: CENTER;");
-      Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>> cellFactory = new Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>>() {
-          @Override
-          public TableCell<Ingredient, String> call(final TableColumn<Ingredient, String> param) {
-              final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
-                  private final Button btn = new Button("Remove");
-                  {
-                      btn.setOnAction((ActionEvent e) -> {
-                          Ingredient t = getTableView().getItems().get(getIndex());
-                          removeFromFridgeHandler(t);
-                      });
-                  }
-                  @Override
-                  public void updateItem(String item, boolean empty) {
-                      super.updateItem(item, empty);
-                      if (empty) {
-                          setGraphic(null);
-                      } else {
-                        VBox container = new VBox();
-                        Label name = new Label();
-                        name.setText(item);
-                        container.getChildren().addAll(name,btn);
-                        setGraphic(container);
-                      }
-                  }
-              };
-              return cell;
+    TableColumn<Ingredient, String> colBtn = new TableColumn("");
+    colBtn.setCellValueFactory(new PropertyValueFactory<>("name"));
+    colBtn.setStyle("-fx-alignment: CENTER;");
+    Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>> cellFactory = new Callback<TableColumn<Ingredient, String>, TableCell<Ingredient, String>>() {
+      @Override
+      public TableCell<Ingredient, String> call(final TableColumn<Ingredient, String> param) {
+        final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
+          private final Button btn = new Button("Remove");
+          {
+            btn.setOnAction((ActionEvent e) -> {
+              Ingredient t = getTableView().getItems().get(getIndex());
+              removeFromFridgeHandler(t);
+            });
           }
-      };
-      colBtn.setCellFactory(cellFactory);
-      fridgeTable.getColumns().add(colBtn);
-      colBtn.prefWidthProperty().bind(fridgeTable.widthProperty().multiply(0.7));
-      colBtn.setResizable(false);
+
+          @Override
+          public void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+              setGraphic(null);
+            } else {
+              VBox container = new VBox();
+              Label name = new Label();
+              name.setText(item);
+              container.getChildren().addAll(name, btn);
+              setGraphic(container);
+            }
+          }
+        };
+        return cell;
+      }
+    };
+    colBtn.setCellFactory(cellFactory);
+    fridgeTable.getColumns().add(colBtn);
+    colBtn.prefWidthProperty().bind(fridgeTable.widthProperty().multiply(0.7));
+    colBtn.setResizable(false);
   }
 
   private void setButtonHandlers() {
@@ -314,38 +317,42 @@ public class CatalogFridge{
 
   private void fruitsButtonHandler() {
     switchToFilteredTableScene();
-    currWindow = "Filtered";
+    currWindow = "Fruits";
     currIngredientList = ingredientCategories.get("Fruits");
     ingredientsTable.setItems(currIngredientList);
   }
 
   private void vegetablesButtonHandler() {
     switchToFilteredTableScene();
-    currWindow = "Filtered";
+    currWindow = "Vegetables";
     currIngredientList = ingredientCategories.get("Vegetables");
     ingredientsTable.setItems(currIngredientList);
   }
+
   private void grainsButtonHandler() {
     switchToFilteredTableScene();
-    currWindow = "Filtered";
+    currWindow = "Grains";
     currIngredientList = ingredientCategories.get("Grains");
     ingredientsTable.setItems(currIngredientList);
   }
+
   private void proteinsButtonHandler() {
     switchToFilteredTableScene();
-    currWindow = "Filtered";
+    currWindow = "Proteins";
     currIngredientList = ingredientCategories.get("Proteins");
     ingredientsTable.setItems(currIngredientList);
   }
+
   private void dairyButtonHandler() {
     switchToFilteredTableScene();
-    currWindow = "Filtered";
+    currWindow = "Dairy";
     currIngredientList = ingredientCategories.get("Dairy");
     ingredientsTable.setItems(currIngredientList);
   }
+
   private void otherButtonHandler() {
     switchToFilteredTableScene();
-    currWindow = "Filtered";
+    currWindow = "Other";
     currIngredientList = ingredientCategories.get("Other");
     ingredientsTable.setItems(currIngredientList);
   }
@@ -371,10 +378,14 @@ public class CatalogFridge{
   }
 
   private void searchBarHandler(String searchText) {
+    // System.out.println("entered searchBarHandler body");
     if (currWindow == "Categories") {
       switchToFilteredTableScene();
+      currWindow = "Filtered";
     }
+
     ingredientsTable.setItems(filterList(searchText));
+
     searchBox.clear();
   }
 
@@ -393,25 +404,46 @@ public class CatalogFridge{
   }
 
   private ObservableList<Ingredient> filterList(String searchText) {
+    // System.out.println("entered filterList body");
     List<Ingredient> filteredList = new ArrayList<>();
-    for (Ingredient t : currIngredientList) { 
+    if (currWindow.equals("Categories") || currWindow.equals("Filtered")) {
+      currIngredientList = ingredientsData;
+    }
+    for (Ingredient t : currIngredientList) {
+      // System.out.println("calling searchFindsIngredient on searchText = " +
+      // searchText);
       if (searchFindsIngredient(t, searchText)) {
         filteredList.add(t);
       }
     }
+    // capitalize the first letter of searchText
+    String searchedItem = searchText;
+    searchedItem = searchedItem.toLowerCase();
+    searchedItem = Character.toUpperCase(searchedItem.charAt(0)) + searchedItem.substring(1);
+
+    // set table placeholder to be a) specific to the category or b) for all
+    // categories
+    if (currWindow.equals("Categories")) {
+      ingredientsTable.setPlaceholder(new Label("\"" + searchedItem + "\"" + " not found in this catalog!"));
+    } else {
+      ingredientsTable
+          .setPlaceholder(new Label("\"" + searchedItem + "\"" + " not found in the " + currWindow + " section!"));
+    }
+
     ObservableList<Ingredient> newList = FXCollections.observableList(filteredList);
     return newList;
   }
 
   private boolean searchFindsIngredient(Ingredient t, String searchText) {
     return (t.getName().toLowerCase().contains(searchText.toLowerCase())) ||
-           Integer.valueOf(t.getId()).toString().equals(searchText.toLowerCase());
+        Integer.valueOf(t.getId()).toString()
+            .equals(searchText.toLowerCase())
+        || (searchText.toLowerCase()).contains(t.getName().toLowerCase());
   }
 
   public ArrayList<String> getFridgeDataNames() {
     return fridgeDataNames;
   }
-
 
   public Scene generateCatalogFridgeScene() {
     currWindow = "Categories";
@@ -422,20 +454,21 @@ public class CatalogFridge{
     // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
     mainPane.add(title, 0, 0, 3, 1);
     mainPane.setHalignment(title, HPos.CENTER);
-    title.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 30;");
+    title.setStyle("-fx-font: Courier New;" + "-fx-font-weight: bold;" + "-fx-font-size: 30;");
     mainPane.add(ingredientCatalogLabel, 0, 1, 2, 1);
     mainPane.setHalignment(ingredientCatalogLabel, HPos.CENTER);
-    ingredientCatalogLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
+    ingredientCatalogLabel.setStyle("-fx-font: Courier New;" + "-fx-font-weight: bold;" + "-fx-font-size: 20;");
     mainPane.add(fridgeLabel, 2, 1);
     mainPane.setHalignment(fridgeLabel, HPos.CENTER);
-    fridgeLabel.setStyle("-fx-font: Courier New;"+"-fx-font-weight: bold;"+"-fx-font-size: 20;");
+    fridgeLabel.setStyle("-fx-font: Courier New;" + "-fx-font-weight: bold;" + "-fx-font-size: 20;");
 
     searchBox.setPromptText("Search for Ingredient: ");
     mainPane.add(searchBox, 0, 2, 2, 1);
 
     fridgeTable.setPrefSize(350, 400);
     mainPane.add(fridgeTable, 2, 2, 1, 4);
-    
+    fridgeTable.setPlaceholder(new Label("Your fridge is empty!"));
+
     setUpFoodCategories();
     mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
 

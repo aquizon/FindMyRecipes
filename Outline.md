@@ -44,6 +44,10 @@ The favorites window contains the following elements:
     * https://stackoverflow.com/questions/29489366/how-to-add-button-in-javafx-table-view
 * Changing scenes in the same window
     * https://www.youtube.com/watch?v=hcM-R-YOKkQ&ab_channel=BroCode
+* Making circular button
+    * https://stackoverflow.com/questions/26850828/how-to-make-a-javafx-button-with-circle-shape-of-3xp-diameter
+* Tableview Formatting
+    * https://github.com/edencoding/javafx-ui
 
 * Objectives
 1. Using public datasets to populate our database with recipes, their ingredients, and images of recipes and ingredients (backend)

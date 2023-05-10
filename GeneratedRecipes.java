@@ -248,6 +248,7 @@ public class GeneratedRecipes {
         toBuild = toBuild + "- " + s + "\n"; 
     }
     ingredientBox.setText(toBuild);
+    ingredientBox.setWrapText(true);
 
     Text instructionsText = new Text("Instructions: ");
 
@@ -259,6 +260,7 @@ public class GeneratedRecipes {
         instructionBuilder = instructionBuilder + "- " + s + "\n";
     }
     instructionBox.setText(instructionBuilder);
+    instructionBox.setWrapText(true);
 
     recipeInfo.getChildren().clear();
     recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText, instructionBox); 
@@ -283,7 +285,9 @@ public class GeneratedRecipes {
 
   public void fillRecipesData(ObservableList<Recipe> rList, ArrayList<String> fridge) { 
     //first get the fridge itself, then I want to iterate over the recipe list and check if its in the fridge? if they all match add to the rList. 
-   recipesData.clear();
+    if (!recipesData.isEmpty()) {
+      recipesData.clear();
+    }
     for (Recipe r : rList){ 
       boolean flag = true;
       ArrayList<String> ingredientNoQuantities = r.getIngredientNoQuantities();
@@ -320,7 +324,8 @@ public class GeneratedRecipes {
   public Scene generateGeneratedRecipesScene(FavoritesList f, ObservableList<Recipe> rList) throws FileNotFoundException {
     fList = f;
     // System.out.println("Fridge Data: " + String.join(", ", fridge));
-    // recipesData = rList;
+    recipesData = rList;
+    // System.out.println(rList);
     setUpMenuBarBox();
     mainPane.setTop(title);
     mainPane.setAlignment(title, Pos.CENTER);
