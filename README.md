@@ -12,9 +12,8 @@ This application generates a list of recipes that the user can cook based on the
 ## Layout and Visual Elements
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
-
+Figure 1: Catalog/Fridge Window <br />
 <p align="center">
-   <em>Figure 1: Catalog/Fridge Window</em>
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg" width="500">
 </p>
 
