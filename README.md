@@ -43,7 +43,7 @@ Clicking on the Favorite Recipes button switches to a window with an identical l
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
 ## Objectives: Challenges/Modifications/Progress
-(NOTE: remember to include who worked on objecives)
+(NOTE: remember to include who worked on objecives -- maybe use organize with a table instead?)
 
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
