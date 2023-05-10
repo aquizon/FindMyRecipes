@@ -13,7 +13,7 @@ This application generates a list of recipes that the user can cook based on the
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
 Figure 1: Catalog/Fridge Window
-![CatalogFridgeMockUpNew](https://user-images.githubusercontent.com/90003553/236377531-beda10dd-8e8d-4486-bcbd-ecf6092f81cf.jpeg)
+![CatalogFridgeMockUpNew](images/FindMyRecipes Mockups/FindMyRecipes Mockups.001.jpeg)
 
 There is a search bar above the ingredient catalog for the user to easily find an ingredient in the catalog. Searching for an ingredient or clicking on one of the 6 food categories updates the main window to show the ingredients within the selected food category. For instance, clicking on the "Fruits" category displays all the ingredients that are labeled as fruits as shown in Figure 2.
 
@@ -28,7 +28,7 @@ Figure 3: Generate Recipes Window
 Clicking on the Favorite Recipes button switches to a window with an identical layout to the Generate Recipes window, however only the recipes that the user favorited are displayed as shown in Figure 4. The user can remove a recipe from the favorites list by clicking the heart. The Back to Fridge button takes the user back to the main window.
 
 Figure 4: Favorite Recipes Window
-![FavoriteRecipesMockUp](https://user-images.githubusercontent.com/90003553/236275226-b6e71af1-51b4-46a4-838b-19c2fa97a5bf.jpeg)
+![FavoriteRecipesMockUp](https://user-images.githubusercontent.com/90003553/236275226-b6e71af1-51b4-46a4-838b-19c2fa97a5bf.jpegimages/FindMyRecipes Mockups
 
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
