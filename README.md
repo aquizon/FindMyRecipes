@@ -1,15 +1,19 @@
 # FindMyRecipes
+
 Receive recipe recommendations based on the ingredients you have at home!
 
 ## Partners
+
 - Allen Quizon
 - Dan Kim
 - Katelyn Valete
 
 ## Program Description
+
 This application generates a list of recipes that the user can cook based on the ingredients that the user has. The collection of ingredients used in our algorithm is created via the user's interaction with the application (e.g. the user adding ingredients from an ingredient catalog into the fridge or removing ingredients from the fridge). After the list of recommended recipes is generated and displayed, the user may add selected recipes into a collection of favorited recipes. When exiting the application, the user's collection of ingredients and favorite recipes are saved and loaded when the user starts the application again.
 
 ## Layout and Visual Elements
+
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
 Figure 1: Catalog/Fridge Window
@@ -33,10 +37,12 @@ Figure 4: Favorite Recipes Window
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
 ## Objectives: Challenges/Modifications/Progress
+
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images
-    * Modifications/realizations: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
+
+   - Modifications/realizations: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
 
 2. Implementing the algorithm that generates a list of recipes the user can cook for the main functionality of the application
 
@@ -53,48 +59,62 @@ We came across challenges in our implementation that led us to modify our approa
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
 ## Technical Details and Decisions
+
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
 
 ### Recipe.java
+
 This class contains the attributes for a single recipe:
-* int id
-* String name
-* ArrayList<String> ingredientsWithQuantities
-* ArrayList<String> ingredientsNoQuantities
-* ArrayList<String> instructions
-* String imgFilename
-* boolean isFavorited
-* heartButton hb
+
+- int id
+- String name
+- ArrayList<String> ingredientsWithQuantities
+- ArrayList<String> ingredientsNoQuantities
+- ArrayList<String> instructions
+- String imgFilename
+- boolean isFavorited
+- heartButton hb
 
 ### Ingredient.java
+
 This class contains the attributes for a single ingredient:
-* int id
-* String name
-* String category
-* ImageView img
-* ImageView imgFridge
+
+- int id
+- String name
+- String category
+- ImageView img
+- ImageView imgFridge
 
 ### RecipeData.java
+
 This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
 
 Figure 5: RecipeDataset Sample
 <img width="1200" alt="RecipeDatasetStample" src="https://user-images.githubusercontent.com/90003553/236317389-1c75b78e-d62b-4c37-a146-c1f728fbfd17.png">
 
+```
+ID|Title|List of Ingredients|Instructions
+1|Creamy Pesto Shrimp|['1 pound linguine pasta', '1/2 cup butter', '2 cups heavy cream', '1/2 teaspoon ground black pepper', '1 cup grated Parmesan cheese', '1/3 cup pesto', '1 pound large shrimp--peeled and deveined']|['Gather ingredients together.', 'Fill a large pot with lightly salted water and bring to a rolling boil. Stir in linguine and return to a boil. Cook pasta uncovered, stirring occasionally, until tender yet firm to the bite, about 8 to 10 minutes; drain.', 'Meanwhile, melt butter in a large skillet over medium heat. Stir in cream and season with pepper; cook, stirring constantly, for 6 to 8 minutes.', 'Stir Parmesan cheese into cream sauce until thoroughly mixed. Stir in pesto and cook until thickened, 3 to 5 minutes.', 'Stir in shrimp and cook until they turn pink, about 5 minutes. Serve sauce over hot linguine.']|./images/recipes/recipe1.png
+
+```
+
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
 
 Figure 6: RecipeIngredientsDataset Sample
 <img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
-   
+
 ### CatalogFridge.java
+
 A class containing the stage and scene of the Catalog/Fridge window.
 
 ### GeneratedRecipes.java
+
 A class containing the stage and scene of the Generated Recipes window.
 
 ### Favorites.java
+
 A class containing the stage and scene of the Favorite Recipes window.
 
+```
 
-
-
-
+```
