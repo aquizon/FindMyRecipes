@@ -14,7 +14,7 @@ The main window of our application contains an ingredient catalog and the user's
 
 Figure 1: Catalog/Fridge Window <br />
 <p align="center">
-   Test
+   Test <br />
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg" width="500">
 </p>
 
