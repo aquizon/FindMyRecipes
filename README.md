@@ -68,11 +68,11 @@ This class contains the attributes for a single recipe:
 
 ### Ingredient.java
 This class contains the attributes for a single ingredient:
-* int id
-* String name
-* String category
-* ImageView img
-* ImageView imgFridge
+* ID
+* Name
+* Category
+* ImageView 1 (for the catalog)
+* ImageView 2 (for the fridge)
 
 ### RecipeData.java
 This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
