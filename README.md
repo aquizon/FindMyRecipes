@@ -41,6 +41,8 @@ Clicking on the Favorite Recipes button switches to a window with an identical l
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
 ## Objectives: Challenges/Modifications/Progress
+(NOTE: remember to include who worked on objecives)
+
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images
@@ -59,6 +61,7 @@ We came across challenges in our implementation that led us to modify our approa
 7. Implementing a search bar for the user to quickly find ingredients
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
+    * Modifications: Instead of using a pop-up, we used counters for each of the food categories.
 
 ## Technical Details and Decisions
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
@@ -111,6 +114,8 @@ A class containing the stage and scene of the Generated Recipes window.
 A class containing the stage and scene of the Favorite Recipes window.
 
 (add details on data structures used, other attributes)
+
+# References
 
 
 
