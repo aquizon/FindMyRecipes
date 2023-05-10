@@ -201,7 +201,7 @@ public class CatalogFridge {
 
     // set up counters for the buttons: need the number of ingredients in each
     // category and the number of ingredients in the fridge for each category
-    System.out.println("set category counts");
+    // System.out.println("set category counts");
 
     foodCategoriesPane.add(fruitsButton, 0, 0);
     foodCategoriesPane.add(vegetablesButton, 1, 0);
@@ -408,15 +408,15 @@ public class CatalogFridge {
       String category = t.getCategory();
       switch (category) {
         case "Fruits":
-          System.out.println("is a fruit");
+          // System.out.println("is a fruit");
           fruitsCount++;
           break;
         case "Vegetables":
-          System.out.println("is a vegetable");
+          // System.out.println("is a vegetable");
           vegetablesCount++;
           break;
         case "Grains":
-          System.out.println("is a grain");
+          // System.out.println("is a grain");
           grainsCount++;
           break;
         case "Proteins":
@@ -433,7 +433,7 @@ public class CatalogFridge {
   }
 
   private void removeFromFridgeHandler(Ingredient t) {
-    System.out.println("categories of " + t.getName() + ": " + t.getCategory());
+    // System.out.println("categories of " + t.getName() + ": " + t.getCategory());
     if (fridgeData.remove(t)) {
       switch (t.getCategory()) {
         case "Fruits":
