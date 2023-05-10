@@ -61,7 +61,8 @@ public class Main extends Application  {
       //changes scenes from the favorites scene
       favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
       favorites.generateRecipesButton.setOnAction(e -> {
-          stage.setScene(grScene);
+        recipes.fillRecipesData(recipesData, fridge.getFridgeDataNames());
+        stage.setScene(grScene);
     });
       stage.setScene(cfScene);
       stage.setResizable(false);
