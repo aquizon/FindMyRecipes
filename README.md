@@ -23,12 +23,12 @@ Figure 2: Selecting "Fruits" on the Main Window
 Clicking the Generate Recipes button switches windows to display a list of recipes that the user can cook based on the ingredients within the user's fridge. Selecting one of the recipes reveals the recipe information, and clicking the heart adds the recipe to the user's list of favorite recipes. Refer to Figure 3 below.
 
 Figure 3: Generate Recipes Window
-![GeneratedRecipesMockUp](https://user-images.githubusercontent.com/90003553/236274601-5b49cdea-1e05-4b84-b1af-f42363d0db36.jpeg)
+![GeneratedRecipesMockUp](https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.003.jpeg)
 
 Clicking on the Favorite Recipes button switches to a window with an identical layout to the Generate Recipes window, however only the recipes that the user favorited are displayed as shown in Figure 4. The user can remove a recipe from the favorites list by clicking the heart. The Back to Fridge button takes the user back to the main window.
 
 Figure 4: Favorite Recipes Window
-![FavoriteRecipesMockUp](https://user-images.githubusercontent.com/90003553/236275226-b6e71af1-51b4-46a4-838b-19c2fa97a5bf.jpegimages/FindMyRecipes Mockups
+![FavoriteRecipesMockUp](https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.004.jpeg)
 
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
