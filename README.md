@@ -13,12 +13,12 @@ This application generates a list of recipes that the user can cook based on the
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
 Figure 1: Catalog/Fridge Window
-![FindMyRecipes Mockups.001.jpeg](https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg)
+![CatalogFridgeMockUp](https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg)
 
 There is a search bar above the ingredient catalog for the user to easily find an ingredient in the catalog. Searching for an ingredient or clicking on one of the 6 food categories updates the main window to show the ingredients within the selected food category. For instance, clicking on the "Fruits" category displays all the ingredients that are labeled as fruits as shown in Figure 2.
 
 Figure 2: Selecting "Fruits" on the Main Window
-![SelectedCategoryMockUp](https://user-images.githubusercontent.com/90003553/236040726-66d75dd0-c01f-4359-944e-02b1a2c05c70.jpeg)
+![SelectedCategoryMockUp](https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.002.jpeg)
 
 Clicking the Generate Recipes button switches windows to display a list of recipes that the user can cook based on the ingredients within the user's fridge. Selecting one of the recipes reveals the recipe information, and clicking the heart adds the recipe to the user's list of favorite recipes. Refer to Figure 3 below.
 
