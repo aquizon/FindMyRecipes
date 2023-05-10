@@ -96,9 +96,7 @@ A helper function is used to print all of the ingredients listed in the spreadsh
    <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
 </p>   
-
-
-   
+  
 ### CatalogFridge.java
 A class containing the stage and scene of the Catalog/Fridge window.
 
