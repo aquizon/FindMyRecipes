@@ -12,31 +12,47 @@ Receive recipe recommendations based on the ingredients you have at home!
 
 This application generates a list of recipes that the user can cook based on the ingredients that the user has. The collection of ingredients used in our algorithm is created via the user's interaction with the application (e.g. the user adding ingredients from an ingredient catalog into the fridge or removing ingredients from the fridge). After the list of recommended recipes is generated and displayed, the user may add selected recipes into a collection of favorited recipes. When exiting the application, the user's collection of ingredients and favorite recipes are saved and loaded when the user starts the application again.
 
+## Running the Project
+
 ## Layout and Visual Elements
 
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
 
-Figure 1: Catalog/Fridge Window
-![CatalogFridgeMockUpNew](https://user-images.githubusercontent.com/90003553/236377531-beda10dd-8e8d-4486-bcbd-ecf6092f81cf.jpeg)
+<p align="center">
+   <i>Figure 1: Catalog/Fridge Window</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg" width="500">
+</p>
 
 There is a search bar above the ingredient catalog for the user to easily find an ingredient in the catalog. Searching for an ingredient or clicking on one of the 6 food categories updates the main window to show the ingredients within the selected food category. For instance, clicking on the "Fruits" category displays all the ingredients that are labeled as fruits as shown in Figure 2.
 
-Figure 2: Selecting "Fruits" on the Main Window
-![SelectedCategoryMockUp](https://user-images.githubusercontent.com/90003553/236040726-66d75dd0-c01f-4359-944e-02b1a2c05c70.jpeg)
+<p align="center">
+   <i>Figure 2: Selecting "Fruits" on the Main Window</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.002.jpeg" width="500">
+</p>
 
 Clicking the Generate Recipes button switches windows to display a list of recipes that the user can cook based on the ingredients within the user's fridge. Selecting one of the recipes reveals the recipe information, and clicking the heart adds the recipe to the user's list of favorite recipes. Refer to Figure 3 below.
 
-Figure 3: Generate Recipes Window
-![GeneratedRecipesMockUp](https://user-images.githubusercontent.com/90003553/236274601-5b49cdea-1e05-4b84-b1af-f42363d0db36.jpeg)
+<p align="center">
+   <i>Figure 3: Generate Recipes Window</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.003.jpeg" width="500">
+</p>
 
 Clicking on the Favorite Recipes button switches to a window with an identical layout to the Generate Recipes window, however only the recipes that the user favorited are displayed as shown in Figure 4. The user can remove a recipe from the favorites list by clicking the heart. The Back to Fridge button takes the user back to the main window.
 
-Figure 4: Favorite Recipes Window
-![FavoriteRecipesMockUp](https://user-images.githubusercontent.com/90003553/236275226-b6e71af1-51b4-46a4-838b-19c2fa97a5bf.jpeg)
+<p align="center">
+   <i>Figure 4: Favorite Recipes Window</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.004.jpeg" width="500">
+</p>
 
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
 ## Objectives: Challenges/Modifications/Progress
+
+# <<<<<<< HEAD
+
+(NOTE: remember to include who worked on objecives -- maybe use organize with a table instead?)
+
+> > > > > > > 03c919bd09e7c855a764097c4e097f31812eae91
 
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
@@ -57,6 +73,7 @@ We came across challenges in our implementation that led us to modify our approa
 7. Implementing a search bar for the user to quickly find ingredients
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
+   - Modifications: Instead of using a pop-up, we used counters for each of the food categories.
 
 ## Technical Details and Decisions
 
@@ -65,6 +82,7 @@ The implementation of our application involves the creation of multiple classes 
 ### Recipe.java
 
 This class contains the attributes for a single recipe:
+<<<<<<< HEAD
 
 - int id
 - String name
@@ -73,24 +91,44 @@ This class contains the attributes for a single recipe:
 - ArrayList<String> instructions
 - String imgFilename
 - boolean isFavorited
-- heartButton hb
+- # heartButton hb
+
+* ID
+* Name
+* List of ingredients with quantities (to be displayed in the Generate Recipes Window)
+* List of ingredients without quantities (to be used in the Generate Recipes algorithm)
+* List of instructions
+* Image filename
+* Boolean indicating if the recipe was favorited
+* HeartButton
+  > > > > > > > 03c919bd09e7c855a764097c4e097f31812eae91
 
 ### Ingredient.java
 
 This class contains the attributes for a single ingredient:
+<<<<<<< HEAD
 
 - int id
 - String name
 - String category
 - ImageView img
-- ImageView imgFridge
+- # ImageView imgFridge
+
+* ID
+* Name
+* Category
+* ImageView 1 (for the catalog)
+* ImageView 2 (for the fridge)
+  > > > > > > > 03c919bd09e7c855a764097c4e097f31812eae91
 
 ### RecipeData.java
 
 This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
 
-Figure 5: RecipeDataset Sample
-<img width="1200" alt="RecipeDatasetStample" src="https://user-images.githubusercontent.com/90003553/236317389-1c75b78e-d62b-4c37-a146-c1f728fbfd17.png">
+<p align="center">
+   <i>Figure 5: RecipeDataset Sample</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeDatasetStample.png" width="700">
+</p>
 
 ```
 ID|Title|List of Ingredients|Instructions
@@ -100,16 +138,29 @@ ID|Title|List of Ingredients|Instructions
 
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
 
+<<<<<<< HEAD
 Figure 6: RecipeIngredientsDataset Sample
 <img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
 
+=======
+
+<p align="center">
+   <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
+</p>   
+  
+>>>>>>> 03c919bd09e7c855a764097c4e097f31812eae91
 ### CatalogFridge.java
 
 A class containing the stage and scene of the Catalog/Fridge window.
 
+(add details on data structures used, other attributes)
+
 ### GeneratedRecipes.java
 
 A class containing the stage and scene of the Generated Recipes window.
+
+(add details on data structures used, other attributes)
 
 ### Favorites.java
 
