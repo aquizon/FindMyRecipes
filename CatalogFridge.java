@@ -74,6 +74,13 @@ public class CatalogFridge {
   private final static int categoryWidth = 400;
   private final static int categoryHeight = 300;
 
+  private int fruitsCount = 0;
+  private int vegetablesCount = 0;
+  private int grainsCount = 0;
+  private int proteinsCount = 0;
+  private int dairyCount = 0;
+  private int otherCount = 0;
+
   // create three TableView objects: Recipes, Fridge, Ingredient List
   private TableView<Ingredient> fridgeTable = new TableView<>();
   private TableView<Ingredient> ingredientsTable = new TableView<>();
@@ -166,7 +173,7 @@ public class CatalogFridge {
     mainPane.add(menuBarBox, 0, 6, 3, 1);
   }
 
-  private void setUpFoodCategories() {
+  private void setUpFoodCategories() { // then we need to update Food Categories for the counters
     fruitsButton.setPrefSize(275, 150);
     fruitsButton.setStyle("-fx-background-color: #ED220D;" + "-fx-text-fill: #FFFFFF");
     vegetablesButton.setPrefSize(275, 150);
@@ -179,12 +186,23 @@ public class CatalogFridge {
     dairyButton.setStyle("-fx-background-color: #00A1FF;" + "-fx-text-fill: #FFFFFF");
     otherButton.setPrefSize(275, 150);
     otherButton.setStyle("-fx-background-color: #929292;" + "-fx-text-fill: #FFFFFF");
+
+    // set up counters for the buttons: need the number of ingredients in each
+    // category and the number of ingredients in the fridge for each category
+
+    setCategoryCounts();
+
     foodCategoriesPane.add(fruitsButton, 0, 0);
     foodCategoriesPane.add(vegetablesButton, 1, 0);
     foodCategoriesPane.add(grainsButton, 0, 1);
     foodCategoriesPane.add(proteinsButton, 1, 1);
     foodCategoriesPane.add(dairyButton, 0, 2);
     foodCategoriesPane.add(otherButton, 1, 2);
+  }
+
+  private void setCategoryCounts() {
+    fruitsButton.setText("Fruits \n" + fruitsCount + "/" + ingredientCategories.get("Fruits"));
+
   }
 
   private void setIngredientTableColumns() {
@@ -369,6 +387,21 @@ public class CatalogFridge {
     if (!fridgeData.contains(t)) {
       fridgeData.add(t);
       fridgeDataNames.add(t.getName());
+      // update counters using the ingredient's category
+      switch (t.getCategory()) {
+        case "Fruits":
+          fruitsCount++;
+        case "Vegetables":
+          vegetablesCount++;
+        case "Grains":
+          grainsCount++;
+        case "Proteins":
+          proteinsCount++;
+        case "Dairy":
+          dairyCount++;
+        case "Other":
+          otherCount++;
+      }
     }
   }
 
