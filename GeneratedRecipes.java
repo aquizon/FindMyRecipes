@@ -269,7 +269,7 @@ public class GeneratedRecipes {
     recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText,
         instructionBox);
     recipeInfo.setPadding(new Insets(0, 10, 0, 0));
-    recipeInfo.setMaxHeight(450);
+    //recipeInfo.setMaxHeight(450);
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
@@ -356,9 +356,9 @@ public class GeneratedRecipes {
     recipeInfo.setPrefSize(400, 400);
     recipeInfo.setAlignment(Pos.TOP_CENTER);
 
-    center.setPadding(new Insets(10, 0, 10, 0));
+    center.setPadding(new Insets(10, 0, 10, 10));
     center.getChildren().addAll(recipesTable, recipeInfo);
-    recipesTable.setPadding(new Insets(0,0,0,10));
+    //recipesTable.setPadding(new Insets(0,0,0,10));
 
     mainPane.setCenter(center);
 
