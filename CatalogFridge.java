@@ -115,7 +115,7 @@ public class CatalogFridge {
   Label ingredientCatalogLabel = new Label("Ingredient Catalog");
   Label fridgeLabel = new Label("My Fridge");
 
-  Button backButton = new Button("Back");
+  Button backButton = new Button("Back to Categories");
   GridPane mainPane = new GridPane(); // main container
   GridPane foodCategoriesPane = new GridPane();
 
@@ -249,6 +249,7 @@ public class CatalogFridge {
         final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
           private final Button btn = new Button("Add to Fridge");
           {
+            btn.setStyle("-fx-background-color: #006400; -fx-text-fill: white; -fx-background-radius: 30");
             btn.setOnAction((ActionEvent e) -> {
               Ingredient t = getTableView().getItems().get(getIndex());
               addtoFridgeHandler(t);
@@ -304,6 +305,7 @@ public class CatalogFridge {
         final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
           private final Button btn = new Button("Remove");
           {
+            btn.setStyle("-fx-background-color: #8B0000; -fx-text-fill: white; -fx-background-radius: 30");
             btn.setOnAction((ActionEvent e) -> {
               Ingredient t = getTableView().getItems().get(getIndex());
               removeFromFridgeHandler(t);
@@ -315,6 +317,7 @@ public class CatalogFridge {
             super.updateItem(item, empty);
             if (empty) {
               setGraphic(null);
+
             } else {
               VBox container = new VBox();
               Label name = new Label();
@@ -576,6 +579,9 @@ public class CatalogFridge {
 
     setButtonHandlers();
     mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
+
+    mainPane.setVgap(5);
+    mainPane.setHgap(5);
 
     return new Scene(mainPane, initWidth, initHeight);
 
