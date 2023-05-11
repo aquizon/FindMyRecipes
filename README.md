@@ -48,12 +48,6 @@ Clicking the Save and Quit button stores the user's fridge and favorited recipes
 
 ## Objectives: Challenges/Modifications/Progress
 
-# <<<<<<< HEAD
-
-(NOTE: remember to include who worked on objecives -- maybe use organize with a table instead?)
-
-> > > > > > > 03c919bd09e7c855a764097c4e097f31812eae91
-
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images
@@ -82,7 +76,6 @@ The implementation of our application involves the creation of multiple classes 
 ### Recipe.java
 
 This class contains the attributes for a single recipe:
-<<<<<<< HEAD
 
 - int id
 - String name
@@ -101,12 +94,10 @@ This class contains the attributes for a single recipe:
 * Image filename
 * Boolean indicating if the recipe was favorited
 * HeartButton
-  > > > > > > > 03c919bd09e7c855a764097c4e097f31812eae91
 
 ### Ingredient.java
 
 This class contains the attributes for a single ingredient:
-<<<<<<< HEAD
 
 - int id
 - String name
@@ -119,7 +110,6 @@ This class contains the attributes for a single ingredient:
 * Category
 * ImageView 1 (for the catalog)
 * ImageView 2 (for the fridge)
-  > > > > > > > 03c919bd09e7c855a764097c4e097f31812eae91
 
 ### RecipeData.java
 
@@ -138,18 +128,14 @@ ID|Title|List of Ingredients|Instructions
 
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
 
-<<<<<<< HEAD
 Figure 6: RecipeIngredientsDataset Sample
 <img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
-
-=======
 
 <p align="center">
    <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
 </p>   
   
->>>>>>> 03c919bd09e7c855a764097c4e097f31812eae91
 ### CatalogFridge.java
 
 A class containing the stage and scene of the Catalog/Fridge window.
@@ -165,7 +151,3 @@ A class containing the stage and scene of the Generated Recipes window.
 ### Favorites.java
 
 A class containing the stage and scene of the Favorite Recipes window.
-
-```
-
-```
