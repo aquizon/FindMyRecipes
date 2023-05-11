@@ -279,13 +279,7 @@ public class Favorites {
                 instructionBox);
 
         recipeInfo.setPadding(new Insets(0, 10, 0, 0));
-        // so this works its just that it is kinda compressed do we want to just make
-        // the window bigger overall?
-
-        // Image image = new Image(new FileInputStream("./images/"+r.getImgFname()));
-        // recipePic.setImage(image);
-        // recipeIngredients.setText(r.getIngredients());
-        // recipeInstructions.setText(r.getInstructions());
+        recipeInfo.setMaxHeight(450);
     }
 
     // private void seedRecipes() {
@@ -303,6 +297,7 @@ public class Favorites {
 
         // set up Recipes Table
         favoritesTable.setPrefSize(450, 400);
+        favoritesTable.setMaxHeight(450);
         favoritesTable.setPlaceholder(new Label("No favorites yet! Favorite a recipe!"));
         favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
@@ -331,7 +326,7 @@ public class Favorites {
         recipeInfo.setPrefSize(400, 400);
         recipeInfo.setAlignment(Pos.TOP_CENTER);
 
-        center.setPadding(new Insets(10, 0, 10, 0));
+        center.setPadding(new Insets(10, 0, 10, 10));
         center.getChildren().addAll(favoritesTable, recipeInfo);
 
         mainPane.setCenter(center);
