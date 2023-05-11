@@ -32,7 +32,6 @@ public class Main extends Application  {
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   private FavoritesList fList = new FavoritesList();
 
-
     public static void main(String args[]){          
          launch(args);     
     } 
