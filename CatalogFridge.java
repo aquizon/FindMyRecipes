@@ -115,7 +115,7 @@ public class CatalogFridge {
   Label ingredientCatalogLabel = new Label("Ingredient Catalog");
   Label fridgeLabel = new Label("My Fridge");
 
-  Button backButton = new Button("Back");
+  Button backButton = new Button("Back to Categories");
   GridPane mainPane = new GridPane(); // main container
   GridPane foodCategoriesPane = new GridPane();
 
@@ -175,22 +175,33 @@ public class CatalogFridge {
 
   private void setUpFoodCategories() { // then we need to update Food Categories for the counters
     fruitsButton.setPrefSize(275, 150);
-    fruitsButton.setStyle("-fx-background-color: #ED220D;" + "-fx-text-fill: #FFFFFF");
+    fruitsButton.setStyle("-fx-background-color: #ED220D; -fx-text-fill: #FFFFFF;");
+    fruitsButton.setFont(new Font(20));
+    fruitsButton.textAlignmentProperty().set(TextAlignment.CENTER);
     vegetablesButton.setPrefSize(275, 150);
     vegetablesButton.setStyle("-fx-background-color: #60D938;" + "-fx-text-fill: #FFFFFF");
+    vegetablesButton.setFont(new Font(20));
+    vegetablesButton.textAlignmentProperty().set(TextAlignment.CENTER);
     grainsButton.setPrefSize(275, 150);
     grainsButton.setStyle("-fx-background-color: #FEAE00;" + "-fx-text-fill: #FFFFFF");
+    grainsButton.setFont(new Font(20));
+    grainsButton.textAlignmentProperty().set(TextAlignment.CENTER);
     proteinsButton.setPrefSize(275, 150);
     proteinsButton.setStyle("-fx-background-color: #7B2CDF;" + "-fx-text-fill: #FFFFFF");
+    proteinsButton.setFont(new Font(20));
+    proteinsButton.textAlignmentProperty().set(TextAlignment.CENTER);
     dairyButton.setPrefSize(275, 150);
     dairyButton.setStyle("-fx-background-color: #00A1FF;" + "-fx-text-fill: #FFFFFF");
+    dairyButton.setFont(new Font(20));
+    dairyButton.textAlignmentProperty().set(TextAlignment.CENTER);
     otherButton.setPrefSize(275, 150);
     otherButton.setStyle("-fx-background-color: #929292;" + "-fx-text-fill: #FFFFFF");
+    otherButton.setFont(new Font(20));
+    otherButton.textAlignmentProperty().set(TextAlignment.CENTER);
 
     // set up counters for the buttons: need the number of ingredients in each
     // category and the number of ingredients in the fridge for each category
-
-    setCategoryCounts();
+    // System.out.println("set category counts");
 
     foodCategoriesPane.add(fruitsButton, 0, 0);
     foodCategoriesPane.add(vegetablesButton, 1, 0);
@@ -201,7 +212,12 @@ public class CatalogFridge {
   }
 
   private void setCategoryCounts() {
-    fruitsButton.setText("Fruits \n" + fruitsCount + "/" + ingredientCategories.get("Fruits"));
+    fruitsButton.setText("Fruits \n" + fruitsCount + "/" + ingredientCategories.get("Fruits").size());
+    vegetablesButton.setText("Vegetables \n" + vegetablesCount + "/" + ingredientCategories.get("Vegetables").size());
+    grainsButton.setText("Grains \n" + grainsCount + "/" + ingredientCategories.get("Grains").size());
+    proteinsButton.setText("Proteins \n" + proteinsCount + "/" + ingredientCategories.get("Proteins").size());
+    dairyButton.setText("Dairy \n" + dairyCount + "/" + ingredientCategories.get("Dairy").size());
+    otherButton.setText("Other \n" + otherCount + "/" + ingredientCategories.get("Other").size());
 
   }
 
@@ -233,6 +249,7 @@ public class CatalogFridge {
         final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
           private final Button btn = new Button("Add to Fridge");
           {
+            btn.setStyle("-fx-background-color: #006400; -fx-text-fill: white; -fx-background-radius: 30");
             btn.setOnAction((ActionEvent e) -> {
               Ingredient t = getTableView().getItems().get(getIndex());
               addtoFridgeHandler(t);
@@ -288,6 +305,7 @@ public class CatalogFridge {
         final TableCell<Ingredient, String> cell = new TableCell<Ingredient, String>() {
           private final Button btn = new Button("Remove");
           {
+            btn.setStyle("-fx-background-color: #8B0000; -fx-text-fill: white; -fx-background-radius: 30");
             btn.setOnAction((ActionEvent e) -> {
               Ingredient t = getTableView().getItems().get(getIndex());
               removeFromFridgeHandler(t);
@@ -299,6 +317,7 @@ public class CatalogFridge {
             super.updateItem(item, empty);
             if (empty) {
               setGraphic(null);
+
             } else {
               VBox container = new VBox();
               Label name = new Label();
@@ -329,7 +348,13 @@ public class CatalogFridge {
   }
 
   // Handler Methods
+
+  // saves the user's fridge and favorite recipes list
+  // for now just do the fridge
+  // save the name of the dataset file too
   private void saveAndExitButtonHandler() {
+    // need to get FridgeDataNames and favorites
+    // FindMyRecpesFileHandler.saveRecords(null, fridgeDataNames);
     Platform.exit();
   }
 
@@ -381,6 +406,7 @@ public class CatalogFridge {
     currIngredientList = ingredientsData;
     currWindow = "Categories";
     mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
+    setCategoryCounts();
   }
 
   private void addtoFridgeHandler(Ingredient t) {
@@ -388,25 +414,58 @@ public class CatalogFridge {
       fridgeData.add(t);
       fridgeDataNames.add(t.getName());
       // update counters using the ingredient's category
-      switch (t.getCategory()) {
+      String category = t.getCategory();
+      switch (category) {
         case "Fruits":
+          // System.out.println("is a fruit");
           fruitsCount++;
+          break;
         case "Vegetables":
+          // System.out.println("is a vegetable");
           vegetablesCount++;
+          break;
         case "Grains":
+          // System.out.println("is a grain");
           grainsCount++;
+          break;
         case "Proteins":
           proteinsCount++;
+          break;
         case "Dairy":
           dairyCount++;
+          break;
         case "Other":
           otherCount++;
+          break;
       }
     }
   }
 
   private void removeFromFridgeHandler(Ingredient t) {
-    fridgeData.remove(t);
+    // System.out.println("categories of " + t.getName() + ": " + t.getCategory());
+    if (fridgeData.remove(t)) {
+      switch (t.getCategory()) {
+        case "Fruits":
+          fruitsCount--;
+          break;
+        case "Vegetables":
+          vegetablesCount--;
+          break;
+        case "Grains":
+          grainsCount--;
+          break;
+        case "Proteins":
+          proteinsCount--;
+          break;
+        case "Dairy":
+          dairyCount--;
+          break;
+        case "Other":
+          otherCount--;
+          break;
+      }
+      setCategoryCounts();
+    }
     fridgeDataNames.remove(t.getName());
   }
 
@@ -430,6 +489,8 @@ public class CatalogFridge {
 
   public void setIngredientCategories(HashMap<String, ObservableList<Ingredient>> t) {
     ingredientCategories = t;
+    // do counters in here
+    setCategoryCounts();
   }
 
   public void setIngredientsData(ObservableList<Ingredient> t) {
@@ -518,6 +579,9 @@ public class CatalogFridge {
 
     setButtonHandlers();
     mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
+
+    mainPane.setVgap(5);
+    mainPane.setHgap(5);
 
     return new Scene(mainPane, initWidth, initHeight);
 
