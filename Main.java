@@ -41,8 +41,11 @@ public class Main extends Application {
     loadIngredientsFromFile();
     seedFavoritesList();
     Scene cfScene = fridge.generateCatalogFridgeScene();
+    cfScene.getStylesheets().add(getClass().getResource("tableformat.css").toExternalForm());
     Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
+    grScene.getStylesheets().add(getClass().getResource("tableformat.css").toExternalForm());
     Scene frScene = favorites.generateFavoritesScene(fList);
+    frScene.getStylesheets().add(getClass().getResource("tableformat.css").toExternalForm());
     fridge.setIngredientCategories(ingredientCategories);
     fridge.setIngredientsData(ingredientsData);
 

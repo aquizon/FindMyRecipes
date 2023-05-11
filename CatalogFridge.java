@@ -599,7 +599,7 @@ public class CatalogFridge {
 
     //mainPane.setVgap(5);
     //mainPane.setHgap(5);
-
+    
     return new Scene(mainPane, initWidth, initHeight);
 
   }
