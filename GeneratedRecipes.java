@@ -143,6 +143,7 @@ public class GeneratedRecipes {
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, backToFridgeBox, saveAndExitBox);
     mainPane.setBottom(menuBarBox);
+    //menuBarBox.setTranslateY(-20);
   }
 
   private void setRecipesTableColumns() {
@@ -268,6 +269,7 @@ public class GeneratedRecipes {
     recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText,
         instructionBox);
     recipeInfo.setPadding(new Insets(0, 10, 0, 0));
+    recipeInfo.setMaxHeight(450);
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
@@ -313,6 +315,7 @@ public class GeneratedRecipes {
   private void setUpRecipesTable() {
     // set up Recipes Table
     recipesTable.setPrefSize(450, 400);
+    recipesTable.setMaxHeight(450);
     recipesTable.setPlaceholder(new Label("No recipes match your fridge yet... add more ingredients!"));
     recipesTable.setItems(recipesData); // replaced recipesData here with the list of recipes that fit the fridgeData.
     setRecipesTableColumns();
@@ -343,7 +346,7 @@ public class GeneratedRecipes {
     setUpRecipesTable();
 
     // set up Recipe Info Section
-    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); // to fix later
+    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); 
     recipePic = new ImageView(image);
     recipePic.setFitHeight(150);
     recipePic.setFitWidth(150);
@@ -355,6 +358,7 @@ public class GeneratedRecipes {
 
     center.setPadding(new Insets(10, 0, 10, 0));
     center.getChildren().addAll(recipesTable, recipeInfo);
+    recipesTable.setPadding(new Insets(0,0,0,10));
 
     mainPane.setCenter(center);
 

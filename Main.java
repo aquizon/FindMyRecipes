@@ -32,21 +32,6 @@ public class Main extends Application {
   private ObservableList<Ingredient> ingredientsData = FXCollections.observableArrayList();
   private FavoritesList fList = new FavoritesList();
 
-<<<<<<< HEAD
-    public static void main(String args[]){          
-         launch(args);     
-    } 
-         
-    @Override    
-    public void start(Stage stage) throws FileNotFoundException { 
-      loadIngredientsFromFile();
-      seedFavoritesList();
-      Scene cfScene = fridge.generateCatalogFridgeScene();
-      Scene grScene = recipes.generateGeneratedRecipesScene(fList, recipesData);
-      Scene frScene = favorites.generateFavoritesScene(fList);
-      fridge.setIngredientCategories(ingredientCategories);
-      fridge.setIngredientsData(ingredientsData);
-=======
   public static void main(String args[]) {
     launch(args);
   }
@@ -60,7 +45,6 @@ public class Main extends Application {
     Scene frScene = favorites.generateFavoritesScene(fList);
     fridge.setIngredientCategories(ingredientCategories);
     fridge.setIngredientsData(ingredientsData);
->>>>>>> c8a58f880b82a33f3b468d9a8f082c65140a6bbb
 
     // Changes scenes from the catalog fridge scene
     fridge.generateRecipesButton.setOnAction(e -> {
@@ -138,6 +122,4 @@ public class Main extends Application {
           .log(Level.SEVERE, null, ex);
     }
   }
-  // Commented this out temporarily so as to avoid problems but in my thought so
-  // we dont have to grab the recipes all the time we just load it on main?
 }
