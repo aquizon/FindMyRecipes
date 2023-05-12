@@ -67,11 +67,11 @@ Clicking the Save and Quit button stores the user's fridge and favorited recipes
 
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
-1. Using public datasets to populate our database with recipes, ingredients, and images
+1. Using public datasets to populate our database with recipes, ingredients, and images (backend)
 
-   - Modifications/realizations: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
+   - Challenges: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
 
-2. Implementing the algorithm that generates a list of recipes the user can cook for the main functionality of the application
+2. Implementing the algorithm that generates a list of recipes the user can cook for the main functionality of the application (backend)
 
 3. Displaying the images corresponding to the correct recipes and ingredients on the windows
 
@@ -79,7 +79,7 @@ We came across challenges in our implementation that led us to modify our approa
 
 4. Adding a favorite recipes feature that uses a heart-shaped button for the user to easily add/remove recipes from the favorites list
 
-   -Challenges: Despite multiple efforts to sync the state of the heart button between the Generated Recipes scene and the Favorited scene, we were still unable to get it to be fully functional without bugs. Although it seems to work fine when only a single recipe is favorited once additional recipes are added to the favorites, removing it from the favorites list has various unintentional interactions.
+   - Challenges: Despite multiple efforts to sync the state of the heart button between the Generated Recipes scene and the Favorited scene, we were still unable to get it to be fully functional without bugs. Although it seems to work fine when only a single recipe is favorited once additional recipes are added to the favorites, removing it from the favorites list has various unintentional interactions.
 
 5. Displaying a selected recipe's information with good design for the user's readability
 
@@ -88,7 +88,12 @@ We came across challenges in our implementation that led us to modify our approa
 7. Implementing a search bar for the user to quickly find ingredients
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
-   - Modifications: Instead of using a pop-up, we used counters for each of the food categories.
+
+   - Modifications: Instead of using a pop-up, we used counts for each of the food categories that updates as the user adds/removes ingredients to/from the fridge.
+
+9. Saving and loading the user's fridge and favorites list to populate TableViews when the user opens the application again
+
+10. Styling the TableView objects with a CSS file
 
 ## Technical Details and Decisions
 
@@ -118,7 +123,7 @@ This class contains the attributes for a single ingredient:
 
 ### RecipeData.java
 
-This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter.
+This class parses through a CSV containing information on 30 hand-picked recipes from Allrecipes and creates a HashMap that stores a recipe name as the key and a Recipe object as the value. Below is a sample of the spreadsheet our group created that, when exported as a CSV, uses the pipe ("|") as a delimiter, as well as a sample of the CSV.
 
 <p align="center">
    <i>Figure 5: RecipeDataset Sample</i> <br />
