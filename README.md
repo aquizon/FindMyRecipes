@@ -72,21 +72,8 @@ We came across challenges in our implementation that led us to modify our approa
 ## Technical Details and Decisions
 
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
-
-### Recipe.java
-
-This class contains the attributes for a single recipe:
-
-- int id
-- String name
-- ArrayList<String> ingredientsWithQuantities
-- ArrayList<String> ingredientsNoQuantities
-- ArrayList<String> instructions
-- String imgFilename
-- boolean isFavorited
-- heartButton hb
    
-## Ingredient.java
+### Recipe.java
 
 * ID
 * Name
