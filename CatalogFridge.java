@@ -368,7 +368,7 @@ public class CatalogFridge {
   }
 
   private void setButtonHandlers() {
-    saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
+    // saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
     fruitsButton.setOnAction(e -> fruitsButtonHandler());
     vegetablesButton.setOnAction(e -> vegetablesButtonHandler());
     grainsButton.setOnAction(e -> grainsButtonHandler());

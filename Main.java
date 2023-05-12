@@ -75,6 +75,18 @@ public class Main extends Application {
       Platform.exit();
     });
 
+    favorites.saveAndExitButton.setOnAction(e -> {
+      System.out.println("on main");
+      saveData();
+      Platform.exit();
+    });
+
+    recipes.saveAndExitButton.setOnAction(e -> {
+      System.out.println("on main");
+      saveData();
+      Platform.exit();
+    });
+
     // changes scenes from the generatedRecipes scene
     recipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
     recipes.favoritesRecipesButton.getHeart().setOnAction(e -> {
@@ -111,10 +123,14 @@ public class Main extends Application {
     ArrayList<String> fridgeIngredients = fridge.getFridgeDataNames();
     ObservableList<Recipe> favoriteRecipes = favorites.getFavoriteRecipes().getFavoritesList();
 
+    // it saves each element as "Recipe n : <name> is Favorited : true/false" ->
+    // that's the recipe toString function
+
     System.out.println("fridge: " + fridgeIngredients);
+    System.out.println("favorited recipes: " + favoriteRecipes);
 
     FindMyRecipesFileHandler.saveFridge(fridgeIngredients);
-    // FindMyRecipesFileHandler.saveFavorites(favoriteRecipes);
+    FindMyRecipesFileHandler.saveFavorites(favoriteRecipes);
   }
 
   public void loadData() {
@@ -122,10 +138,32 @@ public class Main extends Application {
     // favorited recipes
 
     ArrayList<String> fridgeDataNames = FindMyRecipesFileHandler.readFridgeData();
-    ArrayList<String> favoriteRecipeNames = new ArrayList<>(); // will need to convert to ObservableList<Recipe>
+    ArrayList<String> favoriteRecipeNames = FindMyRecipesFileHandler.readFavoriteNames(); // will need to convert to
+                                                                                          // ObservableList<Recipe>
     FavoritesList fList; // basically favorites.getFavoriteRecipes()
 
     System.out.println("Main fridge: " + fridgeDataNames);
+    System.out.println("Favorites: " + favoriteRecipeNames);
+
+    ObservableList<Recipe> tempFavorites = FXCollections.observableArrayList();
+
+    if (favoriteRecipeNames != null) {
+
+      for (String recipeName : favoriteRecipeNames) {
+        // get the recipe object using recipeMap
+        if (recipeMap.containsKey(recipeName)) {
+          tempFavorites.add(recipeMap.get(recipeName));
+        }
+      }
+    }
+
+    if (tempFavorites != null) {
+      // set favorites list
+      System.out.println("tempFavs: " + tempFavorites);
+      // favorites.getFavoriteRecipes().setFlist(tempFavorites);
+      // favorites.getFavoriteRecipes().printFavoritesList();
+      favorites.setSavedFavorites(tempFavorites);
+    }
 
     ObservableList<Ingredient> tempFridgeData = FXCollections.observableArrayList();
 

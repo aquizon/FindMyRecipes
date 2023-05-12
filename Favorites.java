@@ -105,7 +105,7 @@ public class Favorites {
     Text recipeIngredients = new Text();
     Text recipeInstructions = new Text();
 
-    FavoritesList fList;
+    FavoritesList fList = new FavoritesList();
 
     private Button makeHeartFilledButton(int width, int height) {
         Button heart = new Button();
@@ -217,7 +217,7 @@ public class Favorites {
     }
 
     private void setButtonHandlers() {
-        saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
+        // saveAndExitButton.setOnAction(e -> saveAndExitButtonHandler());
     }
 
     // Handler Methods
@@ -233,11 +233,13 @@ public class Favorites {
             heart.setIsFilled(false);
 
             fList.removeRecipe(selectedRecipe);
+            System.out.println("removed " + selectedRecipe.getName());
             selectedRecipe.setIsFavorited(false);
         } else {
             heart.fillHeart();
             heart.setIsFilled(true);
             selectedRecipe.setIsFavorited(true);
+            System.out.println("added " + selectedRecipe.getName() + " to favorites");
         }
     }
 
@@ -299,6 +301,7 @@ public class Favorites {
         favoritesTable.setPrefSize(450, 400);
         favoritesTable.setMaxHeight(450);
         favoritesTable.setPlaceholder(new Label("No favorites yet! Favorite a recipe!"));
+        System.out.println("generating favorites scene with fList: " + fList.getFavoritesList());
         favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
 
@@ -314,7 +317,7 @@ public class Favorites {
         });
 
         // set up Recipe Info Section
-        Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); 
+        Image image = new Image(new FileInputStream("./images/GenerateRecipes.png"));
 
         recipePic = new ImageView(image);
         recipePic.setFitHeight(125);
@@ -342,4 +345,14 @@ public class Favorites {
     public FavoritesList getFavoriteRecipes() {
         return fList;
     }
+
+    public void setSavedFavorites(ObservableList<Recipe> favorites) {
+        for (Recipe recipe : favorites) {
+            recipe.setIsFavorited(true);
+        }
+        System.out.println("setting fList on favorites to: " + favorites);
+        fList.setFlist(favorites);
+
+    }
+
 }

@@ -143,7 +143,7 @@ public class GeneratedRecipes {
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, backToFridgeBox, saveAndExitBox);
     mainPane.setBottom(menuBarBox);
-    //menuBarBox.setTranslateY(-20);
+    // menuBarBox.setTranslateY(-20);
   }
 
   private void setRecipesTableColumns() {
@@ -269,7 +269,7 @@ public class GeneratedRecipes {
     recipeInfo.getChildren().addAll(recipePic, recipeName, ingredientText, ingredientBox, instructionsText,
         instructionBox);
     recipeInfo.setPadding(new Insets(0, 10, 0, 0));
-    //recipeInfo.setMaxHeight(450);
+    // recipeInfo.setMaxHeight(450);
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
@@ -279,11 +279,13 @@ public class GeneratedRecipes {
       heart.setIsFilled(false);
       fList.removeRecipe(selectedRecipe);
       selectedRecipe.setIsFavorited(false);
+      System.out.println("removed " + selectedRecipe.getName() + " from generated recipes");
     } else {
       heart.fillHeart();
       heart.setIsFilled(true);
       fList.addRecipe(selectedRecipe);
       selectedRecipe.setIsFavorited(true);
+      System.out.println("added " + selectedRecipe.getName() + " to fList");
     }
   }
 
@@ -346,7 +348,7 @@ public class GeneratedRecipes {
     setUpRecipesTable();
 
     // set up Recipe Info Section
-    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); 
+    Image image = new Image(new FileInputStream("./images/GenerateRecipes.png"));
     recipePic = new ImageView(image);
     recipePic.setFitHeight(150);
     recipePic.setFitWidth(150);
@@ -359,7 +361,7 @@ public class GeneratedRecipes {
 
     center.setPadding(new Insets(10, 0, 10, 10));
     center.getChildren().addAll(recipesTable, recipeInfo);
-    //recipesTable.setPadding(new Insets(0,0,0,10));
+    // recipesTable.setPadding(new Insets(0,0,0,10));
 
     mainPane.setCenter(center);
 

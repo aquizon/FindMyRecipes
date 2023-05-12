@@ -20,5 +20,15 @@ public class FavoritesList {
         favoritesList.remove(r);
     }
 
-}
+    public void setFlist(ObservableList<Recipe> favorites) {
+        System.out.println("favorites on flist: " + favorites);
+        favoritesList = favorites;
+    }
 
+    public void printFavoritesList() {
+        for (Recipe recipe : favoritesList) {
+            System.out.print(recipe.getName() + ", ");
+        }
+    }
+
+}

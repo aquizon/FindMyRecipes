@@ -65,6 +65,10 @@ public class Recipe {
         return isFavorited;
     }
 
+    public void setIsFavorited(Boolean bool) {
+        isFavorited = bool;
+    }
+
     @Override
     public String toString() {
         return "Recipe " + id + ": " + name + " is Favorited: " + isFavorited;
