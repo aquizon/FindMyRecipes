@@ -48,8 +48,9 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) throws FileNotFoundException {
     loadIngredientsFromFile();
-    loadData(); // this updates the fridge and favorites data if there is anything in the data
-                // file
+    loadData(); // this updates the fridge and favorites data if there is
+    // anything in the data
+    // file
     // UPDATE COUNTS!!!
     seedFavoritesList();
     Scene cfScene = fridge.generateCatalogFridgeScene();
@@ -113,7 +114,7 @@ public class Main extends Application {
     System.out.println("fridge: " + fridgeIngredients);
 
     FindMyRecipesFileHandler.saveFridge(fridgeIngredients);
-    FindMyRecipesFileHandler.saveFavorites(favoriteRecipes);
+    // FindMyRecipesFileHandler.saveFavorites(favoriteRecipes);
   }
 
   public void loadData() {
@@ -124,52 +125,57 @@ public class Main extends Application {
     ArrayList<String> favoriteRecipeNames = new ArrayList<>(); // will need to convert to ObservableList<Recipe>
     FavoritesList fList; // basically favorites.getFavoriteRecipes()
 
-    // System.out.println("Main fridge: " + fridgeDataNames);
+    System.out.println("Main fridge: " + fridgeDataNames);
 
     ObservableList<Ingredient> tempFridgeData = FXCollections.observableArrayList();
 
-    for (String ingredientName : fridgeDataNames) {
-      // access ingredientData
-      for (Ingredient ingredient : ingredientsData) {
-        if (ingredient.getName().equals(ingredientName)) {
-          tempFridgeData.add(ingredient);
+    if (fridgeDataNames != null) {
 
-        }
-      }
-    }
+      for (String ingredientName : fridgeDataNames) {
+        // access ingredientData
+        for (Ingredient ingredient : ingredientsData) {
+          if (ingredient.getName().equals(ingredientName)) {
+            tempFridgeData.add(ingredient);
 
-    // get the category and update count
-    for (Ingredient ingredient : tempFridgeData) {
-      // iterate through each category list to identify current ingredient's category
-      // and update count
-      for (Ingredient categoryIngredient : ingredientCategories.get("Fruits")) {
-        if (ingredient.getName().equals(categoryIngredient.getName())) {
-          fruitsCount++;
+          }
         }
       }
-      for (Ingredient categoryIngredient : ingredientCategories.get("Vegetables")) {
-        if (ingredient.getName().equals(categoryIngredient.getName())) {
-          vegetablesCount++;
+
+      // System.out.println("updated tempFridgeData");
+
+      // get the category and update count
+      for (Ingredient ingredient : tempFridgeData) {
+        // iterate through each category list to identify current ingredient's category
+        // and update count
+        for (Ingredient categoryIngredient : ingredientCategories.get("Fruits")) {
+          if (ingredient.getName().equals(categoryIngredient.getName())) {
+            fruitsCount++;
+          }
         }
-      }
-      for (Ingredient categoryIngredient : ingredientCategories.get("Grains")) {
-        if (ingredient.getName().equals(categoryIngredient.getName())) {
-          grainsCount++;
+        for (Ingredient categoryIngredient : ingredientCategories.get("Vegetables")) {
+          if (ingredient.getName().equals(categoryIngredient.getName())) {
+            vegetablesCount++;
+          }
         }
-      }
-      for (Ingredient categoryIngredient : ingredientCategories.get("Proteins")) {
-        if (ingredient.getName().equals(categoryIngredient.getName())) {
-          proteinsCount++;
+        for (Ingredient categoryIngredient : ingredientCategories.get("Grains")) {
+          if (ingredient.getName().equals(categoryIngredient.getName())) {
+            grainsCount++;
+          }
         }
-      }
-      for (Ingredient categoryIngredient : ingredientCategories.get("Dairy")) {
-        if (ingredient.getName().equals(categoryIngredient.getName())) {
-          dairyCount++;
+        for (Ingredient categoryIngredient : ingredientCategories.get("Proteins")) {
+          if (ingredient.getName().equals(categoryIngredient.getName())) {
+            proteinsCount++;
+          }
         }
-      }
-      for (Ingredient categoryIngredient : ingredientCategories.get("Other")) {
-        if (ingredient.getName().equals(categoryIngredient.getName())) {
-          otherCount++;
+        for (Ingredient categoryIngredient : ingredientCategories.get("Dairy")) {
+          if (ingredient.getName().equals(categoryIngredient.getName())) {
+            dairyCount++;
+          }
+        }
+        for (Ingredient categoryIngredient : ingredientCategories.get("Other")) {
+          if (ingredient.getName().equals(categoryIngredient.getName())) {
+            otherCount++;
+          }
         }
       }
     }
@@ -182,8 +188,11 @@ public class Main extends Application {
     fridge.setOtherCount(otherCount);
 
     // set fridgeData and fridgeDataNames in CatalogFridge
-    fridge.setFridgeData(tempFridgeData);
-    fridge.setFridgeDataNames(fridgeDataNames);
+    if (tempFridgeData != null) {
+      fridge.setFridgeData(tempFridgeData);
+      fridge.setFridgeDataNames(fridgeDataNames);
+    }
+
   }
 
   private void loadIngredientsFromFile() {

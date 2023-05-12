@@ -38,9 +38,12 @@ public class FindMyRecipesFileHandler {
       // same)
       // writing all the fridge ingredients to file
       // write number of ingredients (to be used for reading)
-      fridgeWriter.writeInt(fridgeDataNames.size());
-      for (String ingredient : fridgeDataNames) {
-        fridgeWriter.writeUTF(ingredient);
+      if (fridgeDataNames != null) {
+        fridgeWriter.writeInt(fridgeDataNames.size());
+        for (String ingredient : fridgeDataNames) {
+          fridgeWriter.writeUTF(ingredient);
+        }
+
       }
       fridgeWriter.flush();
       fridgeWriter.close();
@@ -79,6 +82,7 @@ public class FindMyRecipesFileHandler {
       // ingredientFname
       // num ingredients in fridge
       // all the ingredients in fridge
+      System.out.println("entered first try");
 
       FileInputStream userFile = new FileInputStream("fridge.dat");
       DataInputStream userReader = new DataInputStream(userFile);
@@ -100,16 +104,17 @@ public class FindMyRecipesFileHandler {
         }
 
         System.out.println("handler fridge: " + fridgeDataNames);
+        userReader.close();
         return fridgeDataNames;
       } catch (Exception e) {
 
       }
 
     } catch (IOException ioe) {
-      System.out.println("Error reading file");
+      System.out.println("Error reading file: reading fridge");
     }
 
-    return null;
+    return fridgeDataNames;
   }
 
   public static ArrayList<String> readFavoriteNames() {
