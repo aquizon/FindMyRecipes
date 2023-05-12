@@ -88,12 +88,6 @@ The implementation of our application involves the creation of multiple classes 
 
 This class contains the attributes for a single ingredient:
 
-- int id
-- String name
-- String category
-- ImageView img
-- # ImageView imgFridge
-
 * ID
 * Name
 * Category
