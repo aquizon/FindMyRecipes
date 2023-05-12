@@ -65,37 +65,53 @@ Clicking on the Favorite Recipes button switches to a window with an identical l
 
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
 
-## Objectives: Challenges/Modifications/Progress
+## Objectives
 
 We came across challenges in our implementation that led us to modify our approach to a few of our objectives. Below is our original list of objectives and our modifications/realizations:
 
 1. Using public datasets to populate our database with recipes, ingredients, and images (backend)
 
    - Challenges: While we found large datasets we could use for our project, we decided to instead work with a smaller dataset that we manually created because our priority for this project is to have a proof of concept that we can scale in the long term.
+   - Worked on by: Allen, Dan, Kate
 
 2. Implementing the algorithm that generates a list of recipes the user can cook for the main functionality of the application (backend)
+
+   - Worked on by: Allen, Dan
 
 3. Displaying the images corresponding to the correct recipes and ingredients on the windows
 
    - Challenges: With the method we chose to handle the images, it costs a significant amount of time to load each image and then assign them to an ingredient or recipe class instance. Further modifications may be helpful especially if the dataset were to grow larger.
+   - Worked on by: Dan
 
 4. Adding a favorite recipes feature that uses a heart-shaped button for the user to easily add/remove recipes from the favorites list
 
    - Challenges: Despite multiple efforts to sync the state of the heart button between the Generated Recipes scene and the Favorited scene, we were still unable to get it to be fully functional without bugs. Although it seems to work fine when only a single recipe is favorited once additional recipes are added to the favorites, removing it from the favorites list has various unintentional interactions.
+   - Worked on by: Allen
 
 5. Displaying a selected recipe's information with good design for the user's readability
 
+   - Worked on by: Dan
+
 6. Switching scenes/part of a scene based on the user's interaction with the application
 
+   - Worked on by: Allen
+
 7. Implementing a search bar for the user to quickly find ingredients
+
+   - Worked on by: Allen
 
 8. Adding a pop-up that indicates whether a user's action was successfully done
 
    - Modifications: Instead of using a pop-up, we used counts for each of the food categories that updates as the user adds/removes ingredients to/from the fridge.
+   - Worked on by: Kate
 
 9. Saving and loading the user's fridge and favorites list to populate TableViews when the user opens the application again
 
+   - Worked on by: Kate
+
 10. Styling the TableView objects with a CSS file
+
+- Worked on by: Dan
 
 ## Technical Details and Decisions
 
@@ -224,7 +240,5 @@ As we worked on this project, we learned more about features of JavaFX, specific
 - [Custom shaped buttons](https://genuinecoder.com/javafx-buttons-with-custom-shape/#:~:text=JavaFX%20allows%20setting%20custom%20shapes,by%20giving%20proper%20SVG%20path.)
 
 - [Table Styling] - (https://gist.github.com/kinsleykajiva/ac452bc8280bc52be384e9af98f2ba0c)
-   
 - [Adding an image to the table] - (https://stackoverflow.com/questions/22844042/inserting-images-into-a-tableview-javafx-images-not-displayed)
-   
 - [Color References] - (https://www.canva.com/colors/color-wheel/)
