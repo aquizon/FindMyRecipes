@@ -74,15 +74,14 @@ We came across challenges in our implementation that led us to modify our approa
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
    
 ### Recipe.java
-
-* ID
-* Name
-* List of ingredients with quantities (to be displayed in the Generate Recipes Window)
-* List of ingredients without quantities (to be used in the Generate Recipes algorithm)
-* List of instructions
-* Image filename
-* Boolean indicating if the recipe was favorited
-* HeartButton
+The recipe class has various variables. 
+* Recipe ID - This is not displayed directly displayed and instead used to make sorting through the recipes easier. 
+* Recipe Name - Self explanatory but is the name of the recipe to be displayed in the tableviews.
+* Ingredients with the quantities - this is used in order to be displayed on the information screen when a recipe is selected in the favorites or generated recipes scenes. Stored as an arraylist with each value being an individual ingredient.
+* Ingredients without the quantities - This is not displayed but instead used in the algorithm to generate applicable recipes based upon the ingredients in the fridge. Also an arraylist with each value being an ingredient. 
+* Recipe Instructions - Stored as an arraylist, each step of the recipe is a value in the arraylist. Displayed in the information screens.  
+* Favorited - A boolean that stores if the recipe was favorited or not. 
+* HeartButton - Each recipe will have a custom heartbutton which state is given by the favorited boolean. 
 
 ### Ingredient.java
 
