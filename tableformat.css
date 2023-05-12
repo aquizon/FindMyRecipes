@@ -8,12 +8,11 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #6e6e6e; 
     -fx-text-background-color:  #316cec;
  }
 
 .table-view .column-header-background { 
-    -fx-background-color: linear-gradient(to bottom, #26f05944, #09ff6344);
+    -fx-background-color: linear-gradient(to bottom, #FFC1C2, #FFFEBB);
     -fx-background-radius: 7px 7px 0px 0px;
 }
 
