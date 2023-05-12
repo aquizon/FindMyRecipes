@@ -46,21 +46,21 @@ There is a search bar above the ingredient catalog for the user to easily find a
 
 <p align="center">
    <i>Figure 2: Selecting "Fruits" on the Main Window</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.002.jpeg" width="500">
+   <img src="./images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.002.jpeg" width="500">
 </p>
 
 Clicking the Generate Recipes button switches windows to display a list of recipes that the user can cook based on the ingredients within the user's fridge. Selecting one of the recipes reveals the recipe information, and clicking the heart adds the recipe to the user's list of favorite recipes. Refer to Figure 3 below.
 
 <p align="center">
    <i>Figure 3: Generate Recipes Window</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.003.jpeg" width="500">
+   <img src="./images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.003.jpeg" width="500">
 </p>
 
 Clicking on the Favorite Recipes button switches to a window with an identical layout to the Generate Recipes window, however only the recipes that the user favorited are displayed as shown in Figure 4. The user can remove a recipe from the favorites list by clicking the heart. The Back to Fridge button takes the user back to the main window.
 
 <p align="center">
    <i>Figure 4: Favorite Recipes Window</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.004.jpeg" width="500">
+   <img src="./images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.004.jpeg" width="500">
 </p>
 
 Clicking the Save and Quit button stores the user's fridge and favorited recipes in an external file which can be used when the user opens the application again.
@@ -145,7 +145,7 @@ This class parses through a CSV containing information on 30 hand-picked recipes
 
 <p align="center">
    <i>Figure 5: RecipeDataset Sample</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeDatasetSample.png" width="700">
+   <img src="./images/RecipeDatasetSample.png" width="700">
 </p>
 
 ```
@@ -159,7 +159,7 @@ A helper function is used to print all of the ingredients listed in the spreadsh
 
 <p align="center">
    <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
+   <img src="./images/RecipeIngredientsDataset.png" width="700">
 </p>   
   
 ### CatalogFridge.java
@@ -178,7 +178,7 @@ The bottom menu bar are three buttons that will redirect the user to either the 
 
 <p align="center">
    <i>Figure 7: Catalog Fridge Display</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/CatalogFridge.png" width="700">
+   <img src="./images/FindMyRecipes%20Progress%20Images/CatalogFridge.png" width="700">
 </p>
 
 ### GeneratedRecipes.java
@@ -195,7 +195,7 @@ The bottom menu is nearly identical to the menu bar in Catalog Fridge except the
 
 <p align="center"> 
    <i>Figure 8: Generated Recipes Display</i> <br /> 
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/GeneratedRecipes.png" width="700">
+   <img src="./images/FindMyRecipes%20Progress%20Images/GeneratedRecipes.png" width="700">
 
 ### Favorites.java
 
@@ -211,7 +211,7 @@ The menu bar here is also the same. In comparison to the menu bar in the Generat
 
 <p align="center"> 
    <i>Figure 9: Favorite Recipes Display</i> <br /> 
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/Favorites.png" width="700">
+   <img src="./images/FindMyRecipes%20Progress%20Images/Favorites.png" width="700">
 
 ### FavoritesList.java
 
