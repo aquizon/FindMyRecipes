@@ -70,7 +70,7 @@ public class Main extends Application {
     fridge.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
 
     fridge.saveAndExitButton.setOnAction(e -> {
-      System.out.println("on main");
+      //System.out.println("on main");
       saveData();
       Platform.exit();
     });
@@ -94,11 +94,23 @@ public class Main extends Application {
       stage.setScene(frScene);
     });
 
+    recipes.saveAndExitButton.setOnAction(e -> {
+      //System.out.println("on main");
+      saveData();
+      Platform.exit();
+    });
+
+
     // changes scenes from the favorites scene
     favorites.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
     favorites.generateRecipesButton.setOnAction(e -> {
       recipes.fillRecipesData(recipeMap, recipesData, fridge.getFridgeDataNames());
       stage.setScene(grScene);
+    });
+    recipes.saveAndExitButton.setOnAction(e -> {
+      //System.out.println("on main");
+      saveData();
+      Platform.exit();
     });
 
     stage.setScene(cfScene);
