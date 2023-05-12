@@ -189,3 +189,25 @@ The menu bar here is also the same. In comparison to the menu bar in the Generat
 <p align="center"> 
    <i>Figure 9: Favorite Recipes Display</i> <br /> 
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/Favorites.png" width="700">
+
+### FavoritesList.java
+
+A class containing an ObservableList of Recipe objects used in Favorites.java, GeneratedRecipes.java, and Main.java. An instance of FavoritesList is passed between these classes to ensure that the same list of favorited recipes are used in different scenes.
+
+### FindMyRecipesFileHandler.java
+
+Contains methods that save and load the user's fridge and favorite recipes. Main.java uses the returned values from the load method to update the structures that represent the user's saved information.
+
+## Reflections
+
+## References
+
+- [Search bar implementation](https://edencoding.com/search-bar-dynamic-filtering/)
+
+- [Adding buttons to a TableView](https://stackoverflow.com/questions/29489366/how-to-add-button-in-javafx-table-view)
+
+- [Allrecipes (source used to create our small dataset)](https://www.allrecipes.com/)
+
+- [Adding an image to a button](https://www.tutorialspoint.com/how-to-add-an-image-to-a-button-action-in-javafx)
+
+- [Custom shaped buttons](https://genuinecoder.com/javafx-buttons-with-custom-shape/#:~:text=JavaFX%20allows%20setting%20custom%20shapes,by%20giving%20proper%20SVG%20path.)
