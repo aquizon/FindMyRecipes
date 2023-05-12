@@ -354,6 +354,7 @@ public class GeneratedRecipes {
     recipeInstructions.setText("Recipe Instructions Here");
     recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);
     recipeInfo.setPrefSize(400, 400);
+    recipeInfo.setMaxHeight(450);
     recipeInfo.setAlignment(Pos.TOP_CENTER);
 
     center.setPadding(new Insets(10, 0, 10, 10));

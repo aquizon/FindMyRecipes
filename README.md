@@ -14,6 +14,8 @@ This application generates a list of recipes that the user can cook based on the
 
 ## Running the Project
 
+
+
 ## Layout and Visual Elements
 
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
@@ -72,44 +74,26 @@ We came across challenges in our implementation that led us to modify our approa
 ## Technical Details and Decisions
 
 The implementation of our application involves the creation of multiple classes and information/images found online. The features of our technical design and the description of our process are listed below.
-
+   
 ### Recipe.java
-
-This class contains the attributes for a single recipe:
-
-- int id
-- String name
-- ArrayList<String> ingredientsWithQuantities
-- ArrayList<String> ingredientsNoQuantities
-- ArrayList<String> instructions
-- String imgFilename
-- boolean isFavorited
-- # heartButton hb
-
-* ID
-* Name
-* List of ingredients with quantities (to be displayed in the Generate Recipes Window)
-* List of ingredients without quantities (to be used in the Generate Recipes algorithm)
-* List of instructions
-* Image filename
-* Boolean indicating if the recipe was favorited
-* HeartButton
+The recipe class has various variables. 
+* <ins>**Recipe ID**</ins> - A unique identifier token for each Recipe. This is not displayed directly displayed and instead used to make sorting through the recipes easier. 
+* <ins>**Recipe Name**</ins> - Self explanatory but is the name of the recipe to be displayed in the tableviews.
+* <ins>**Ingredients with the quantities**</ins> - this is used in order to be displayed on the information screen when a recipe is selected in the favorites or generated recipes scenes. Stored as an arraylist with each value being an individual ingredient.
+* <ins>**Ingredients without the quantities**</ins> - This is not displayed but instead used in the algorithm to generate applicable recipes based upon the ingredients in the fridge. Also an arraylist with each value being an ingredient. 
+* <ins>**Recipe Instructions**</ins> - Stored as an arraylist, each step of the recipe is a value in the arraylist. Displayed in the information screens.  
+* <ins>**Favorited**</ins> - A boolean that stores if the recipe was favorited or not. 
+* <ins>**HeartButton**</ins> - Each recipe will have a custom heartbutton which state is given by the favorited boolean. 
 
 ### Ingredient.java
 
 This class contains the attributes for a single ingredient:
 
-- int id
-- String name
-- String category
-- ImageView img
-- # ImageView imgFridge
-
-* ID
-* Name
-* Category
-* ImageView 1 (for the catalog)
-* ImageView 2 (for the fridge)
+* <ins>**ID**</ins> - Similar to the ID for each recipe, each ingredient also has a unqiue identified token that is not displayed directly. 
+* <ins>**Name**</ins> - All ingredients have a name associated to them. This can be used to search for an ingredient in the CatalogFridge scene. 
+* <ins>**Category**</ins> - The ingredients are sorted into certain food categories. These being "Fruits", "Vegetables", "Grains", "Proteins", "Dairy", and "Other". 
+* <ins>**ImageView 1**</ins> - The first imageview associated with an ingredient is used to display an image of the ingredient to the ingredient catalog. 
+* <ins>**ImageView 2**</ins> - An identical imageview to the first one. I am under the belief that a single imageview can only be displayed at one place at a time so the second is used to display an image when the ingredient is added to the fridge. 
 
 ### RecipeData.java
 
@@ -128,9 +112,6 @@ ID|Title|List of Ingredients|Instructions
 
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
 
-Figure 6: RecipeIngredientsDataset Sample
-<img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
-
 <p align="center">
    <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
@@ -140,14 +121,24 @@ Figure 6: RecipeIngredientsDataset Sample
 
 A class containing the stage and scene of the Catalog/Fridge window.
 
-(add details on data structures used, other attributes)
+
+
+<p align="center">
+   <i>Figure 7: Catalog Fridge Display</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/CatalogFridge.png" width="700">
+</p>   
 
 ### GeneratedRecipes.java
 
 A class containing the stage and scene of the Generated Recipes window.
-
-(add details on data structures used, other attributes)
+<p align="center"> 
+   <i>Figure 8: Generated Recipes Display</i> <br /> 
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/GeneratedRecipes.png" width="700"> 
 
 ### Favorites.java
 
 A class containing the stage and scene of the Favorite Recipes window.
+
+<p align="center"> 
+   <i>Figure 9: Favorite Recipes Display</i> <br /> 
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/Favorites.png" width="700"> 
