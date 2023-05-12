@@ -222,3 +222,9 @@ As we worked on this project, we learned more about features of JavaFX, specific
 - [Adding an image to a button](https://www.tutorialspoint.com/how-to-add-an-image-to-a-button-action-in-javafx)
 
 - [Custom shaped buttons](https://genuinecoder.com/javafx-buttons-with-custom-shape/#:~:text=JavaFX%20allows%20setting%20custom%20shapes,by%20giving%20proper%20SVG%20path.)
+
+- [Table Styling] - (https://gist.github.com/kinsleykajiva/ac452bc8280bc52be384e9af98f2ba0c)
+   
+- [Adding an image to the table] - (https://stackoverflow.com/questions/22844042/inserting-images-into-a-tableview-javafx-images-not-displayed)
+   
+- [Color References] - (https://www.canva.com/colors/color-wheel/)
