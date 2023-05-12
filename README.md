@@ -87,11 +87,11 @@ The recipe class has various variables.
 
 This class contains the attributes for a single ingredient:
 
-* <ins>**ID</ins> - Similar to the ID for each recipe, each ingredient also has a unqiue identified token that is not displayed directly. 
+* <ins>**ID**</ins> - Similar to the ID for each recipe, each ingredient also has a unqiue identified token that is not displayed directly. 
 * <ins>**Name**</ins> - All ingredients have a name associated to them. This can be used to search for an ingredient in the CatalogFridge scene. 
 * <ins>**Category**</ins> - The ingredients are sorted into certain food categories. These being "Fruits", "Vegetables", "Grains", "Proteins", "Dairy", and "Other". 
-* <ins>**ImageView 1</ins> - The first imageview associated with an ingredient is used to display an image of the ingredient to the ingredient catalog. 
-* <ins>**ImageView 2</ins> - An identical imageview to the first one. I am under the belief that a single imageview can only be displayed at one place at a time so the second is used to display an image when the ingredient is added to the fridge. 
+* <ins>**ImageView 1**</ins> - The first imageview associated with an ingredient is used to display an image of the ingredient to the ingredient catalog. 
+* <ins>**ImageView 2**</ins> - An identical imageview to the first one. I am under the belief that a single imageview can only be displayed at one place at a time so the second is used to display an image when the ingredient is added to the fridge. 
 
 ### RecipeData.java
 
