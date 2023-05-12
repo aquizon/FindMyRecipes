@@ -1,6 +1,7 @@
 .table-view {
     -fx-table-header-border-color: transparent;
     -fx-table-cell-border-color: transparent;
+    -fx-border-color: #ffeede;
 }
 
 .table-row-cell { 
@@ -8,7 +9,8 @@
 }
 
 .table-row-cell:selected {
-    -fx-text-background-color:  #316cec;
+    -fx-text-background-color:  #31baec;
+    -fx-background-color: #FFFEBB;
  }
 
 .table-view .column-header-background { 
@@ -49,6 +51,18 @@
     -fx-border-insets: 10;
 }
 
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: #DEFFEE;
+}
 
-
-
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: linear-gradient(to bottom, #FFC1C2, #FFFEBB);
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right, #FFC1C2, #FFFEBB);
+}
