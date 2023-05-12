@@ -314,9 +314,8 @@ public class Favorites {
         });
 
         // set up Recipe Info Section
-        Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); // this png needs to be replaced
-                                                                                      // with the heart but I don't have
-                                                                                      // the png for that...
+        Image image = new Image(new FileInputStream("./images/GenerateRecipes.png")); 
+
         recipePic = new ImageView(image);
         recipePic.setFitHeight(125);
         recipePic.setFitWidth(125);
