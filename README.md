@@ -75,7 +75,7 @@ The implementation of our application involves the creation of multiple classes 
    
 ### Recipe.java
 The recipe class has various variables. 
-* <u>**Recipe ID**</u> - This is not displayed directly displayed and instead used to make sorting through the recipes easier. 
+* <ins>**Recipe ID**</ins> - This is not displayed directly displayed and instead used to make sorting through the recipes easier. 
 * <u>**Recipe Name**</u> - Self explanatory but is the name of the recipe to be displayed in the tableviews.
 * <u>**Ingredients with the quantities**</u> - this is used in order to be displayed on the information screen when a recipe is selected in the favorites or generated recipes scenes. Stored as an arraylist with each value being an individual ingredient.
 * <u>**Ingredients without the quantities**</u> - This is not displayed but instead used in the algorithm to generate applicable recipes based upon the ingredients in the fridge. Also an arraylist with each value being an ingredient. 
