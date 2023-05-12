@@ -122,7 +122,7 @@ This class parses through a CSV containing information on 30 hand-picked recipes
 
 <p align="center">
    <i>Figure 5: RecipeDataset Sample</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeDatasetStample.png" width="700">
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeDatasetSample.png" width="700">
 </p>
 
 ```
