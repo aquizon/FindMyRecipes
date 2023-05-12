@@ -84,7 +84,9 @@ This class contains the attributes for a single recipe:
 - ArrayList<String> instructions
 - String imgFilename
 - boolean isFavorited
-- # heartButton hb
+- heartButton hb
+   
+## Ingredient.java
 
 * ID
 * Name
