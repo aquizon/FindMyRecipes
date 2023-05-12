@@ -228,18 +228,22 @@ public class Favorites {
     }
 
     private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
+        if (selectedRecipe.getIsFavorited()) {
+            heart.setIsFilled(true);
+        }
+
         if (heart.getIsFilled()) {
             heart.emptyHeart();
             heart.setIsFilled(false);
 
             fList.removeRecipe(selectedRecipe);
-            System.out.println("removed " + selectedRecipe.getName());
+            // System.out.println("removed " + selectedRecipe.getName());
             selectedRecipe.setIsFavorited(false);
         } else {
             heart.fillHeart();
             heart.setIsFilled(true);
             selectedRecipe.setIsFavorited(true);
-            System.out.println("added " + selectedRecipe.getName() + " to favorites");
+            // System.out.println("added " + selectedRecipe.getName() + " to favorites");
         }
     }
 
@@ -301,7 +305,8 @@ public class Favorites {
         favoritesTable.setPrefSize(450, 400);
         favoritesTable.setMaxHeight(450);
         favoritesTable.setPlaceholder(new Label("No favorites yet! Favorite a recipe!"));
-        System.out.println("generating favorites scene with fList: " + fList.getFavoritesList());
+        // System.out.println("generating favorites scene with fList: " +
+        // fList.getFavoritesList());
         favoritesTable.setItems(fList.getFavoritesList());
         setFavoritesTableColumns();
 
@@ -350,7 +355,7 @@ public class Favorites {
         for (Recipe recipe : favorites) {
             recipe.setIsFavorited(true);
         }
-        System.out.println("setting fList on favorites to: " + favorites);
+        // System.out.println("setting fList on favorites to: " + favorites);
         fList.setFlist(favorites);
 
     }

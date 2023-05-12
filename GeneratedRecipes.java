@@ -191,6 +191,7 @@ public class GeneratedRecipes {
           {
             btn.setOnAction((ActionEvent e) -> {
               Recipe selectedRecipe = getTableView().getItems().get(getIndex());
+
               clickHeartButtonHandler(hb, selectedRecipe);
 
             });
@@ -273,7 +274,14 @@ public class GeneratedRecipes {
   }
 
   private void clickHeartButtonHandler(heartButton heart, Recipe selectedRecipe) {
-    // System.out.println(selectedRecipe);
+    if (selectedRecipe.getIsFavorited()) {
+      heart.setIsFilled(true);
+    }
+
+    System.out
+        .println(selectedRecipe.getName() + " isFavorited is set to " + selectedRecipe.getIsFavorited()
+            + " and isFilled is set to " + heart.getIsFilled());
+
     if (heart.getIsFilled()) {
       heart.emptyHeart();
       heart.setIsFilled(false);
