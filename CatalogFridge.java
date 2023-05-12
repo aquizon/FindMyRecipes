@@ -488,12 +488,12 @@ public class CatalogFridge {
     mainPane.add(backButton, 0, 3);
     searchBox.setTranslateX(10);
     backButton.setTranslateX(10);
-    //backButton.setPadding(new Insets(0,0,0,10));
-    //mainPane.setHalignment(backButton, HPos.RIGHT);
+    // backButton.setPadding(new Insets(0,0,0,10));
+    // mainPane.setHalignment(backButton, HPos.RIGHT);
     mainPane.add(ingredientsTable, 0, 4, 2, 2);
     ingredientsTable.setTranslateX(10);
-    //ingredientsTable.setPadding(new Insets(0,0,0,10));
-    //mainPane.setHalignment(ingredientsTable, HPos.RIGHT);
+    // ingredientsTable.setPadding(new Insets(0,0,0,10));
+    // mainPane.setHalignment(ingredientsTable, HPos.RIGHT);
     fridgeTable.setTranslateX(10);
   }
 
@@ -549,13 +549,18 @@ public class CatalogFridge {
     return fridgeDataNames;
   }
 
+  public void setFridgeData() {
+
+  }
+
   public Scene generateCatalogFridgeScene() {
     currWindow = "Categories";
     setUpMenuBarBox();
     setSearchBarHandler();
     mainPane.setHgap(10);
     mainPane.setVgap(15);
-    //mainPane.setTranslateX(10); uh it at least moves it over but now its disgusting. 
+    // mainPane.setTranslateX(10); uh it at least moves it over but now its
+    // disgusting.
     // gridpane.add(Node, colIndex, rowIndex, colSpan, rowSpan)
     mainPane.add(title, 0, 0, 3, 1);
     mainPane.setHalignment(title, HPos.CENTER);
@@ -569,7 +574,7 @@ public class CatalogFridge {
 
     searchBox.setPromptText("Search for Ingredient: ");
     searchBox.setMaxWidth(550);
-    //searchBox.setPadding(new Insets(5,0,5,5));
+    // searchBox.setPadding(new Insets(5,0,5,5));
     mainPane.add(searchBox, 0, 2, 2, 1);
     mainPane.setHalignment(searchBox, HPos.RIGHT);
 
@@ -578,9 +583,9 @@ public class CatalogFridge {
     fridgeTable.setPlaceholder(new Label("Your fridge is empty!"));
 
     setUpFoodCategories();
-    foodCategoriesPane.setPadding(new Insets(0,0,0,10));
+    foodCategoriesPane.setPadding(new Insets(0, 0, 0, 10));
     mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
-    //mainPane.setHalignment(foodCategoriesPane, HPos.RIGHT);
+    // mainPane.setHalignment(foodCategoriesPane, HPos.RIGHT);
 
     // set up Fridge Table
     fridgeTable.setItems(fridgeData);
@@ -588,7 +593,7 @@ public class CatalogFridge {
 
     // set up Ingredients Table
     ingredientsTable.setPrefSize(550, 400);
-    //ingredientsTable.setPadding(new Insets(0,0,0,10));
+    // ingredientsTable.setPadding(new Insets(0,0,0,10));
     ingredientsTable.setItems(ingredientsData);
     setIngredientTableColumns();
     // loadIngredientsFromFile();
@@ -597,9 +602,9 @@ public class CatalogFridge {
     setButtonHandlers();
     mainPane.setBackground(new Background(new BackgroundFill(Color.web("#FFEEDF"), null, null)));
 
-    //mainPane.setVgap(5);
-    //mainPane.setHgap(5);
-    
+    // mainPane.setVgap(5);
+    // mainPane.setHgap(5);
+
     return new Scene(mainPane, initWidth, initHeight);
 
   }
