@@ -121,7 +121,13 @@ A helper function is used to print all of the ingredients listed in the spreadsh
 
 A class containing the stage and scene of the Catalog/Fridge window.
 
+The Catalog Fridge is constructed using a GridPane. The points of interest are the search box, food categories, tableviews and the bottom menu bar. 
 
+Within the search bar once the user presses enter the scene will replace the food categories or tableview with a filtered tableview that matches the search criteria. 
+
+The food categories is comprised of 6 different buttons that will redirect to a table that contains all the ingredients within that food category. The right most table is the "fridge" that stores all the added ingredients. 
+
+The bottom menu bar are three buttons that will redirect the user to either the favorite recipes, generated recipes scene and the save and quit button. 
 
 <p align="center">
    <i>Figure 7: Catalog Fridge Display</i> <br />
@@ -131,6 +137,15 @@ A class containing the stage and scene of the Catalog/Fridge window.
 ### GeneratedRecipes.java
 
 A class containing the stage and scene of the Generated Recipes window.
+
+The Generated Recipes is simpler with just one tableview on the left side and a information display on the right also featuring the menu bar. 
+
+If all of the ingredients in a recipes ingredient list is within the fridge, that recipe will be displayed in the tableview. Each recipe also has a heart button, if that button is clicked the heart will fill up and the recipe can also be found in the favorite recipes. 
+
+Upon clicking a recipe in the table its details will be shown to the right in an informative menu. The image of the recipe, its name, instructions and ingredients are all listed in this menu. 
+
+The bottom menu is nearly identical to the menu bar in Catalog Fridge except the generated recipes button is replaced with a button that returns to the Catalog Fridge scene. 
+
 <p align="center"> 
    <i>Figure 8: Generated Recipes Display</i> <br /> 
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/GeneratedRecipes.png" width="700"> 
@@ -138,7 +153,16 @@ A class containing the stage and scene of the Generated Recipes window.
 ### Favorites.java
 
 A class containing the stage and scene of the Favorite Recipes window.
-
+   
+The favorites scene is nearly identical to the Generated Recipes scene also having a tableview, information display and the menu bar. 
+   
+This tableview is the same as the Generated Recipes table. Only recipes that have been favorited in the gernerated recipes table is shown. 
+   
+Upon clicking a recipe, its etails will also be displayed to the right hand side. 
+   
+The menu bar here is also the same. In comparison to the menu bar in the Generated Recipes scene, the Favorites button is replaced with a Generated Recipes button to redirect to the Generated Recipes scene. 
+   
+ 
 <p align="center"> 
    <i>Figure 9: Favorite Recipes Display</i> <br /> 
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/Favorites.png" width="700"> 
