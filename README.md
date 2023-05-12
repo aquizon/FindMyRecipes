@@ -39,7 +39,7 @@ The main window of our application contains an ingredient catalog and the user's
 
 <p align="center">
    <i>Figure 1: Catalog/Fridge Window</i> <br />
-   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg" width="500">
+   <img src="./images/FindMyRecipes%20Mockups/FindMyRecipes%20Mockups.001.jpeg" width="500">
 </p>
 
 There is a search bar above the ingredient catalog for the user to easily find an ingredient in the catalog. Searching for an ingredient or clicking on one of the 6 food categories updates the main window to show the ingredients within the selected food category. For instance, clicking on the "Fruits" category displays all the ingredients that are labeled as fruits as shown in Figure 2.
