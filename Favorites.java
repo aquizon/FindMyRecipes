@@ -135,7 +135,7 @@ public class Favorites {
         ImageView viewGen = new ImageView(imgGen);
         viewGen.setFitHeight(60);
         viewGen.setPreserveRatio(true);
-        generateRecipesButton.setPrefSize(60, 60);
+        generateRecipesButton.setPrefSize(50, 50);
         // Setting a graphic to the button
         generateRecipesButton.setGraphic(viewGen);
         generateRecipesButton.setStyle(
@@ -325,8 +325,8 @@ public class Favorites {
         Image image = new Image(new FileInputStream("./images/GenerateRecipes.png"));
 
         recipePic = new ImageView(image);
-        recipePic.setFitHeight(125);
-        recipePic.setFitWidth(125);
+        recipePic.setFitHeight(150);
+        recipePic.setFitWidth(150);
         recipeIngredients.setText("Recipe Ingredients Here");
         recipeInstructions.setText("Recipe Instructions Here");
         recipeInfo.getChildren().addAll(recipePic, recipeIngredients, recipeInstructions);

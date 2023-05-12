@@ -114,7 +114,7 @@ public class GeneratedRecipes {
 
   private void setUpMenuBarBox() {
     menuBarBox.setAlignment(Pos.CENTER);
-    favoritesRecipesButton = new heartButton(true, 60, 60);
+    favoritesRecipesButton = new heartButton(true, 50, 50);
     favoritesRecipesButton.fillHeart();
     VBox favoritesBox = new VBox();
     favoritesBox.getChildren().addAll(favoritesRecipesButton.getHeart(), favoritesRecipesButtonLabel);
@@ -143,7 +143,6 @@ public class GeneratedRecipes {
     saveAndExitBox.getChildren().addAll(saveAndExitButton, saveAndExitButtonLabel);
     menuBarBox.getChildren().addAll(favoritesBox, backToFridgeBox, saveAndExitBox);
     mainPane.setBottom(menuBarBox);
-    // menuBarBox.setTranslateY(-20);
   }
 
   private void setRecipesTableColumns() {

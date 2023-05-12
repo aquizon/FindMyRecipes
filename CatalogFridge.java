@@ -517,15 +517,16 @@ public class CatalogFridge {
   private void switchToFilteredTableScene() {
     mainPane.getChildren().remove(foodCategoriesPane);
     mainPane.add(backButton, 0, 3);
-    searchBox.setTranslateX(10);
-    backButton.setTranslateX(10);
+    // searchBox.setTranslateX(10);
+    // backButton.setTranslateX(10);
+    backButton.setStyle("-fx-background-color:  #28282B; -fx-text-fill: white; -fx-background-radius: 30");
     // backButton.setPadding(new Insets(0,0,0,10));
     // mainPane.setHalignment(backButton, HPos.RIGHT);
     mainPane.add(ingredientsTable, 0, 4, 2, 2);
-    ingredientsTable.setTranslateX(10);
+    // ingredientsTable.setTranslateX(10);
     // ingredientsTable.setPadding(new Insets(0,0,0,10));
     // mainPane.setHalignment(ingredientsTable, HPos.RIGHT);
-    fridgeTable.setTranslateX(10);
+    // fridgeTable.setTranslateX(10);
   }
 
   public void setIngredientCategories(HashMap<String, ObservableList<Ingredient>> t) {
@@ -618,7 +619,7 @@ public class CatalogFridge {
     fridgeTable.setPlaceholder(new Label("Your fridge is empty!"));
 
     setUpFoodCategories();
-    foodCategoriesPane.setPadding(new Insets(0, 0, 0, 10));
+    mainPane.setPadding(new Insets(0, 10, 0, 10));
     mainPane.add(foodCategoriesPane, 0, 3, 2, 3);
     // mainPane.setHalignment(foodCategoriesPane, HPos.RIGHT);
 
