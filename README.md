@@ -12,6 +12,8 @@ Receive recipe recommendations based on the ingredients you have at home!
 
 This application generates a list of recipes that the user can cook based on the ingredients that the user has. The collection of ingredients used in our algorithm is created via the user's interaction with the application (e.g. the user adding ingredients from an ingredient catalog into the fridge or removing ingredients from the fridge). After the list of recommended recipes is generated and displayed, the user may add selected recipes into a collection of favorited recipes. When exiting the application, the user's collection of ingredients and favorite recipes are saved and loaded when the user starts the application again.
 
+[View demo](https://drive.google.com/file/d/1Xpdo-F5ny5XBasI2Qae_Ec4woyWsYcL4/view?usp=sharing)
+
 ## Running the Project
 
 The necessary files to run the project can be grabbed from the github as a zipfile. An installation of javafx may also be necessary, but otherwise all dependencies and files will be within the zip. From the terminal console, the user should run the following command to export the javafx installation.
@@ -204,6 +206,10 @@ A class containing an ObservableList of Recipe objects used in Favorites.java, G
 Contains methods that save and load the user's fridge and favorite recipes. Main.java uses the returned values from the load method to update the structures that represent the user's saved information.
 
 ## Reflections
+
+While it is important to set ambitious objectives, it is also good practice (and less overwhelming) to simplify the application at the beginning of implementation and build upon it over time. The practice of coding incrementally is crucial as errors in frontend can be more challenging to identify than backend (here, print statements throughout our code were very helpful). On a similar note, thorough planning and communication is essential especially when working with a group, which can make the process of updating or modifying the application in the long-term easier to navigate. We made extensive use of GitHub and did much of our planning (e.g. using the to-do list feature) throughout the implementation of our project.
+
+As we worked on this project, we learned more about features of JavaFX, specifically customizing buttons and tables and incorporating images. We faced challenges while implmenting some of the objectives which caused us to either modify them or research/try ways we can work around the issue (we acknowledge that some solutions are not optimal but sufficient enough for proof of concept). Overall we are satisfied with what we produced within the limited amount of time we had and hope that users can find our application useful.
 
 ## References
 
