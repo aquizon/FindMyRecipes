@@ -86,7 +86,7 @@ We came across challenges in our implementation that led us to modify our approa
 4. Adding a favorite recipes feature that uses a heart-shaped button for the user to easily add/remove recipes from the favorites list
 
    - Challenges: Despite multiple efforts to sync the state of the heart button between the Generated Recipes scene and the Favorited scene, we were still unable to get it to be fully functional without bugs. Although it seems to work fine when only a single recipe is favorited once additional recipes are added to the favorites, removing it from the favorites list has various unintentional interactions.
-   - Worked on by: Allen
+   - Worked on by: Allen (Dan and Kate tried to help debug)
 
 5. Displaying a selected recipe's information with good design for the user's readability
 
