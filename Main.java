@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 import java.io.BufferedReader;
+import javafx.application.Platform;
 
 public class Main extends Application {
   CatalogFridge fridge = new CatalogFridge();
@@ -56,6 +57,12 @@ public class Main extends Application {
     });
     fridge.favoritesRecipesButton.setOnAction(e -> stage.setScene(frScene));
 
+    fridge.saveAndExitButton.setOnAction(e -> {
+      System.out.println("on main");
+      saveData();
+      Platform.exit();
+    });
+
     // changes scenes from the generatedRecipes scene
     recipes.backToFridgeButton.setOnAction(e -> stage.setScene(cfScene));
     recipes.favoritesRecipesButton.getHeart().setOnAction(e -> stage.setScene(frScene));
@@ -66,6 +73,7 @@ public class Main extends Application {
       recipes.fillRecipesData(recipeMap, recipesData, fridge.getFridgeDataNames());
       stage.setScene(grScene);
     });
+
     stage.setScene(cfScene);
     stage.setResizable(false);
     stage.show();
@@ -81,6 +89,16 @@ public class Main extends Application {
         fList.addRecipe(r);
       }
     }
+  }
+
+  public void saveData() {
+    // need the favorites list and fridge data
+    ArrayList<String> fridgeIngredients = fridge.getFridgeDataNames();
+    ObservableList<Recipe> favoriteRecipes = favorites.getFavoriteRecipes().getFavoritesList();
+
+    System.out.println(fridgeIngredients);
+
+    FindMyRecipesFileHandler.saveRecords(favoriteRecipes, fridgeIngredients);
   }
 
   private void loadIngredientsFromFile() {

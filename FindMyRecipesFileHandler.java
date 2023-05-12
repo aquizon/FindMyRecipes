@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 
 public class FindMyRecipesFileHandler {
 
+  // NOTE: since the save and exit button is on multiple scenes, do a call to a
+  // call to this function?
   // need to save the recipe/ingredient filenames???
   // save String ingredients from fridgeDataNames
   public static void saveRecords(ObservableList<Recipe> favoriteRecipes, ArrayList<String> ingredientsAdded) {
@@ -14,7 +16,6 @@ public class FindMyRecipesFileHandler {
 
       // writing filenames used (when loading, check if the filenames used are the
       // same)
-
       // writing all the fridge ingredients to file
       // write number of ingredients (to be used for reading)
       userWriter.writeInt(ingredientsAdded.size());
