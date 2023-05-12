@@ -14,7 +14,14 @@ This application generates a list of recipes that the user can cook based on the
 
 ## Running the Project
 
-
+The necessary files to run the project can be grabbed from the github as a zipfile. An installation of javafx may also be necessary, but otherwise all dependencies and files will be within the zip. From the terminal console, the user should run the following command to export the javafx installation. 
+``` console 
+export JAVAFX_HOME=/Users/username/PATH_TO_JAVAFX
+```
+Next to run the program itself simply use the command
+```console 
+java --module-path $JAVAFX_HOME --add-modules javafx.controls,javafx.fxml Main
+```
 
 ## Layout and Visual Elements
 
