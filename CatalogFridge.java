@@ -123,6 +123,37 @@ public class CatalogFridge {
 
   String currWindow;
 
+  public void updateCategoryCounts() {
+    // iterate through fridgeData using ingredientCategories (key is the category,
+    // value is
+    // observableList of Ingredients)
+
+  }
+
+  public void setFruitsCount(int count) {
+    fruitsCount = count;
+  }
+
+  public void setVegetablesCount(int count) {
+    vegetablesCount = count;
+  }
+
+  public void setGrainsCount(int count) {
+    grainsCount = count;
+  }
+
+  public void setProteinsCount(int count) {
+    proteinsCount = count;
+  }
+
+  public void setDairyCount(int count) {
+    dairyCount = count;
+  }
+
+  public void setOtherCount(int count) {
+    otherCount = count;
+  }
+
   private void setSearchBarHandler() {
     searchBox.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
@@ -549,8 +580,12 @@ public class CatalogFridge {
     return fridgeDataNames;
   }
 
-  public void setFridgeData() {
+  public void setFridgeData(ObservableList<Ingredient> ingredients) {
+    fridgeData = ingredients;
+  }
 
+  public void setFridgeDataNames(ArrayList<String> ingredientNames) {
+    fridgeDataNames = ingredientNames;
   }
 
   public Scene generateCatalogFridgeScene() {
