@@ -18,10 +18,14 @@ The necessary files to run the project can be grabbed from the github as a zipfi
 ``` console 
 export JAVAFX_HOME=/Users/username/PATH_TO_JAVAFX
 ```
+Simply replace the username field with the user name of the device.
+
+
 Next to run the program itself simply use the command
 ```console 
 java --module-path $JAVAFX_HOME --add-modules javafx.controls,javafx.fxml Main
 ```
+Ensure the current working directory is set to the folder FindMyRecipes.
 
 ## Layout and Visual Elements
 
@@ -67,8 +71,12 @@ We came across challenges in our implementation that led us to modify our approa
 
 3. Displaying the images corresponding to the correct recipes and ingredients on the windows
 
-4. Adding a favorite recipes feature that uses a heart-shaped button for the user to easily add/remove recipes from the favorites list
+   - Challenges: With the method we chose to handle the images, it costs a significant amount of time to load each image and then assign them to an ingredient or recipe class instance. Further modifications may be helpful especially if the dataset were to grow larger. 
 
+4. Adding a favorite recipes feature that uses a heart-shaped button for the user to easily add/remove recipes from the favorites list
+   
+   -Challenges: Despite multiple efforts to sync the state of the heart button between the Generated Recipes scene and the Favorited scene, we were still unable to get it to be fully functional without bugs. Although it seems to work fine when only a single recipe is favorited once additional recipes are added to the favorites, removing it from the favorites list has various unintentional interactions. 
+   
 5. Displaying a selected recipe's information with good design for the user's readability
 
 6. Switching scenes/part of a scene based on the user's interaction with the application
@@ -132,7 +140,9 @@ The Catalog Fridge is constructed using a GridPane. The points of interest are t
 
 Within the search bar once the user presses enter the scene will replace the food categories or tableview with a filtered tableview that matches the search criteria. 
 
-The food categories is comprised of 6 different buttons that will redirect to a table that contains all the ingredients within that food category. The right most table is the "fridge" that stores all the added ingredients. 
+The food categories is comprised of 6 different buttons that will redirect to a table that contains all the ingredients within that food category. The right most table is the "fridge" that stores all the added ingredients.
+
+The tableviews for the food categories are built using two columns. The first column is just an image of the ingredient while the second column is a vBox that has the name of the ingredient and a button to either add or remove the ingredient to/from the fridge. 
 
 The bottom menu bar are three buttons that will redirect the user to either the favorite recipes, generated recipes scene and the save and quit button. 
 
