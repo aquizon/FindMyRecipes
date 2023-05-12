@@ -122,14 +122,22 @@ Figure 6: RecipeIngredientsDataset Sample
 
 A class containing the stage and scene of the Catalog/Fridge window.
 
-(add details on data structures used, other attributes)
+<p align="center">
+   <i>Figure 7: Catalog Fridge Display</i> <br />
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/CatalogFridge.png" width="700">
+</p>   
 
 ### GeneratedRecipes.java
 
 A class containing the stage and scene of the Generated Recipes window.
-
-(add details on data structures used, other attributes)
+<p align="center"> 
+   <i>Figure 8: Generated Recipes Display</i> <br /> 
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/GeneratedRecipes.png" width="700"> 
 
 ### Favorites.java
 
 A class containing the stage and scene of the Favorite Recipes window.
+
+<p align="center"> 
+   <i>Figure 9: Favorite Recipes Display</i> <br /> 
+   <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/FindMyRecipes%20Progress%20Images/Favorites.png" width="700"> 
