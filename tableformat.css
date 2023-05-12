@@ -2,6 +2,7 @@
     -fx-table-header-border-color: transparent;
     -fx-table-cell-border-color: transparent;
     -fx-border-color: #ffeede;
+    -fx-background-radius: 7px 7px 0px 0px;
 }
 
 .table-row-cell { 
