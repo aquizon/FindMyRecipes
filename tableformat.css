@@ -57,7 +57,7 @@
 .table-view .virtual-flow .scroll-bar:horizontal,
 .table-view .virtual-flow .scroll-bar:horizontal .track,
 .table-view .virtual-flow .scroll-bar:horizontal .track-background {
-    -fx-background-color: #DEFFEE;
+    -fx-background-color: #DEEFFF;
 }
 
 .table-view .virtual-flow .scroll-bar:vertical .thumb{
@@ -66,3 +66,4 @@
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color:  linear-gradient(to right, #FFC1C2, #FFFEBB);
 }
+
