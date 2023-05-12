@@ -340,4 +340,7 @@ public class Favorites {
     // public static void main(String[] args) {
     // launch(args);
     // }
+    public FavoritesList getFavoriteRecipes() {
+        return fList;
+    }
 }
