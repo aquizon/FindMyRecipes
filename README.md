@@ -14,6 +14,8 @@ This application generates a list of recipes that the user can cook based on the
 
 ## Running the Project
 
+
+
 ## Layout and Visual Elements
 
 The main window of our application contains an ingredient catalog and the user's fridge/pantry which is initially empty. The user adds ingredients by selecting them from the catalog which contains 6 food categories. The bottom of the window contains 3 buttons that initiate unique functionality. The design of the main window is shown in Figure 1 below.
@@ -110,9 +112,6 @@ ID|Title|List of Ingredients|Instructions
 
 A helper function is used to print all of the ingredients listed in the spreadsheet that will be used to populate the ingredient catalog in the main window. This list of ingredients is stored in a separate spreadsheet where we manually added the categories and image filenames as shown in Figure 6.
 
-Figure 6: RecipeIngredientsDataset Sample
-<img width="914" alt="RecipeIngredientsDatasetSample" src="https://user-images.githubusercontent.com/90003553/236321774-933191f5-0cf3-4e16-a1d2-308273af337b.png">
-
 <p align="center">
    <i>Figure 6: RecipeIngredientsDataset Sample</i> <br />
    <img src="https://github.com/aquizon/FindMyRecipes/blob/main/images/RecipeIngredientsDataset.png" width="700">
@@ -121,6 +120,8 @@ Figure 6: RecipeIngredientsDataset Sample
 ### CatalogFridge.java
 
 A class containing the stage and scene of the Catalog/Fridge window.
+
+
 
 <p align="center">
    <i>Figure 7: Catalog Fridge Display</i> <br />
